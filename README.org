@@ -15,12 +15,12 @@ the composition of more primitive operations.
                       '("January" "February" "March" "April"
                         "May" "June" "July" "August"
                         "September" "October" "November" "December"))
-  #| ==> ((#\A "April" "August")
-          (#\D "December")
-          (#\F "February")
-          (#\J "January" "June" "July")
-          (#\M "March" "May")
-          (#\N "November")
-          (#\O "October")
-          (#\S "September")) |#
+  #| ==> ((#\A "pril" "ugust")
+          (#\D "ecember")
+          (#\F "ebruary")
+          (#\J "anuary" "une" "uly")
+          (#\M "arch" "ay")
+          (#\N "ovember")
+          (#\O "ctober")
+          (#\S "eptember")) |#
 #+END_SRC
