@@ -4,7 +4,9 @@ This library provides a language for expressing data manipulations as
 the composition of more primitive operations.
 
 #+BEGIN_SRC lisp
-  DATA-LENS> (funcall (on (compress-runs :collector 'combine-matching-lists)
+  DATA-LENS> (funcall (on (alexandria:compose
+                           (over (transform-tail (over (slice 1))))
+                           (compress-runs :collector 'combine-matching-lists))
                           (alexandria:compose 
                            (over (data-lens:juxt
                                   (data-lens:element 0)

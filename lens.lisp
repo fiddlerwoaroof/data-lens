@@ -102,6 +102,15 @@
   (lambda (seq)
     (map 'list selector seq)))
 
+(defun slice (start &optional end)
+  (lambda (it)
+    (subseq it start end)))
+
+(defun-ct transform-tail (fun)
+  (lambda (it)
+    (list* (car it)
+           (funcall fun (cdr it)))))
+
 (defun-ct key-transform (fun key-get key-set)
   (lambda (it)
     (let ((key-val (funcall key-get it)))
