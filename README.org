@@ -1,0 +1,23 @@
+* Intro
+
+This library provides a language for expressing data manipulations as
+the composition of more primitive operations.
+
+#+BEGIN_SRC lisp
+  DATA-LENS> (funcall (on (compress-runs :collector 'combine-matching-lists)
+                          (alexandria:compose 
+                           (over (juxt (element 0)
+                                       'identity))
+                           (sorted 'string<)))
+                      '("January"   "February" "March"    "April"
+                        "May"       "June"     "July"     "August"
+                        "September" "October"  "November" "December"))
+  #| ==> ((#\A "April" "August") 
+          (#\D "December")
+          (#\F "February")
+          (#\J "January" "July" "June")
+          (#\M "March" "May")
+          (#\N "November")
+          (#\O "October")
+          (#\S "September")) |#
+#+END_SRC

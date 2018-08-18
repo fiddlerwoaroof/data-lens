@@ -3,7 +3,12 @@
   (:export #:regex-match #:include #:exclude #:pick
            #:snapshot-to-vector #:vector-to-lt #:key-transform
            #:combine #:derive #:cumsum #:over #:on #:shortcut
-           #:defun-ct))
+           #:defun-ct
+           #:key
+           #:extract-key
+           #:element
+           #:let-fn
+           #:juxt))
 (in-package :data-lens)
 
 (defmacro shortcut (name function &body bound-args)
@@ -15,6 +20,68 @@
   `(eval-when (:load-toplevel :compile-toplevel :execute)
      (defun ,name ,args
        ,@body)))
+
+(defmacro let-fn ((&rest bindings) &body body)
+  (let ((binding-forms (mapcar (lambda (form)
+                                 `(,(car form) ,(cadr form)
+                                    (funcall ,@(cddr form) ,@(cadr form))))
+                               bindings)))
+    `(labels ,binding-forms
+       ,@body)))
+
+(defgeneric extract-key (map key)
+  (:method ((map hash-table) key)
+    (gethash key map))
+  (:method ((map list) key)
+    (typecase (car map)
+      (cons (cdr (assoc key map :test 'equal)))
+      (t (loop for (a-key . value) on map by #'cddr
+            when (equal key a-key) do
+              (return (car value)))))))
+
+(defun-ct deduplicate (&optional (test 'eql))
+  (lambda (it)
+    (remove-duplicates it :test test)))
+
+(defun cons-new (&key (test 'eql) (key 'identity))
+  (lambda (acc next)
+    (if (and acc
+             (funcall test
+                      (funcall key (car acc))
+                      (funcall key next)))
+        acc
+        (cons next acc))))
+
+(defun combine-matching-lists (&key (test 'eql) &allow-other-keys)
+  (lambda (acc next)
+    (if (and acc
+             (funcall test (caar acc) (car next)))
+        (cons (cons (caar acc)
+                    (append (cdar acc)
+                            (cdr next)))
+              (cdr acc))
+        (cons next acc))))
+
+(defun-ct compress-runs (&key (collector 'cons-new) (test 'eql) (key 'identity))
+  (lambda (it)
+    (nreverse
+     (reduce (funcall collector :test test :key key)
+             it
+             :initial-value ()))))
+
+(defun-ct sorted (comparator &rest r &key key)
+  (declare (ignore key))
+  (lambda (it)
+    (apply #'sort (copy-seq it) comparator r)))
+
+(defun-ct element (num)
+  (lambda (it)
+    (elt it num)))
+
+(defun-ct key (key)
+  (lambda (map)
+    (declare (dynamic-extent map))
+    (extract-key map key)))
 
 (defun-ct regex-match (regex)
   (lambda (data)
@@ -38,7 +105,7 @@
       (funcall key-set
                (funcall fun key-val)))))
 
-(defun-ct combine (fun1 fun2)
+(defun-ct juxt (fun1 fun2)
   (lambda (item)
     (list (funcall fun1 item)
           (funcall fun2 item))))
