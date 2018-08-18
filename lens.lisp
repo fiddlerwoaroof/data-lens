@@ -52,15 +52,18 @@
         acc
         (cons next acc))))
 
+(defun matching-list-reducer (test acc next)
+  (if (and acc
+           (funcall test (caar acc) (car next)))
+      (cons (cons (caar acc)
+                  (append (cdar acc)
+                          (cdr next)))
+            (cdr acc))
+      (cons next acc)))
+
 (defun combine-matching-lists (&key (test 'eql) &allow-other-keys)
   (lambda (acc next)
-    (if (and acc
-             (funcall test (caar acc) (car next)))
-        (cons (cons (caar acc)
-                    (append (cdar acc)
-                            (cdr next)))
-              (cdr acc))
-        (cons next acc))))
+    (matching-list-reducer test acc next)))
 
 (defun-ct compress-runs (&key (collector 'cons-new) (test 'eql) (key 'identity))
   (lambda (it)
@@ -72,7 +75,7 @@
 (defun-ct sorted (comparator &rest r &key key)
   (declare (ignore key))
   (lambda (it)
-    (apply #'sort (copy-seq it) comparator r)))
+    (apply #'stable-sort (copy-seq it) comparator r)))
 
 (defun-ct element (num)
   (lambda (it)
