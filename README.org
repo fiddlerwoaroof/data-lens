@@ -8,10 +8,10 @@ the composition of more primitive operations.
                            (over (transform-tail (over (slice 1))))
                            (compress-runs :collector 'combine-matching-lists))
                           (alexandria:compose 
-                           (over (data-lens:juxt
-                                  (data-lens:element 0)
-                                  'identity))
-                           (sorted 'char< :key (element 0))))
+                           (over (juxt (element 0)
+                                       'identity))
+                           (sorted 'char<
+                                   :key (element 0))))
                       '("January" "February" "March" "April"
                         "May" "June" "July" "August"
                         "September" "October" "November" "December"))
