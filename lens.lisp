@@ -8,8 +8,34 @@
            #:extract-key
            #:element
            #:let-fn
-           #:juxt))
+           #:juxt
+           #:transform-tail
+           #:slice
+           #:compress-runs
+           #:combine-matching-lists
+           #:sorted
+           #:applicable-when
+           #:of-length
+           #:of-min-length
+           #:of-max-length
+           #:transform-head
+           #:maximizing
+           #:zipping))
 (in-package :data-lens)
+
+(declaim 
+ (inline data-lens:over
+         data-lens:transform-tail
+         data-lens:applicable-when
+         data-lens:of-min-length
+         data-lens:on
+         data-lens:over
+         data-lens:slice
+         data-lens:compress-runs
+         data-lens:combine-matching-lists
+         data-lens:juxt
+         data-lens:element
+         data-lens:sorted))
 
 (defmacro shortcut (name function &body bound-args)
   `(eval-when (:load-toplevel :compile-toplevel :execute)
@@ -72,6 +98,27 @@
              it
              :initial-value ()))))
 
+(defun-ct of-length (len)
+  (lambda (it)
+    (= (length it)
+       len)))
+
+(defun-ct of-min-length (len)
+  (lambda (it)
+    (>= (length it)
+        len)))
+
+(defun-ct of-max-length (len)
+  (lambda (it)
+    (>= (length it)
+        len)))
+
+(defun-ct applicable-when (fun test)
+  (lambda (it)
+    (if (funcall test it)
+        (funcall fun it)
+        it)))
+
 (defun-ct sorted (comparator &rest r &key key)
   (declare (ignore key))
   (lambda (it)
@@ -106,6 +153,11 @@
   (lambda (it)
     (subseq it start end)))
 
+(defun-ct transform-head (fun)
+  (lambda (it)
+    (list* (funcall fun (car it))
+           (cdr it))))
+
 (defun-ct transform-tail (fun)
   (lambda (it)
     (list* (car it)
@@ -117,20 +169,28 @@
       (funcall key-set
                (funcall fun key-val)))))
 
-(defun-ct juxt (fun1 fun2)
-  (lambda (item)
-    (list (funcall fun1 item)
-          (funcall fun2 item))))
+(defun-ct juxt (fun1 fun2 &rest r)
+  (lambda (&rest args)
+    (list* (apply fun1 args)
+           (apply fun2 args)
+           (when r
+             (mapcar (lambda (f)
+                       (apply f args))
+                     r)))))
 
 (defun-ct derive (diff-fun &key (key #'identity))
   (lambda (list)
-    (mapcar (lambda (next cur)
-              (cons (funcall diff-fun (funcall key next) (funcall key  cur))
-                    next))
-            (cdr list)
-            list)))
+    (cons (cons nil (car list))
+          (mapcar (lambda (next cur)
+                    (cons (funcall diff-fun
+                                   (funcall key next)
+                                   (funcall key  cur))
+                          next))
+                  (cdr list)
+                  list))))
 
-(defun-ct cumsum (&key (add-fun #'+) (key #'identity) (combine (lambda (x y) y x)) (zero 0))
+(defun-ct cumsum
+    (&key (add-fun #'+) (key #'identity) (combine (lambda (x y) y x)) (zero 0))
   (lambda (seq)
     (nreverse
      (reduce (lambda (accum next)
@@ -152,3 +212,41 @@
 (defun-ct on (fun key)
   (lambda (it)
     (funcall fun (funcall key it))))
+
+(defun filler (length1 length2 fill-value)
+  (if (< length1 length2)
+      (make-sequence 'vector (- length2 length1) :initial-element fill-value)
+      #()))
+
+(defun-ct zipping (result-type &key (fill-value nil fill-value-p))
+  (lambda (seq1 seq2)
+    (let ((length1 (when fill-value-p (length seq1)))
+          (length2 (when fill-value-p (length seq2))))
+      (let ((seq1 (if fill-value-p
+                      (concatenate result-type
+                                   seq1
+                                   (filler length1 length2 fill-value))
+                      seq1))
+            (seq2 (if fill-value-p
+                      (concatenate result-type
+                                   seq2
+                                   (filler length2 length1 fill-value))
+                      seq2)))
+        (map result-type #'list
+             seq1 seq2)))))
+
+(defun-ct maximizing (relation measure)
+  (lambda (it)
+    (let ((it-length (length it)))
+      (when (> it-length 0)
+        (values-list
+         (reduce (fw.lu:destructuring-lambda ((cur-max max-idx)
+                                              (next next-idx))
+                   (if (funcall relation
+                                (funcall measure cur-max)
+                                (funcall measure next))
+                       (list next next-idx)
+                       (list cur-max max-idx)))
+                 (funcall (zipping 'vector)
+                          it
+                          (alexandria:iota it-length))))))))
