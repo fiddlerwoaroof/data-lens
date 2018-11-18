@@ -178,6 +178,11 @@
                        (apply f args))
                      r)))))
 
+(defun =>> (fun1 fun2)
+  (lambda (i)
+    (prog1 (funcall fun1 i)
+      (funcall fun2))))
+
 (defun-ct derive (diff-fun &key (key #'identity))
   (lambda (list)
     (cons (cons nil (car list))
