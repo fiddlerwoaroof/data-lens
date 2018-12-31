@@ -2,8 +2,9 @@
   :description "Utilities for building data transormations from composable functions, modeled on lenses and transducers"
   :author "Edward Langley <edward@elangley.org>"
   :license "MIT"
-  :depends-on (cl-ppcre
-               alexandria)
+  :depends-on (:cl-ppcre
+               :alexandria
+               :fwoar.lisputils)
   :serial t
   :components ((:file "lens")))
 
