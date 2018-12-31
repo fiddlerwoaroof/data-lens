@@ -20,7 +20,9 @@
            #:of-max-length
            #:transform-head
            #:maximizing
-           #:zipping))
+           #:zipping
+           #:applying
+           #:transform-elt))
 (in-package :data-lens)
 
 (declaim 
@@ -163,6 +165,12 @@
     (list* (car it)
            (funcall fun (cdr it)))))
 
+(defun-ct transform-elt (elt fun)
+  (lambda (it)
+    (append (subseq it 0 elt)
+            (funcall fun (nth elt it))
+            (subseq it (1+ elt)))))
+
 (defun-ct key-transform (fun key-get key-set)
   (lambda (it)
     (let ((key-val (funcall key-get it)))
@@ -213,6 +221,11 @@
 (defun-ct over (fun &key (result-type 'list))
   (lambda (seq)
     (map result-type fun seq)))
+
+(defmacro applying (fun &rest args)
+  (alexandria:with-gensyms (seq)
+    `(lambda (,seq)
+       (apply ,fun ,@args ,seq))))
 
 (defun-ct on (fun key)
   (lambda (it)
