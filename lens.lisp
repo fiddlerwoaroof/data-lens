@@ -258,13 +258,12 @@
     (let ((it-length (length it)))
       (when (> it-length 0)
         (values-list
-         (reduce (fw.lu:destructuring-lambda ((cur-max max-idx)
-                                              (next next-idx))
-                   (if (funcall relation
-                                (funcall measure cur-max)
-                                (funcall measure next))
-                       (list next next-idx)
-                       (list cur-max max-idx)))
+         (reduce (lambda (|arg1764| |arg1765|)
+                   (destructuring-bind (cur-max max-idx) |arg1764|
+                     (destructuring-bind (next next-idx) |arg1765|
+                       (if (funcall relation (funcall measure cur-max) (funcall measure next))
+                           (list next next-idx)
+                           (list cur-max max-idx)))))
                  (funcall (zipping 'vector)
                           it
                           (alexandria:iota it-length))))))))
