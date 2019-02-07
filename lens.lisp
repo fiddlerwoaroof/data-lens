@@ -22,7 +22,8 @@
            #:maximizing
            #:zipping
            #:applying
-           #:transform-elt))
+           #:transform-elt
+           #:denest))
 (in-package :data-lens)
 
 (declaim 
@@ -155,15 +156,30 @@
   (lambda (it)
     (subseq it start end)))
 
+(defun-ct update (thing fun &rest args)
+  (apply fun thing args))
+
+(define-modify-macro updatef (fun &rest args)
+  update)
+
 (defun-ct transform-head (fun)
   (lambda (it)
-    (list* (funcall fun (car it))
-           (cdr it))))
+    (typecase it
+      (list (list* (funcall fun (car it))
+                   (cdr it)))
+      (vector (let ((result (copy-seq it)))
+                (prog1 result
+                  (updatef (elt result 0) fun)))))))
 
 (defun-ct transform-tail (fun)
   (lambda (it)
-    (list* (car it)
-           (funcall fun (cdr it)))))
+    (typecase it
+      (list (list* (car it)
+                   (funcall fun (cdr it))))
+      (vector (let ((result (copy-seq it)))
+                (prog1 result
+                  (updatef (subseq result 1)
+                           fun)))))))
 
 (defun-ct transform-elt (elt fun)
   (lambda (it)
@@ -177,10 +193,9 @@
       (funcall key-set
                (funcall fun key-val)))))
 
-(defun-ct juxt (fun1 fun2 &rest r)
+(defun-ct juxt (fun1 &rest r)
   (lambda (&rest args)
     (list* (apply fun1 args)
-           (apply fun2 args)
            (when r
              (mapcar (lambda (f)
                        (apply f args))
@@ -192,15 +207,25 @@
       (funcall fun2))))
 
 (defun-ct derive (diff-fun &key (key #'identity))
-  (lambda (list)
-    (cons (cons nil (car list))
-          (mapcar (lambda (next cur)
-                    (cons (funcall diff-fun
-                                   (funcall key next)
-                                   (funcall key  cur))
-                          next))
-                  (cdr list)
-                  list))))
+  (lambda (seq)
+    (typecase seq
+      (list (cons (cons nil (car seq))
+                  (mapcar (lambda (next cur)
+                            (cons (funcall diff-fun
+                                           (funcall key next)
+                                           (funcall key  cur))
+                                  next))
+                          (cdr seq)
+                          seq)))
+      (vector (coerce (loop for cur = nil then next
+                            for next across seq
+                            if cur
+                              collect (cons (funcall diff-fun
+                                                     (funcall key next)
+                                                     (funcall key cur))
+                                            cur)
+                            else collect (cons nil next))
+                      'vector)))))
 
 (defun-ct cumsum
     (&key (add-fun #'+) (key #'identity) (combine (lambda (x y) y x)) (zero 0))
@@ -221,6 +246,11 @@
 (defun-ct over (fun &key (result-type 'list))
   (lambda (seq)
     (map result-type fun seq)))
+
+(defun-ct denest (&key (result-type 'list))
+  (lambda (seq)
+    (apply #'concatenate result-type
+           seq)))
 
 (defmacro applying (fun &rest args)
   (alexandria:with-gensyms (seq)
