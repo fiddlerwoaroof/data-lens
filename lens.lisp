@@ -1,29 +1,11 @@
 (defpackage :data-lens
   (:use :cl)
-  (:export #:regex-match #:include #:exclude #:pick
-           #:snapshot-to-vector #:vector-to-lt #:key-transform
-           #:combine #:derive #:cumsum #:over #:on #:shortcut
-           #:defun-ct
-           #:key
-           #:extract-key
-           #:element
-           #:let-fn
-           #:juxt
-           #:transform-tail
-           #:slice
-           #:compress-runs
-           #:combine-matching-lists
-           #:sorted
-           #:applicable-when
-           #:of-length
-           #:of-min-length
-           #:of-max-length
-           #:transform-head
-           #:maximizing
-           #:zipping
-           #:applying
-           #:transform-elt
-           #:denest))
+  (:export #:regex-match #:include #:exclude #:pick #:key-transform
+           #:combine #:derive #:cumsum #:over #:on #:shortcut #:defun-ct #:key
+           #:extract-key #:element #:let-fn #:juxt #:transform-tail #:slice
+           #:compress-runs #:combine-matching-lists #:sorted #:applicable-when
+           #:of-length #:of-min-length #:of-max-length #:transform-head
+           #:maximizing #:zipping #:applying #:transform-elt #:denest))
 (in-package :data-lens)
 
 (declaim 
@@ -53,7 +35,7 @@
 (defmacro let-fn ((&rest bindings) &body body)
   (let ((binding-forms (mapcar (lambda (form)
                                  `(,(car form) ,(cadr form)
-                                    (funcall ,@(cddr form) ,@(cadr form))))
+                                   (funcall ,@(cddr form) ,@(cadr form))))
                                bindings)))
     `(labels ,binding-forms
        ,@body)))
@@ -65,8 +47,8 @@
     (typecase (car map)
       (cons (cdr (assoc key map :test 'equal)))
       (t (loop for (a-key . value) on map by #'cddr
-            when (equal key a-key) do
-              (return (car value)))))))
+               when (equal key a-key) do
+                 (return (car value)))))))
 
 (defun-ct deduplicate (&optional (test 'eql))
   (lambda (it)
