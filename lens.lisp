@@ -1,11 +1,13 @@
 (defpackage :data-lens
   (:use :cl)
+  (:import-from #:serapeum #:op #:defalias)
   (:export #:regex-match #:include #:exclude #:pick #:key-transform
            #:combine #:derive #:cumsum #:over #:on #:shortcut #:defun-ct #:key
            #:extract-key #:element #:let-fn #:juxt #:transform-tail #:slice
            #:compress-runs #:combine-matching-lists #:sorted #:applicable-when
            #:of-length #:of-min-length #:of-max-length #:transform-head
-           #:maximizing #:zipping #:applying #:transform-elt #:denest))
+           #:maximizing #:zipping #:applying #:transform-elt #:denest #:op
+           #:defalias #:<> #:<>1))
 (in-package :data-lens)
 
 (declaim 
@@ -279,3 +281,17 @@
                  (funcall (zipping 'vector)
                           it
                           (alexandria:iota it-length))))))))
+
+(defmacro <> (arity &rest funs)
+  (let ((arg-syms (loop repeat arity collect (gensym))))
+    `(lambda (,@arg-syms)
+       (declare (dynamic-extent ,@arg-syms))
+       ,(fw.lu:rollup-list (mapcar (lambda (x)
+                                     (etypecase x
+                                       (list `(funcall ,x))
+                                       (symbol (list x))))
+                                   funs)
+                           arg-syms))))
+
+(defmacro <>1 (&rest funs)
+  `(<> 1 ,@funs))
