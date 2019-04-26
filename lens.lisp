@@ -11,18 +11,11 @@
 (in-package :data-lens)
 
 (declaim 
- (inline data-lens:over
-         data-lens:transform-tail
-         data-lens:applicable-when
-         data-lens:of-min-length
-         data-lens:on
-         data-lens:over
-         data-lens:slice
-         data-lens:compress-runs
-         data-lens:combine-matching-lists
-         data-lens:juxt
-         data-lens:element
-         data-lens:sorted))
+ (inline data-lens:over data-lens:transform-tail
+         data-lens:applicable-when data-lens:of-min-length
+         data-lens:on data-lens:over data-lens:slice
+         data-lens:compress-runs data-lens:combine-matching-lists
+         data-lens:juxt data-lens:element data-lens:sorted))
 
 (defmacro shortcut (name function &body bound-args)
   `(eval-when (:load-toplevel :compile-toplevel :execute)
