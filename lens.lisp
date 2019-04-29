@@ -4,30 +4,6 @@
   (:export :over :set :view :make-alist-lens :make-plist-lens :make-hash-table-lens))
 (in-package :data-lens.lenses)
 
-(defun make-alist-lens (key)
-  (lambda (cb)
-    (lambda (alist)
-      (let ((old-value (serapeum:assocdr key alist)))
-        (cons (cons key (funcall cb old-value))
-              alist)))))
-
-(defun make-plist-lens (key)
-  (lambda (cb)
-    (lambda (plist)
-      (let ((old-value (getf plist key)))
-        (list* key (funcall cb old-value)
-               plist)))))
-
-(defun make-hash-table-lens (key)
-  (lambda (cb)
-    (lambda (old-hash)
-      (let ((old-value (gethash key old-hash)))
-        (fw.lu:prog1-bind (new-hash (alexandria:copy-hash-table old-hash))
-          (setf (gethash key new-hash)
-                (funcall cb old-value)))))))
-
-;; imagine a lens here that uses the MOP to immutably update a class...
-
 (defun over (lens cb rec)
   "Given a lens, a callback and a record, apply the lens to the
 record, transform it by the callback and return copy of the record,
@@ -73,6 +49,52 @@ contain the new value at the location focused by the lens."
             value))
         rec))
 
+(defun make-alist-lens (key)
+  (lambda (cb)
+    (lambda (alist)
+      (let ((old-value (serapeum:assocdr key alist)))
+        (cons (cons key (funcall cb old-value))
+              alist)))))
+
+(defun make-plist-lens (key)
+  (lambda (cb)
+    (lambda (plist)
+      (let ((old-value (getf plist key)))
+        (list* key (funcall cb old-value)
+               plist)))))
+
+(defun make-hash-table-lens (key)
+  (lambda (cb)
+    (lambda (old-hash)
+      (let ((old-value (gethash key old-hash)))
+        (fw.lu:prog1-bind (new-hash (alexandria:copy-hash-table old-hash))
+          (setf (gethash key new-hash)
+                (funcall cb old-value)))))))
+
+;; imagine a lens here that uses the MOP to immutably update a class...
+(defgeneric clone (obj &rest new-initargs &key)
+  (:method :around (obj &rest new-initargs &key)
+    (apply #'reinitialize-instance (call-next-method) new-initargs)))
+
+#+fw.demo
+(progn
+  (defclass foo ()
+    ((a :initarg :a :accessor a)))
+  (defmethod clone ((obj foo) &key)
+    (make-instance 'foo :a (a obj)))
+
+  (defun a-lens (cb)
+    (lambda (foo)
+      (fw.lu:prog1-bind (new (clone foo))
+        (setf (a new)
+              (funcall cb (a foo))))))
+  (view 'a-lens
+        (over 'a-lens '1+
+              (set 'a-lens 2
+                   (make-instance 'foo :a 1)))) #|
+  ==> 3 |#)
+
+
 
 (defpackage :data-lens
   (:use :cl)
@@ -82,8 +104,8 @@ contain the new value at the location focused by the lens."
            #:extract-key #:element #:let-fn #:juxt #:transform-tail #:slice
            #:compress-runs #:combine-matching-lists #:sorted #:applicable-when
            #:of-length #:of-min-length #:of-max-length #:transform-head
-           #:maximizing #:zipping #:applying #:transform-elt #:denest #:op
-           #:defalias #:<> #:<>1))
+           #:maximizing #:zipping #:applying #:splice-elt #:transform-elt #:denest
+           #:op #:defalias #:<> #:<>1))
 (in-package :data-lens)
 
 
@@ -236,10 +258,16 @@ contain the new value at the location focused by the lens."
                   (updatef (subseq result 1)
                            fun)))))))
 
-(defun-ct transform-elt (elt fun)
+(defun-ct splice-elt (elt fun)
   (lambda (it)
     (append (subseq it 0 elt)
             (funcall fun (nth elt it))
+            (subseq it (1+ elt)))))
+
+(defun-ct transform-elt (elt fun)
+  (lambda (it)
+    (append (subseq it 0 elt)
+            (list (funcall fun (nth elt it)))
             (subseq it (1+ elt)))))
 
 (defun-ct key-transform (fun key-get key-set)
