@@ -1,3 +1,78 @@
+(defpackage :data-lens.lenses
+  (:shadow :set)
+  (:use :cl))
+(in-package :data-lens.lenses)
+
+(defun make-alist-lens (key)
+  (lambda (cb)
+    (lambda (alist)
+      (let ((old-value (serapeum:assocdr key alist)))
+        (cons (cons key (funcall cb old-value))
+              alist)))))
+
+(defun make-plist-lens (key)
+  (lambda (cb)
+    (lambda (plist)
+      (let ((old-value (getf plist key)))
+        (list* key (funcall cb old-value)
+               plist)))))
+
+(defun make-hash-table-lens (key)
+  (lambda (cb)
+    (lambda (old-hash)
+      (let ((old-value (gethash key old-hash)))
+        (fw.lu:prog1-bind (new-hash (alexandria:copy-hash-table old-hash))
+          (setf (gethash key new-hash)
+                (funcall cb old-value)))))))
+
+;; imagine a lens here that uses the MOP to immutably update a class...
+
+(defun over (lens cb rec)
+  "Given a lens, a callback and a record, apply the lens to the
+record, transform it by the callback and return copy of the record,
+updated to contain the result of the callback. This is the fundamental
+operation on a lens and SET and VIEW are implemented in terms of it.
+
+A lens is any function of the form (lambda (fun) (lambda (rec) ...))
+that obeys the lens laws (where == is some reasonable equality
+operator):
+
+   (== (view lens (set lens value rec))
+       value)
+
+   (== (set lens (view lens rec) rec)
+       rec)
+
+   (== (set lens value2 (set lens value1 rec))
+       (set lens value2 rec))
+
+If these conditions are met, (over (data-lens:<>1 lens1 lens2) ...) is
+equivalent to using lens2 to focus the part lens1 focuses: note that
+composition is \"backwards\" from what one might expect: this is
+because composition composes the wrapper lambdas and applies the
+lambda that actually pulls a value out of a record later."
+
+  (funcall (funcall lens cb)
+           rec))
+
+(defun set (lens value rec)
+  "Given a lens, a value and a rec, immutably update the rec to
+contain the new value at the location focused by the lens."
+  (over lens
+        (lambda (_)
+          (declare (ignore _))
+          value)
+        rec))
+
+(defun view (lens rec)
+  "Given a lens and a rec, return the focused value"
+  (over lens
+        (lambda (value)
+          (return-from view
+            value))
+        rec))
+
+
 (defpackage :data-lens
   (:use :cl)
   (:import-from #:serapeum #:op #:defalias)
@@ -10,6 +85,7 @@
            #:defalias #:<> #:<>1))
 (in-package :data-lens)
 
+
 (declaim 
  (inline data-lens:over data-lens:transform-tail
          data-lens:applicable-when data-lens:of-min-length
@@ -17,6 +93,7 @@
          data-lens:compress-runs data-lens:combine-matching-lists
          data-lens:juxt data-lens:element data-lens:sorted))
 
+;;; TODO: consider making this wrap defalias?
 (defmacro shortcut (name function &body bound-args)
   `(eval-when (:load-toplevel :compile-toplevel :execute)
      (setf (fdefinition ',name)
