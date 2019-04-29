@@ -1,6 +1,7 @@
 (defpackage :data-lens.lenses
   (:shadow :set)
-  (:use :cl))
+  (:use :cl)
+  (:export :over :set :view :make-alist-lens :make-plist-lens :make-hash-table-lens))
 (in-package :data-lens.lenses)
 
 (defun make-alist-lens (key)
