@@ -182,9 +182,10 @@ contain the new value at the location focused by the lens."
   (lambda (cb)
     (lambda (old-hash)
       (fmap (lambda (new)
-              (fw.lu:prog1-bind (new-hash (alexandria:copy-hash-table old-hash))
-                (setf (gethash key new-hash)
-                      new)))
+              (let ((new-hash (alexandria:copy-hash-table old-hash)))
+                (prog1 new-hash
+                  (setf (gethash key new-hash)
+                        new))))
             (funcall cb (gethash key old-hash))))))
 
 ;; imagine a lens here that uses the MOP to immutably update a class...
@@ -498,6 +499,7 @@ contain the new value at the location focused by the lens."
                           it
                           (alexandria:iota it-length))))))))
 
+#+nil
 (defmacro <> (arity &rest funs)
   (let ((arg-syms (loop repeat arity collect (gensym))))
     `(lambda (,@arg-syms)
@@ -510,4 +512,4 @@ contain the new value at the location focused by the lens."
                            arg-syms))))
 
 (defmacro <>1 (&rest funs)
-  `(<> 1 ,@funs))
+  `(alexandria:compose ,@funs))
