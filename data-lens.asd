@@ -4,7 +4,7 @@
   :license "MIT"
   :depends-on (:cl-ppcre
                :alexandria
-               )
+               :serapeum)
   :serial t
   :components ((:file "lens")))
 

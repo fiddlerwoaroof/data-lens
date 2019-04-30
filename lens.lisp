@@ -4,6 +4,82 @@
   (:export :over :set :view :make-alist-lens :make-plist-lens :make-hash-table-lens))
 (in-package :data-lens.lenses)
 
+#+fw.dev
+(progn
+  ;; maybe functor implementation
+  (defclass maybe ()
+    ())
+  (defclass just (maybe)
+    ((%v :initarg :value :reader value)))
+  (defclass nothing (maybe)
+    ())
+
+  (defun just (value)
+    (make-instance 'just :value value))
+  (defun nothing (&optional value)
+    (declare (ignore value))
+    (make-instance 'nothing))
+
+  (defgeneric maybe (default value)
+    (:method (default (value just))
+      (value value))
+    (:method (default (value nothing))
+      default))
+
+  (defgeneric maybe-apply (function value)
+    (:method (function (value just))
+      (just (funcall function (value value))))
+    (:method (function (value nothing))
+      value))
+
+  (defmethod print-object ((o just) s)
+    (format s "#.(~s ~s)"
+            'just
+            (value o)))
+
+  (defmethod print-object ((o nothing) s)
+    (format s "#.(~s)"
+            'nothing)))
+
+;; identity functor, necessary for set and over
+(defclass identity- ()
+  ((%v :initarg :value :reader unidentity)))
+
+(defun wrap-identity (v)
+  (make-instance 'identity- :value v))
+
+(defmethod print-object ((o identity-) s)
+  (format s "#.(~s ~s)"
+          'wrap-identity
+          (unidentity o)))
+
+;; constant functor, necessary for view
+(defclass constant- ()
+  ((%v :initarg :value :reader unconstant)))
+
+(defun wrap-constant (v)
+  (make-instance 'constant- :value v))
+
+(defmethod print-object ((o constant-) s)
+  (format s "#.(~s ~s)"
+          'wrap-constant
+          (unconstant o)))
+
+(defgeneric fmap (function data)
+  (:method (function (data identity-))
+    (wrap-identity
+     (funcall function
+              (unidentity data))))
+  (:method (function (data constant-))
+    data)
+  (:method (function (data list))
+    (mapcar function data))
+  (:method (function (data vector))
+    (map 'vector function data))
+  #+fw.dev
+  (:method (function (data maybe))
+    (maybe-apply function data)))
+
 (defun over (lens cb rec)
   "Given a lens, a callback and a record, apply the lens to the
 record, transform it by the callback and return copy of the record,
@@ -23,53 +99,93 @@ operator):
    (== (set lens value2 (set lens value1 rec))
        (set lens value2 rec))
 
+The inner lambda returns a functor that determines the policy to be
+applied to the focused part.  By default, this only uses IDENTITY- and
+CONSTANT- in order to implement the lens operations over, set and
+view.
+
 If these conditions are met, (over (data-lens:<>1 lens1 lens2) ...) is
 equivalent to using lens2 to focus the part lens1 focuses: note that
 composition is \"backwards\" from what one might expect: this is
 because composition composes the wrapper lambdas and applies the
 lambda that actually pulls a value out of a record later."
-
-  (funcall (funcall lens cb)
-           rec))
-
-(defun set (lens value rec)
-  "Given a lens, a value and a rec, immutably update the rec to
-contain the new value at the location focused by the lens."
-  (over lens
-        (lambda (_)
-          (declare (ignore _))
-          value)
-        rec))
+  (unidentity
+   (funcall (funcall lens (lambda (x) (wrap-identity (funcall cb x))))
+            rec)))
 
 (defun view (lens rec)
   "Given a lens and a rec, return the focused value"
-  (over lens
-        (lambda (value)
-          (return-from view
-            value))
-        rec))
+  (unconstant
+   (funcall (funcall lens (lambda (x) (wrap-constant x)))
+            rec)))
 
-(defun make-alist-lens (key)
+(defun set (lens v rec)
+  "Given a lens, a value and a rec, immutably update the rec to
+contain the new value at the location focused by the lens."
+  (unidentity
+   (funcall (funcall lens (lambda (_) _ (wrap-identity v)))
+            rec)))
+
+#+fw.dev
+(progn
+  ;; "fake" functors that don't assume a functor result to their
+  ;; callback
+  (defun over* (lens cb rec)
+    (funcall (funcall lens cb)
+             rec))
+
+  (defun set* (lens value rec)
+    (over lens
+          (lambda (_)
+            (declare (ignore _))
+            value)
+          rec))
+
+  (defun view* (lens rec)
+    (over lens
+          (lambda (value)
+            (return-from view*
+              value))
+          rec)))
+
+(defun make-alist-history-lens (key)
+  "A lens for updating a alist, preserving previous values"
   (lambda (cb)
     (lambda (alist)
-      (let ((old-value (serapeum:assocdr key alist)))
-        (cons (cons key (funcall cb old-value))
-              alist)))))
+      (fmap (lambda (new)
+              (cons (cons key new)
+                    alist))
+            (funcall cb (serapeum:assocdr key alist))))))
+
+(defun make-alist-lens (key)
+  "A lens for updating a alist, discarding previous values"
+  (lambda (cb)
+    (lambda (alist)
+      (fmap (lambda (new)
+              (remove-duplicates (cons (cons key new)
+                                       alist)
+                                 :key #'car
+                                 :from-end t))
+            (funcall cb (serapeum:assocdr key alist))))))
 
 (defun make-plist-lens (key)
+  "A lens for updating a plist, preserving previous values"
   (lambda (cb)
     (lambda (plist)
-      (let ((old-value (getf plist key)))
-        (list* key (funcall cb old-value)
-               plist)))))
+      (fmap (lambda (new)
+              (list* key new
+                     plist))
+            (funcall cb (getf plist key))))))
 
 (defun make-hash-table-lens (key)
+  "A lens for updating a hash-table, discarding previous values"
   (lambda (cb)
     (lambda (old-hash)
-      (let ((old-value (gethash key old-hash)))
-        (fw.lu:prog1-bind (new-hash (alexandria:copy-hash-table old-hash))
-          (setf (gethash key new-hash)
-                (funcall cb old-value)))))))
+      (fmap (lambda (new)
+              (fw.lu:prog1-bind (new-hash (alexandria:copy-hash-table old-hash))
+                (setf (gethash key new-hash)
+                      new)))
+            (funcall cb (gethash key old-hash))))))
 
 ;; imagine a lens here that uses the MOP to immutably update a class...
 (defgeneric clone (obj &rest new-initargs &key)
@@ -83,6 +199,7 @@ contain the new value at the location focused by the lens."
   (defmethod clone ((obj foo) &key)
     (make-instance 'foo :a (a obj)))
 
+  ;;; needs to be updated for functor-based lens
   (defun a-lens (cb)
     (lambda (foo)
       (fw.lu:prog1-bind (new (clone foo))
