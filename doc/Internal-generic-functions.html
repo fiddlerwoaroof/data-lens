@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Internal generic functions (The data-lens Reference Manual)</title>
+
+<meta name="description" content="The data-lens Reference Manual.">
+<meta name="keywords" content="Internal generic functions (The data-lens Reference Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Indexes.html#Indexes" rel="index" title="Indexes">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Internal-definitions.html#Internal-definitions" rel="up" title="Internal definitions">
+<link href="Internal-classes.html#Internal-classes" rel="next" title="Internal classes">
+<link href="Internal-functions.html#Internal-functions" rel="prev" title="Internal functions">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Internal-generic-functions"></a>
+<div class="header">
+<p>
+Next: <a href="Internal-classes.html#Internal-classes" accesskey="n" rel="next">Internal classes</a>, Previous: <a href="Internal-functions.html#Internal-functions" accesskey="p" rel="prev">Internal functions</a>, Up: <a href="Internal-definitions.html#Internal-definitions" accesskey="u" rel="up">Internal definitions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Indexes.html#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Generic-functions-1"></a>
+<h4 class="subsection">4.2.3 Generic functions</h4>
+<dl>
+<dt><a name="index-clone"></a>Generic Function: <strong>clone</strong> <em>OBJ &amp;rest NEW-INITARGS &amp;key</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eCLONE-generic-function"></a><a name="index-Generic-Function_002c-clone"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens_003cdot_003elenses-package.html#go-to-the-DATA_002dLENS_003cdot_003eLENSES-package"><tt>data-lens.lenses</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Methods</strong></dt>
+<dd><dl>
+<dt><a name="index-clone-1"></a>Method: <strong>clone</strong> <em>OBJ &amp;rest NEW-INITARGS &amp;key <tt>around</tt></em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eCLONE-COMMON_002dLISP_003ccolon_003e_003ccolon_003eT-AROUND-method"></a><a name="index-Method_002c-clone"></a>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-fmap"></a>Generic Function: <strong>fmap</strong> <em>FUNCTION DATA</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eFMAP-generic-function"></a><a name="index-Generic-Function_002c-fmap"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens_003cdot_003elenses-package.html#go-to-the-DATA_002dLENS_003cdot_003eLENSES-package"><tt>data-lens.lenses</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Methods</strong></dt>
+<dd><dl>
+<dt><a name="index-fmap-1"></a>Method: <strong>fmap</strong> <em>FUNCTION (DATA <tt>identity-</tt>)</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eFMAP-COMMON_002dLISP_003ccolon_003e_003ccolon_003eT-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eIDENTITY_002d-method"></a><a name="index-Method_002c-fmap"></a>
+</dd></dl>
+<dl>
+<dt><a name="index-fmap-2"></a>Method: <strong>fmap</strong> <em>FUNCTION (DATA <tt>constant-</tt>)</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eFMAP-COMMON_002dLISP_003ccolon_003e_003ccolon_003eT-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eCONSTANT_002d-method"></a><a name="index-Method_002c-fmap-1"></a>
+</dd></dl>
+<dl>
+<dt><a name="index-fmap-3"></a>Method: <strong>fmap</strong> <em>FUNCTION (DATA <tt>list</tt>)</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eFMAP-COMMON_002dLISP_003ccolon_003e_003ccolon_003eT-COMMON_002dLISP_003ccolon_003e_003ccolon_003eLIST-method"></a><a name="index-Method_002c-fmap-2"></a>
+</dd></dl>
+<dl>
+<dt><a name="index-fmap-4"></a>Method: <strong>fmap</strong> <em>FUNCTION (DATA <tt>vector</tt>)</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eFMAP-COMMON_002dLISP_003ccolon_003e_003ccolon_003eT-COMMON_002dLISP_003ccolon_003e_003ccolon_003eVECTOR-method"></a><a name="index-Method_002c-fmap-3"></a>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-unconstant"></a>Generic Function: <strong>unconstant</strong> <em>OBJECT</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eUNCONSTANT-generic-function"></a><a name="index-Generic-Function_002c-unconstant"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens_003cdot_003elenses-package.html#go-to-the-DATA_002dLENS_003cdot_003eLENSES-package"><tt>data-lens.lenses</tt></a>
+</p></dd>
+<dt><strong>Methods</strong></dt>
+<dd><dl>
+<dt><a name="index-unconstant-1"></a>Method: <strong>unconstant</strong> <em>(CONSTANT- <tt>constant-</tt>)</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eUNCONSTANT-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eCONSTANT_002d-method"></a><a name="index-Method_002c-unconstant"></a>
+<p>automatically generated reader method
+</p><dl compact="compact">
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-unidentity"></a>Generic Function: <strong>unidentity</strong> <em>OBJECT</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eUNIDENTITY-generic-function"></a><a name="index-Generic-Function_002c-unidentity"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens_003cdot_003elenses-package.html#go-to-the-DATA_002dLENS_003cdot_003eLENSES-package"><tt>data-lens.lenses</tt></a>
+</p></dd>
+<dt><strong>Methods</strong></dt>
+<dd><dl>
+<dt><a name="index-unidentity-1"></a>Method: <strong>unidentity</strong> <em>(IDENTITY- <tt>identity-</tt>)</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eUNIDENTITY-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eIDENTITY_002d-method"></a><a name="index-Method_002c-unidentity"></a>
+<p>automatically generated reader method
+</p><dl compact="compact">
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+
+
+
+
+</body>
+</html>

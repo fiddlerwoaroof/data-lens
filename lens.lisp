@@ -90,14 +90,14 @@ A lens is any function of the form (lambda (fun) (lambda (rec) ...))
 that obeys the lens laws (where == is some reasonable equality
 operator):
 
-   (== (view lens (set lens value rec))
-       value)
-
-   (== (set lens (view lens rec) rec)
-       rec)
-
-   (== (set lens value2 (set lens value1 rec))
-       (set lens value2 rec))
+    (== (view lens (set lens value rec))
+        value)
+ 
+    (== (set lens (view lens rec) rec)
+        rec)
+ 
+    (== (set lens value2 (set lens value1 rec))
+        (set lens value2 rec))
 
 The inner lambda returns a functor that determines the policy to be
 applied to the focused part.  By default, this only uses IDENTITY- and

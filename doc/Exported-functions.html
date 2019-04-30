@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Exported functions (The data-lens Reference Manual)</title>
+
+<meta name="description" content="The data-lens Reference Manual.">
+<meta name="keywords" content="Exported functions (The data-lens Reference Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Indexes.html#Indexes" rel="index" title="Indexes">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Exported-definitions.html#Exported-definitions" rel="up" title="Exported definitions">
+<link href="Exported-generic-functions.html#Exported-generic-functions" rel="next" title="Exported generic functions">
+<link href="Exported-macros.html#Exported-macros" rel="prev" title="Exported macros">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Exported-functions"></a>
+<div class="header">
+<p>
+Next: <a href="Exported-generic-functions.html#Exported-generic-functions" accesskey="n" rel="next">Exported generic functions</a>, Previous: <a href="Exported-macros.html#Exported-macros" accesskey="p" rel="prev">Exported macros</a>, Up: <a href="Exported-definitions.html#Exported-definitions" accesskey="u" rel="up">Exported definitions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Indexes.html#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Functions"></a>
+<h4 class="subsection">4.1.2 Functions</h4>
+<dl>
+<dt><a name="index-applicable_002dwhen"></a>Function: <strong>applicable-when</strong> <em>FUN TEST</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eAPPLICABLE_002dWHEN-function"></a><a name="index-Function_002c-applicable_002dwhen"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-combine_002dmatching_002dlists"></a>Function: <strong>combine-matching-lists</strong> <em>&amp;key TEST &amp;allow-other-keys</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eCOMBINE_002dMATCHING_002dLISTS-function"></a><a name="index-Function_002c-combine_002dmatching_002dlists"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-compress_002druns"></a>Function: <strong>compress-runs</strong> <em>&amp;key COLLECTOR TEST KEY</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eCOMPRESS_002dRUNS-function"></a><a name="index-Function_002c-compress_002druns"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-cumsum"></a>Function: <strong>cumsum</strong> <em>&amp;key ADD-FUN KEY COMBINE ZERO</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eCUMSUM-function"></a><a name="index-Function_002c-cumsum"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-denest"></a>Function: <strong>denest</strong> <em>&amp;key RESULT-TYPE</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eDENEST-function"></a><a name="index-Function_002c-denest"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-derive"></a>Function: <strong>derive</strong> <em>DIFF-FUN &amp;key KEY</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eDERIVE-function"></a><a name="index-Function_002c-derive"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-element"></a>Function: <strong>element</strong> <em>NUM</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eELEMENT-function"></a><a name="index-Function_002c-element"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-exclude"></a>Function: <strong>exclude</strong> <em>PRED</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eEXCLUDE-function"></a><a name="index-Function_002c-exclude"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-include"></a>Function: <strong>include</strong> <em>PRED</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eINCLUDE-function"></a><a name="index-Function_002c-include"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-juxt"></a>Function: <strong>juxt</strong> <em>FUN1 &amp;rest R</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eJUXT-function"></a><a name="index-Function_002c-juxt"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-key"></a>Function: <strong>key</strong> <em>KEY</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eKEY-function"></a><a name="index-Function_002c-key"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-key_002dtransform"></a>Function: <strong>key-transform</strong> <em>FUN KEY-GET KEY-SET</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eKEY_002dTRANSFORM-function"></a><a name="index-Function_002c-key_002dtransform"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-make_002dalist_002dlens"></a>Function: <strong>make-alist-lens</strong> <em>KEY</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eMAKE_002dALIST_002dLENS-function"></a><a name="index-Function_002c-make_002dalist_002dlens"></a>
+<p>A lens for updating a alist, discarding previous values
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens_003cdot_003elenses-package.html#go-to-the-DATA_002dLENS_003cdot_003eLENSES-package"><tt>data-lens.lenses</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-make_002dhash_002dtable_002dlens"></a>Function: <strong>make-hash-table-lens</strong> <em>KEY</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eMAKE_002dHASH_002dTABLE_002dLENS-function"></a><a name="index-Function_002c-make_002dhash_002dtable_002dlens"></a>
+<p>A lens for updating a hash-table, discarding previous values
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens_003cdot_003elenses-package.html#go-to-the-DATA_002dLENS_003cdot_003eLENSES-package"><tt>data-lens.lenses</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-make_002dplist_002dlens"></a>Function: <strong>make-plist-lens</strong> <em>KEY</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eMAKE_002dPLIST_002dLENS-function"></a><a name="index-Function_002c-make_002dplist_002dlens"></a>
+<p>A lens for updating a plist, preserving previous values
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens_003cdot_003elenses-package.html#go-to-the-DATA_002dLENS_003cdot_003eLENSES-package"><tt>data-lens.lenses</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-maximizing"></a>Function: <strong>maximizing</strong> <em>RELATION MEASURE</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eMAXIMIZING-function"></a><a name="index-Function_002c-maximizing"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-of_002dlength"></a>Function: <strong>of-length</strong> <em>LEN</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eOF_002dLENGTH-function"></a><a name="index-Function_002c-of_002dlength"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-of_002dmax_002dlength"></a>Function: <strong>of-max-length</strong> <em>LEN</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eOF_002dMAX_002dLENGTH-function"></a><a name="index-Function_002c-of_002dmax_002dlength"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-of_002dmin_002dlength"></a>Function: <strong>of-min-length</strong> <em>LEN</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eOF_002dMIN_002dLENGTH-function"></a><a name="index-Function_002c-of_002dmin_002dlength"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-on"></a>Function: <strong>on</strong> <em>FUN KEY</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eON-function"></a><a name="index-Function_002c-on"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-over"></a>Function: <strong>over</strong> <em>FUN &amp;key RESULT-TYPE</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eOVER-function"></a><a name="index-Function_002c-over"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-over-1"></a>Function: <strong>over</strong> <em>LENS CB REC</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eOVER-function"></a><a name="index-Function_002c-over-1"></a>
+<p>Given a lens, a callback and a record, apply the lens to the<br>
+record, transform it by the callback and return copy of the record,<br>
+updated to contain the result of the callback. This is the fundamental
+operation on a lens and SET and VIEW are implemented in terms of it.<br>
+</p>
+<p>A lens is any function of the form (lambda (fun) (lambda (rec) ...))<br>
+that obeys the lens laws (where == is some reasonable equality<br>
+operator):<br>
+</p>
+<p>(== (view lens (set lens value rec))<br>
+        value)<br>
+ <br>
+    (== (set lens (view lens rec) rec)<br>
+        rec)<br>
+ <br>
+    (== (set lens value2 (set lens value1 rec))<br>
+        (set lens value2 rec))<br>
+</p>
+<p>The inner lambda returns a functor that determines the policy to be<br>
+applied to the focused part.  By default, this only uses IDENTITY- and
+CONSTANT- in order to implement the lens operations over, set and<br>
+view.<br>
+</p>
+<p>If these conditions are met, (over (data-lens:&lt;&gt;1 lens1 lens2) ...) is
+equivalent to using lens2 to focus the part lens1 focuses: note that
+composition is &quot;backwards&quot; from what one might expect: this is<br>
+because composition composes the wrapper lambdas and applies the<br>
+lambda that actually pulls a value out of a record later.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens_003cdot_003elenses-package.html#go-to-the-DATA_002dLENS_003cdot_003eLENSES-package"><tt>data-lens.lenses</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-pick"></a>Function: <strong>pick</strong> <em>SELECTOR</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003ePICK-function"></a><a name="index-Function_002c-pick"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-regex_002dmatch"></a>Function: <strong>regex-match</strong> <em>REGEX</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eREGEX_002dMATCH-function"></a><a name="index-Function_002c-regex_002dmatch"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-set"></a>Function: <strong>set</strong> <em>LENS V REC</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eSET-function"></a><a name="index-Function_002c-set"></a>
+<p>Given a lens, a value and a rec, immutably update the rec to<br>
+contain the new value at the location focused by the lens.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens_003cdot_003elenses-package.html#go-to-the-DATA_002dLENS_003cdot_003eLENSES-package"><tt>data-lens.lenses</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-slice"></a>Function: <strong>slice</strong> <em>START &amp;optional END</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eSLICE-function"></a><a name="index-Function_002c-slice"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-sorted"></a>Function: <strong>sorted</strong> <em>COMPARATOR &amp;rest R &amp;key KEY</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eSORTED-function"></a><a name="index-Function_002c-sorted"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-splice_002delt"></a>Function: <strong>splice-elt</strong> <em>ELT FUN</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eSPLICE_002dELT-function"></a><a name="index-Function_002c-splice_002delt"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-transform_002delt"></a>Function: <strong>transform-elt</strong> <em>ELT FUN</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eTRANSFORM_002dELT-function"></a><a name="index-Function_002c-transform_002delt"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-transform_002dhead"></a>Function: <strong>transform-head</strong> <em>FUN</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eTRANSFORM_002dHEAD-function"></a><a name="index-Function_002c-transform_002dhead"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-transform_002dtail"></a>Function: <strong>transform-tail</strong> <em>FUN</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eTRANSFORM_002dTAIL-function"></a><a name="index-Function_002c-transform_002dtail"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-view"></a>Function: <strong>view</strong> <em>LENS REC</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eVIEW-function"></a><a name="index-Function_002c-view"></a>
+<p>Given a lens and a rec, return the focused value
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens_003cdot_003elenses-package.html#go-to-the-DATA_002dLENS_003cdot_003eLENSES-package"><tt>data-lens.lenses</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-zipping"></a>Function: <strong>zipping</strong> <em>RESULT-TYPE &amp;key FILL-VALUE</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eZIPPING-function"></a><a name="index-Function_002c-zipping"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Exported-generic-functions.html#Exported-generic-functions" accesskey="n" rel="next">Exported generic functions</a>, Previous: <a href="Exported-macros.html#Exported-macros" accesskey="p" rel="prev">Exported macros</a>, Up: <a href="Exported-definitions.html#Exported-definitions" accesskey="u" rel="up">Exported definitions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Indexes.html#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Internal functions (The data-lens Reference Manual)</title>
+
+<meta name="description" content="The data-lens Reference Manual.">
+<meta name="keywords" content="Internal functions (The data-lens Reference Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Indexes.html#Indexes" rel="index" title="Indexes">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Internal-definitions.html#Internal-definitions" rel="up" title="Internal definitions">
+<link href="Internal-generic-functions.html#Internal-generic-functions" rel="next" title="Internal generic functions">
+<link href="Internal-macros.html#Internal-macros" rel="prev" title="Internal macros">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Internal-functions"></a>
+<div class="header">
+<p>
+Next: <a href="Internal-generic-functions.html#Internal-generic-functions" accesskey="n" rel="next">Internal generic functions</a>, Previous: <a href="Internal-macros.html#Internal-macros" accesskey="p" rel="prev">Internal macros</a>, Up: <a href="Internal-definitions.html#Internal-definitions" accesskey="u" rel="up">Internal definitions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Indexes.html#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Functions-1"></a>
+<h4 class="subsection">4.2.2 Functions</h4>
+<dl>
+<dt><a name="index-_003d_003e_003e"></a>Function: <strong>=&gt;&gt;</strong> <em>FUN1 FUN2</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003e_003d_003e_003e-function"></a><a name="index-Function_002c-_003d_003e_003e"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-cons_002dnew"></a>Function: <strong>cons-new</strong> <em>&amp;key TEST KEY</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eCONS_002dNEW-function"></a><a name="index-Function_002c-cons_002dnew"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-deduplicate"></a>Function: <strong>deduplicate</strong> <em>&amp;optional TEST</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eDEDUPLICATE-function"></a><a name="index-Function_002c-deduplicate"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-filler"></a>Function: <strong>filler</strong> <em>LENGTH1 LENGTH2 FILL-VALUE</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eFILLER-function"></a><a name="index-Function_002c-filler"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-make_002dalist_002dhistory_002dlens"></a>Function: <strong>make-alist-history-lens</strong> <em>KEY</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eMAKE_002dALIST_002dHISTORY_002dLENS-function"></a><a name="index-Function_002c-make_002dalist_002dhistory_002dlens"></a>
+<p>A lens for updating a alist, preserving previous values
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens_003cdot_003elenses-package.html#go-to-the-DATA_002dLENS_003cdot_003eLENSES-package"><tt>data-lens.lenses</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-matching_002dlist_002dreducer"></a>Function: <strong>matching-list-reducer</strong> <em>TEST ACC NEXT</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eMATCHING_002dLIST_002dREDUCER-function"></a><a name="index-Function_002c-matching_002dlist_002dreducer"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-update"></a>Function: <strong>update</strong> <em>THING FUN &amp;rest ARGS</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003ccolon_003e_003ccolon_003eUPDATE-function"></a><a name="index-Function_002c-update"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-wrap_002dconstant"></a>Function: <strong>wrap-constant</strong> <em>V</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eWRAP_002dCONSTANT-function"></a><a name="index-Function_002c-wrap_002dconstant"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens_003cdot_003elenses-package.html#go-to-the-DATA_002dLENS_003cdot_003eLENSES-package"><tt>data-lens.lenses</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt><a name="index-wrap_002didentity"></a>Function: <strong>wrap-identity</strong> <em>V</em></dt>
+<dd><a name="go-to-the-DATA_002dLENS_003cdot_003eLENSES_003ccolon_003e_003ccolon_003eWRAP_002dIDENTITY-function"></a><a name="index-Function_002c-wrap_002didentity"></a>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="The-data_002dlens_003cdot_003elenses-package.html#go-to-the-DATA_002dLENS_003cdot_003eLENSES-package"><tt>data-lens.lenses</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="The-data_002dlens_002flens_003cdot_003elisp-file.html#go-to-the-data_002dlens_002flens_003cdot_003elisp-file"><tt>lens.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+
+
+
+
+</body>
+</html>
