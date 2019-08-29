@@ -1,7 +1,8 @@
 (defpackage :data-lens.lenses
   (:shadow :set)
   (:use :cl)
-  (:export :over :set :view :make-alist-lens :make-plist-lens :make-hash-table-lens))
+  (:export :over :set :view :make-alist-lens :make-plist-lens :make-hash-table-lens
+           :make-list-lens))
 (in-package :data-lens.lenses)
 
 #+fw.dev
@@ -167,6 +168,16 @@ contain the new value at the location focused by the lens."
                                  :key #'car
                                  :from-end t))
             (funcall cb (serapeum:assocdr key alist))))))
+
+(defun make-list-lens (index)
+  "A lens for updating a sequence"
+  (lambda (cb)
+    (lambda (seq)
+      (fmap (lambda (new)
+              (let ((result (copy-seq seq)))
+                (prog1 result
+                  (setf (elt result index) new))))
+            (funcall cb (elt seq index))))))
 
 (defun make-plist-lens (key)
   "A lens for updating a plist, preserving previous values"
