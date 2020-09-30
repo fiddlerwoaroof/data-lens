@@ -93,10 +93,10 @@ operator):
 
     (== (view lens (set lens value rec))
         value)
- 
+
     (== (set lens (view lens rec) rec)
         rec)
- 
+
     (== (set lens value2 (set lens value1 rec))
         (set lens value2 rec))
 
@@ -234,11 +234,12 @@ contain the new value at the location focused by the lens."
            #:compress-runs #:combine-matching-lists #:sorted #:applicable-when
            #:of-length #:of-min-length #:of-max-length #:transform-head
            #:maximizing #:zipping #:applying #:splice-elt #:transform-elt #:denest
-           #:op #:defalias #:<> #:<>1))
+           #:op #:defalias #:<> #:<>1
+           #:•))
 (in-package :data-lens)
 
 
-(declaim 
+(declaim
  (inline data-lens:over data-lens:transform-tail
          data-lens:applicable-when data-lens:of-min-length
          data-lens:on data-lens:over data-lens:slice
@@ -523,4 +524,6 @@ contain the new value at the location focused by the lens."
                            arg-syms))))
 
 (defmacro <>1 (&rest funs)
+  `(alexandria:compose ,@funs))
+(defmacro • (&rest funs)
   `(alexandria:compose ,@funs))
