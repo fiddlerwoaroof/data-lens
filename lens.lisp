@@ -234,8 +234,9 @@ contain the new value at the location focused by the lens."
            #:compress-runs #:combine-matching-lists #:sorted #:applicable-when
            #:of-length #:of-min-length #:of-max-length #:transform-head
            #:maximizing #:zipping #:applying #:splice-elt #:transform-elt #:denest
-           #:op #:defalias #:<> #:<>1
-           #:•))
+           #:op #:defalias #:<> #:<>1 #:== #:•
+           ))
+             
 (in-package :data-lens)
 
 
@@ -274,6 +275,10 @@ contain the new value at the location focused by the lens."
       (t (loop for (a-key . value) on map by #'cddr
                when (equal key a-key) do
                  (return (car value)))))))
+
+(defun-ct == (target &key (test 'eql))
+  (lambda (v)
+    (funcall test target v)))
 
 (defun-ct deduplicate (&optional (test 'eql))
   (lambda (it)
