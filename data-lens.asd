@@ -9,5 +9,6 @@
                :alexandria
                :serapeum)
   :serial t
-  :components ((:file "lens")))
-
+  :components ((:file "package")
+               (:file "optics")
+               (:file "lens")))
