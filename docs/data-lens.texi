@@ -2,7 +2,7 @@
 
 @c data-lens.texi --- Reference manual
 
-@c Copyright (C) 2019 Edward Langley
+@c Copyright (C) 2020 Edward Langley
 
 @c This file is part of data-lens.
 
@@ -10,8 +10,8 @@
 
 @c Commentary:
 
-@c Generated automatically by Declt version 2.3 "Robert April"
-@c on Mon Apr 29 23:30:58 2019 GMT-8.
+@c Generated automatically by Declt version 3.0 "Montgomery Scott"
+@c on Mon Oct 12 20:22:22 2020 GMT-8.
 
 
 @c ====================================================================
@@ -23,6 +23,66 @@
 @afourpaper
 @documentencoding UTF-8
 @c %**end of header
+
+
+
+@c ====================================================================
+@c Format Specific Tweaks
+@c ====================================================================
+@tex
+%% Declt uses several Unicode characters to "reveal" blanks. This
+%% works fine in HTML or Info output, but TeX will have problems with
+%% these. The code below translates those characters to something that
+%% TeX can handle.
+
+%% U+23B5 (Bottom Square Bracket), used to reveal white spaces, is
+%% translated to its Computer Modern teletype version.
+\DeclareUnicodeCharacter{23B5}{{\tt\char'040}}
+
+%% U+21B5 (Downwards Arrow With Corner Leftwards), used to reveal
+%% carriage returns, is translated to \hookleftarrow in math mode.
+\DeclareUnicodeCharacter{21B5}{\ensuremath\hookleftarrow}
+
+%% U+21E5 (Rightwards Arrow To Bar), used to reveal tabs, is
+%% translated to something that looks similar, based on a rightarrow
+%% and a vertical bar from the math extension font.
+\DeclareUnicodeCharacter{21E5}{%
+  \ensuremath{\rightarrow\kern-.5em\mathchar\"130C}}
+
+
+%% Declt uses several Unicode characters to replace "fragile" ones in
+%% anchor names and references. These characters are chosen to resemble
+%% the original ones, without interfering with Info syntax. In TeX
+%% however, we can switch them back to the original versions, because
+%% cross-references are done differently. In theory, I think we could do
+%% something similar for HTML output (again, only the Info syntax poses
+%% problems), but I don't know how to do something similar to what's
+%% below.
+
+%% U+2024 (One Dot Leader) replaces periods.
+\DeclareUnicodeCharacter{2024}{.}
+
+%% U+2236 (Ratio) replaces colons.
+\DeclareUnicodeCharacter{2236}{:}
+
+%% U+2768 (Medium Left Parenthesis Ornament) replaces left parenthesis.
+\DeclareUnicodeCharacter{2768}{(}
+
+%% U+2769 (Medium Right Parenthesis Ornament) replaces right parenthesis.
+\DeclareUnicodeCharacter{2769}{)}
+
+%% U+214B (Turned Ampersand) replaces ampersands.
+\DeclareUnicodeCharacter{214B}{&}
+
+%% U+2216 (Set Minus) replaces backslashes.
+\DeclareUnicodeCharacter{2216}{\char"5C}
+
+%% The following ones are already defined in texinfo.tex so we have nothing
+%% more to do:
+%% U+201A (Single Low-9 Quotation Mark) replaces commas.
+%% U+2205 (Empty Set) replaces empty symbol names.
+
+@end tex
 
 
 
@@ -62,6 +122,13 @@ The data-lens Reference Manual.
 @cindex Module, @t{\name\}
 @end macro
 
+@c Other files
+@macro otherfileindex{name}
+@cindex @t{\name\}
+@cindex Other File, @t{\name\}
+@cindex File, other, @t{\name\}
+@end macro
+
 @c Lisp files
 @macro lispfileindex{name}
 @cindex @t{\name\}
@@ -83,11 +150,11 @@ The data-lens Reference Manual.
 @cindex File, Java, @t{\name\}
 @end macro
 
-@c Other files
-@macro otherfileindex{name}
+@c Static files
+@macro staticfileindex{name}
 @cindex @t{\name\}
-@cindex Other File, @t{\name\}
-@cindex File, other, @t{\name\}
+@cindex Static File, @t{\name\}
+@cindex File, static, @t{\name\}
 @end macro
 
 @c Doc files
@@ -205,13 +272,13 @@ The data-lens Reference Manual.
 @c ====================================================================
 @titlepage
 @title The data-lens Reference Manual
-@subtitle Utilities for building data transormations from composable functions, modeled on lenses and transducers
+@subtitle Utilities for building data transormations from composable functions@comma{} modeled on lenses and transducers
 
-@author Edward Langley <@email{el-cl@@elangley.org}>
+@author Edward Langley <@email{el-cl@atchar{}elangley.org}>
 
 @page
 @quotation
-This manual was generated automatically by Declt 2.3 "Robert April" on Mon Apr 29 23:30:58 2019 GMT-8.
+This manual was generated automatically by Declt 3.0 "Montgomery Scott" on Mon Oct 12 20:22:22 2020 GMT-8.
 @end quotation
 @end titlepage
 
@@ -231,8 +298,8 @@ This manual was generated automatically by Declt 2.3 "Robert April" on Mon Apr 2
 @node Top, Systems, (dir), (dir)
 @top The data-lens Reference Manual
 This is the data-lens Reference Manual,
-generated automatically by Declt version 2.3 "Robert April"
-on Mon Apr 29 23:30:58 2019 GMT-8.
+generated automatically by Declt version 3.0 "Montgomery Scott"
+on Mon Oct 12 20:22:22 2020 GMT-8.
 
 @menu
 * Systems:: The systems documentation
@@ -266,11 +333,11 @@ The main system appears first, followed by any subsystem dependency.
 @systemindex{data-lens}@c
 @table @strong
 @item Author
-Edward Langley <@email{el-cl@@elangley.org}>
+Edward Langley <@email{el-cl@atchar{}elangley.org}>
 @item License
 MIT
 @item Description
-Utilities for building data transormations from composable functions, modeled on lenses and transducers
+Utilities for building data transormations from composable functions@comma{} modeled on lenses and transducers
 @item Dependencies
 @itemize @bullet
 @item
@@ -281,9 +348,16 @@ Utilities for building data transormations from composable functions, modeled on
 @t{serapeum}
 @end itemize
 @item Source
-@ref{go to the data-lens<dot>asd file, , @t{data-lens.asd}} (file)
-@item Component
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens․asd file, , @t{data-lens.asd}} (file)
+@item Components
+@itemize @bullet
+@item
+@ref{go to the data-lens/package․lisp file, , @t{package.lisp}} (file)
+@item
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
+@item
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
+@end itemize
 @end table
 
 
@@ -307,13 +381,15 @@ components trees.
 @node Lisp files, , Files, Files
 @section Lisp
 @menu
-* The data-lens.asd file: The data-lens<dot>asd file.
-* The data-lens/lens.lisp file: The data-lens/lens<dot>lisp file.
+* The data-lens.asd file: The data-lens․asd file.
+* The data-lens/package.lisp file: The data-lens/package․lisp file.
+* The data-lens/optics.lisp file: The data-lens/optics․lisp file.
+* The data-lens/lens.lisp file: The data-lens/lens․lisp file.
 @end menu
 
-@node The data-lens<dot>asd file, The data-lens/lens<dot>lisp file, Lisp files, Lisp files
+@node The data-lens․asd file, The data-lens/package․lisp file, Lisp files, Lisp files
 @subsection @t{data-lens.asd}
-@anchor{go to the data-lens<dot>asd file}@c
+@anchor{go to the data-lens․asd file}@c
 @lispfileindex{data-lens.asd}@c
 @table @strong
 @item Location
@@ -322,151 +398,191 @@ components trees.
 @ref{go to the data-lens system, , @t{data-lens}} (system)
 @end table
 
-@node The data-lens/lens<dot>lisp file, , The data-lens<dot>asd file, Lisp files
-@subsection @t{data-lens/lens.lisp}
-@anchor{go to the data-lens/lens<dot>lisp file}@c
-@lispfileindex{data-lens/lens.lisp}@c
+@node The data-lens/package․lisp file, The data-lens/optics․lisp file, The data-lens․asd file, Lisp files
+@subsection @t{data-lens/package.lisp}
+@anchor{go to the data-lens/package․lisp file}@c
+@lispfileindex{data-lens/package.lisp}@c
 @table @strong
 @item Parent
 @ref{go to the data-lens system, , @t{data-lens}} (system)
 @item Location
-@t{lens.lisp}
+@t{package.lisp}
 @item Packages
 @itemize @bullet
 @item
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․PACKAGE package, , @t{data-lens.package}}
+@item
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @end itemize
+@end table
+
+@node The data-lens/optics․lisp file, The data-lens/lens․lisp file, The data-lens/package․lisp file, Lisp files
+@subsection @t{data-lens/optics.lisp}
+@anchor{go to the data-lens/optics․lisp file}@c
+@lispfileindex{data-lens/optics.lisp}@c
+@table @strong
+@item Dependency
+@ref{go to the data-lens/package․lisp file, , @t{package.lisp}} (file)
+@item Parent
+@ref{go to the data-lens system, , @t{data-lens}} (system)
+@item Location
+@t{optics.lisp}
 @item Exported Definitions
 @itemize @bullet
 @item
-@ref{go to the DATA-LENS<colon><colon><>1 macro, , @t{<>1}} (macro)
+@ref{go to the DATA-LENS․LENSES∶∶MAKE-ALIST-LENS function, , @t{make-alist-lens}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>APPLICABLE-WHEN function, , @t{applicable-when}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶MAKE-HASH-TABLE-LENS function, , @t{make-hash-table-lens}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>APPLYING macro, , @t{applying}} (macro)
+@ref{go to the DATA-LENS․LENSES∶∶MAKE-LIST-LENS function, , @t{make-list-lens}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>COMBINE-MATCHING-LISTS function, , @t{combine-matching-lists}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶MAKE-PLIST-LENS function, , @t{make-plist-lens}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>COMPRESS-RUNS function, , @t{compress-runs}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶OVER function, , @t{over}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>CUMSUM function, , @t{cumsum}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶SET function, , @t{set}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>DEFUN-CT macro, , @t{defun-ct}} (macro)
-@item
-@ref{go to the DATA-LENS<colon><colon>DENEST function, , @t{denest}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>DERIVE function, , @t{derive}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>ELEMENT function, , @t{element}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>EXCLUDE function, , @t{exclude}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>EXTRACT-KEY generic function, , @t{extract-key}} (generic function)
-@item
-@ref{go to the DATA-LENS<colon><colon>EXTRACT-KEY COMMON-LISP<colon><colon>HASH-TABLE COMMON-LISP<colon><colon>T method, , @t{extract-key}} (method)
-@item
-@ref{go to the DATA-LENS<colon><colon>EXTRACT-KEY COMMON-LISP<colon><colon>LIST COMMON-LISP<colon><colon>T method, , @t{extract-key}} (method)
-@item
-@ref{go to the DATA-LENS<colon><colon>INCLUDE function, , @t{include}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>JUXT function, , @t{juxt}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>KEY function, , @t{key}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>KEY-TRANSFORM function, , @t{key-transform}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>LET-FN macro, , @t{let-fn}} (macro)
-@item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>MAKE-ALIST-LENS function, , @t{make-alist-lens}} (function)
-@item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>MAKE-HASH-TABLE-LENS function, , @t{make-hash-table-lens}} (function)
-@item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>MAKE-PLIST-LENS function, , @t{make-plist-lens}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>MAXIMIZING function, , @t{maximizing}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>OF-LENGTH function, , @t{of-length}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>OF-MAX-LENGTH function, , @t{of-max-length}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>OF-MIN-LENGTH function, , @t{of-min-length}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>ON function, , @t{on}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>OVER function, , @t{over}} (function)
-@item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>OVER function, , @t{over}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>PICK function, , @t{pick}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>REGEX-MATCH function, , @t{regex-match}} (function)
-@item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>SET function, , @t{set}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>SHORTCUT macro, , @t{shortcut}} (macro)
-@item
-@ref{go to the DATA-LENS<colon><colon>SLICE function, , @t{slice}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>SORTED function, , @t{sorted}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>SPLICE-ELT function, , @t{splice-elt}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>TRANSFORM-ELT function, , @t{transform-elt}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>TRANSFORM-HEAD function, , @t{transform-head}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>TRANSFORM-TAIL function, , @t{transform-tail}} (function)
-@item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>VIEW function, , @t{view}} (function)
-@item
-@ref{go to the DATA-LENS<colon><colon>ZIPPING function, , @t{zipping}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶VIEW function, , @t{view}} (function)
 @end itemize
 @item Internal Definitions
 @itemize @bullet
 @item
-@ref{go to the DATA-LENS<colon><colon>=>> function, , @t{=>>}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶CLONE generic function, , @t{clone}} (generic function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>CLONE generic function, , @t{clone}} (generic function)
+@ref{go to the DATA-LENS․LENSES∶∶CLONE COMMON-LISP∶∶T AROUND method, , @t{clone}} (method)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>CLONE COMMON-LISP<colon><colon>T AROUND method, , @t{clone}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶CONSTANT- class, , @t{constant-}} (class)
 @item
-@ref{go to the DATA-LENS<colon><colon>CONS-NEW function, , @t{cons-new}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶FMAP generic function, , @t{fmap}} (generic function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>CONSTANT- class, , @t{constant-}} (class)
+@ref{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T DATA-LENS․LENSES∶∶IDENTITY- method, , @t{fmap}} (method)
 @item
-@ref{go to the DATA-LENS<colon><colon>DEDUPLICATE function, , @t{deduplicate}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T DATA-LENS․LENSES∶∶CONSTANT- method, , @t{fmap}} (method)
 @item
-@ref{go to the DATA-LENS<colon><colon>FILLER function, , @t{filler}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T COMMON-LISP∶∶LIST method, , @t{fmap}} (method)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP generic function, , @t{fmap}} (generic function)
+@ref{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T COMMON-LISP∶∶VECTOR method, , @t{fmap}} (method)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP COMMON-LISP<colon><colon>T DATA-LENS<dot>LENSES<colon><colon>IDENTITY- method, , @t{fmap}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶IDENTITY- class, , @t{identity-}} (class)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP COMMON-LISP<colon><colon>T DATA-LENS<dot>LENSES<colon><colon>CONSTANT- method, , @t{fmap}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶MAKE-ALIST-HISTORY-LENS function, , @t{make-alist-history-lens}} (function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP COMMON-LISP<colon><colon>T COMMON-LISP<colon><colon>LIST method, , @t{fmap}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶UNCONSTANT DATA-LENS․LENSES∶∶CONSTANT- method, , @t{unconstant}} (method)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP COMMON-LISP<colon><colon>T COMMON-LISP<colon><colon>VECTOR method, , @t{fmap}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶UNIDENTITY DATA-LENS․LENSES∶∶IDENTITY- method, , @t{unidentity}} (method)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>IDENTITY- class, , @t{identity-}} (class)
+@ref{go to the DATA-LENS․LENSES∶∶WRAP-CONSTANT function, , @t{wrap-constant}} (function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>MAKE-ALIST-HISTORY-LENS function, , @t{make-alist-history-lens}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶WRAP-IDENTITY function, , @t{wrap-identity}} (function)
+@end itemize
+@end table
+
+@node The data-lens/lens․lisp file, , The data-lens/optics․lisp file, Lisp files
+@subsection @t{data-lens/lens.lisp}
+@anchor{go to the data-lens/lens․lisp file}@c
+@lispfileindex{data-lens/lens.lisp}@c
+@table @strong
+@item Dependency
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
+@item Parent
+@ref{go to the data-lens system, , @t{data-lens}} (system)
+@item Location
+@t{lens.lisp}
+@item Exported Definitions
+@itemize @bullet
 @item
-@ref{go to the DATA-LENS<colon><colon>MATCHING-LIST-REDUCER function, , @t{matching-list-reducer}} (function)
+@ref{go to the DATA-LENS∶∶<>1 macro, , @t{<>1}} (macro)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>UNCONSTANT DATA-LENS<dot>LENSES<colon><colon>CONSTANT- method, , @t{unconstant}} (method)
+@ref{go to the DATA-LENS∶∶== function, , @t{==}} (function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>UNIDENTITY DATA-LENS<dot>LENSES<colon><colon>IDENTITY- method, , @t{unidentity}} (method)
+@ref{go to the DATA-LENS∶∶APPLICABLE-WHEN function, , @t{applicable-when}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>UPDATE function, , @t{update}} (function)
+@ref{go to the DATA-LENS∶∶APPLYING macro, , @t{applying}} (macro)
 @item
-@ref{go to the DATA-LENS<colon><colon>UPDATEF macro, , @t{updatef}} (macro)
+@ref{go to the DATA-LENS∶∶COMBINE-MATCHING-LISTS function, , @t{combine-matching-lists}} (function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>WRAP-CONSTANT function, , @t{wrap-constant}} (function)
+@ref{go to the DATA-LENS∶∶COMPRESS-RUNS function, , @t{compress-runs}} (function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>WRAP-IDENTITY function, , @t{wrap-identity}} (function)
+@ref{go to the DATA-LENS∶∶CUMSUM function, , @t{cumsum}} (function)
+@item
+@ref{go to the DATA-LENS∶∶DEFUN-CT macro, , @t{defun-ct}} (macro)
+@item
+@ref{go to the DATA-LENS∶∶DENEST function, , @t{denest}} (function)
+@item
+@ref{go to the DATA-LENS∶∶DERIVE function, , @t{derive}} (function)
+@item
+@ref{go to the DATA-LENS∶∶ELEMENT function, , @t{element}} (function)
+@item
+@ref{go to the DATA-LENS∶∶EXCLUDE function, , @t{exclude}} (function)
+@item
+@ref{go to the DATA-LENS∶∶EXTRACT-KEY generic function, , @t{extract-key}} (generic function)
+@item
+@ref{go to the DATA-LENS∶∶EXTRACT-KEY COMMON-LISP∶∶HASH-TABLE COMMON-LISP∶∶T method, , @t{extract-key}} (method)
+@item
+@ref{go to the DATA-LENS∶∶EXTRACT-KEY COMMON-LISP∶∶LIST COMMON-LISP∶∶T method, , @t{extract-key}} (method)
+@item
+@ref{go to the DATA-LENS∶∶INCLUDE function, , @t{include}} (function)
+@item
+@ref{go to the DATA-LENS∶∶JUXT function, , @t{juxt}} (function)
+@item
+@ref{go to the DATA-LENS∶∶KEY function, , @t{key}} (function)
+@item
+@ref{go to the DATA-LENS∶∶KEY-TRANSFORM function, , @t{key-transform}} (function)
+@item
+@ref{go to the DATA-LENS∶∶LET-FN macro, , @t{let-fn}} (macro)
+@item
+@ref{go to the DATA-LENS∶∶MAXIMIZING function, , @t{maximizing}} (function)
+@item
+@ref{go to the DATA-LENS∶∶OF-LENGTH function, , @t{of-length}} (function)
+@item
+@ref{go to the DATA-LENS∶∶OF-MAX-LENGTH function, , @t{of-max-length}} (function)
+@item
+@ref{go to the DATA-LENS∶∶OF-MIN-LENGTH function, , @t{of-min-length}} (function)
+@item
+@ref{go to the DATA-LENS∶∶ON function, , @t{on}} (function)
+@item
+@ref{go to the DATA-LENS∶∶OVER function, , @t{over}} (function)
+@item
+@ref{go to the DATA-LENS∶∶PICK function, , @t{pick}} (function)
+@item
+@ref{go to the DATA-LENS∶∶REGEX-MATCH function, , @t{regex-match}} (function)
+@item
+@ref{go to the DATA-LENS∶∶SHORTCUT macro, , @t{shortcut}} (macro)
+@item
+@ref{go to the DATA-LENS∶∶SLICE function, , @t{slice}} (function)
+@item
+@ref{go to the DATA-LENS∶∶SORTED function, , @t{sorted}} (function)
+@item
+@ref{go to the DATA-LENS∶∶SPLICE-ELT function, , @t{splice-elt}} (function)
+@item
+@ref{go to the DATA-LENS∶∶TRANSFORM-ELT function, , @t{transform-elt}} (function)
+@item
+@ref{go to the DATA-LENS∶∶TRANSFORM-HEAD function, , @t{transform-head}} (function)
+@item
+@ref{go to the DATA-LENS∶∶TRANSFORM-TAIL function, , @t{transform-tail}} (function)
+@item
+@ref{go to the DATA-LENS∶∶ZIPPING function, , @t{zipping}} (function)
+@item
+@ref{go to the DATA-LENS∶∶• macro, , @t{•}} (macro)
+@end itemize
+@item Internal Definitions
+@itemize @bullet
+@item
+@ref{go to the DATA-LENS∶∶=>> function, , @t{=>>}} (function)
+@item
+@ref{go to the DATA-LENS∶∶CONS-NEW function, , @t{cons-new}} (function)
+@item
+@ref{go to the DATA-LENS∶∶DEDUPLICATE function, , @t{deduplicate}} (function)
+@item
+@ref{go to the DATA-LENS∶∶FILLER function, , @t{filler}} (function)
+@item
+@ref{go to the DATA-LENS∶∶MATCHING-LIST-REDUCER function, , @t{matching-list-reducer}} (function)
+@item
+@ref{go to the DATA-LENS∶∶UPDATE function, , @t{update}} (function)
+@item
+@ref{go to the DATA-LENS∶∶UPDATEF macro, , @t{updatef}} (macro)
 @end itemize
 @end table
 
@@ -481,176 +597,198 @@ Packages are listed by definition order.
 
 @menu
 * The data-lens package::
-* The data-lens.lenses package: The data-lens<dot>lenses package.
+* The data-lens.package package: The data-lens․package package.
+* The data-lens.lenses package: The data-lens․lenses package.
 @end menu
 
 
 @c ---------------------
 @c The data-lens package
 @c ---------------------
-@node The data-lens package, The data-lens<dot>lenses package, Packages, Packages
+@node The data-lens package, The data-lens․package package, Packages, Packages
 @section @t{data-lens}
 @anchor{go to the DATA-LENS package}@c
 @packageindex{data-lens}@c
 @table @strong
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/package․lisp file, , @t{package.lisp}} (file)
 @item Use List
 @t{common-lisp}
 @item Exported Definitions
 @itemize @bullet
 @item
-@ref{go to the DATA-LENS<colon><colon><>1 macro, , @t{<>1}} (macro)
+@ref{go to the DATA-LENS∶∶<>1 macro, , @t{<>1}} (macro)
 @item
-@ref{go to the DATA-LENS<colon><colon>APPLICABLE-WHEN function, , @t{applicable-when}} (function)
+@ref{go to the DATA-LENS∶∶== function, , @t{==}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>APPLYING macro, , @t{applying}} (macro)
+@ref{go to the DATA-LENS∶∶APPLICABLE-WHEN function, , @t{applicable-when}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>COMBINE-MATCHING-LISTS function, , @t{combine-matching-lists}} (function)
+@ref{go to the DATA-LENS∶∶APPLYING macro, , @t{applying}} (macro)
 @item
-@ref{go to the DATA-LENS<colon><colon>COMPRESS-RUNS function, , @t{compress-runs}} (function)
+@ref{go to the DATA-LENS∶∶COMBINE-MATCHING-LISTS function, , @t{combine-matching-lists}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>CUMSUM function, , @t{cumsum}} (function)
+@ref{go to the DATA-LENS∶∶COMPRESS-RUNS function, , @t{compress-runs}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>DEFUN-CT macro, , @t{defun-ct}} (macro)
+@ref{go to the DATA-LENS∶∶CUMSUM function, , @t{cumsum}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>DENEST function, , @t{denest}} (function)
+@ref{go to the DATA-LENS∶∶DEFUN-CT macro, , @t{defun-ct}} (macro)
 @item
-@ref{go to the DATA-LENS<colon><colon>DERIVE function, , @t{derive}} (function)
+@ref{go to the DATA-LENS∶∶DENEST function, , @t{denest}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>ELEMENT function, , @t{element}} (function)
+@ref{go to the DATA-LENS∶∶DERIVE function, , @t{derive}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>EXCLUDE function, , @t{exclude}} (function)
+@ref{go to the DATA-LENS∶∶ELEMENT function, , @t{element}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>EXTRACT-KEY generic function, , @t{extract-key}} (generic function)
+@ref{go to the DATA-LENS∶∶EXCLUDE function, , @t{exclude}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>EXTRACT-KEY COMMON-LISP<colon><colon>HASH-TABLE COMMON-LISP<colon><colon>T method, , @t{extract-key}} (method)
+@ref{go to the DATA-LENS∶∶EXTRACT-KEY generic function, , @t{extract-key}} (generic function)
 @item
-@ref{go to the DATA-LENS<colon><colon>EXTRACT-KEY COMMON-LISP<colon><colon>LIST COMMON-LISP<colon><colon>T method, , @t{extract-key}} (method)
+@ref{go to the DATA-LENS∶∶EXTRACT-KEY COMMON-LISP∶∶HASH-TABLE COMMON-LISP∶∶T method, , @t{extract-key}} (method)
 @item
-@ref{go to the DATA-LENS<colon><colon>INCLUDE function, , @t{include}} (function)
+@ref{go to the DATA-LENS∶∶EXTRACT-KEY COMMON-LISP∶∶LIST COMMON-LISP∶∶T method, , @t{extract-key}} (method)
 @item
-@ref{go to the DATA-LENS<colon><colon>JUXT function, , @t{juxt}} (function)
+@ref{go to the DATA-LENS∶∶INCLUDE function, , @t{include}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>KEY function, , @t{key}} (function)
+@ref{go to the DATA-LENS∶∶JUXT function, , @t{juxt}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>KEY-TRANSFORM function, , @t{key-transform}} (function)
+@ref{go to the DATA-LENS∶∶KEY function, , @t{key}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>LET-FN macro, , @t{let-fn}} (macro)
+@ref{go to the DATA-LENS∶∶KEY-TRANSFORM function, , @t{key-transform}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>MAXIMIZING function, , @t{maximizing}} (function)
+@ref{go to the DATA-LENS∶∶LET-FN macro, , @t{let-fn}} (macro)
 @item
-@ref{go to the DATA-LENS<colon><colon>OF-LENGTH function, , @t{of-length}} (function)
+@ref{go to the DATA-LENS∶∶MAXIMIZING function, , @t{maximizing}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>OF-MAX-LENGTH function, , @t{of-max-length}} (function)
+@ref{go to the DATA-LENS∶∶OF-LENGTH function, , @t{of-length}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>OF-MIN-LENGTH function, , @t{of-min-length}} (function)
+@ref{go to the DATA-LENS∶∶OF-MAX-LENGTH function, , @t{of-max-length}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>ON function, , @t{on}} (function)
+@ref{go to the DATA-LENS∶∶OF-MIN-LENGTH function, , @t{of-min-length}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>OVER function, , @t{over}} (function)
+@ref{go to the DATA-LENS∶∶ON function, , @t{on}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>PICK function, , @t{pick}} (function)
+@ref{go to the DATA-LENS∶∶OVER function, , @t{over}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>REGEX-MATCH function, , @t{regex-match}} (function)
+@ref{go to the DATA-LENS∶∶PICK function, , @t{pick}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>SHORTCUT macro, , @t{shortcut}} (macro)
+@ref{go to the DATA-LENS∶∶REGEX-MATCH function, , @t{regex-match}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>SLICE function, , @t{slice}} (function)
+@ref{go to the DATA-LENS∶∶SHORTCUT macro, , @t{shortcut}} (macro)
 @item
-@ref{go to the DATA-LENS<colon><colon>SORTED function, , @t{sorted}} (function)
+@ref{go to the DATA-LENS∶∶SLICE function, , @t{slice}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>SPLICE-ELT function, , @t{splice-elt}} (function)
+@ref{go to the DATA-LENS∶∶SORTED function, , @t{sorted}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>TRANSFORM-ELT function, , @t{transform-elt}} (function)
+@ref{go to the DATA-LENS∶∶SPLICE-ELT function, , @t{splice-elt}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>TRANSFORM-HEAD function, , @t{transform-head}} (function)
+@ref{go to the DATA-LENS∶∶TRANSFORM-ELT function, , @t{transform-elt}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>TRANSFORM-TAIL function, , @t{transform-tail}} (function)
+@ref{go to the DATA-LENS∶∶TRANSFORM-HEAD function, , @t{transform-head}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>ZIPPING function, , @t{zipping}} (function)
+@ref{go to the DATA-LENS∶∶TRANSFORM-TAIL function, , @t{transform-tail}} (function)
+@item
+@ref{go to the DATA-LENS∶∶ZIPPING function, , @t{zipping}} (function)
+@item
+@ref{go to the DATA-LENS∶∶• macro, , @t{•}} (macro)
 @end itemize
 @item Internal Definitions
 @itemize @bullet
 @item
-@ref{go to the DATA-LENS<colon><colon>=>> function, , @t{=>>}} (function)
+@ref{go to the DATA-LENS∶∶=>> function, , @t{=>>}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>CONS-NEW function, , @t{cons-new}} (function)
+@ref{go to the DATA-LENS∶∶CONS-NEW function, , @t{cons-new}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>DEDUPLICATE function, , @t{deduplicate}} (function)
+@ref{go to the DATA-LENS∶∶DEDUPLICATE function, , @t{deduplicate}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>FILLER function, , @t{filler}} (function)
+@ref{go to the DATA-LENS∶∶FILLER function, , @t{filler}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>MATCHING-LIST-REDUCER function, , @t{matching-list-reducer}} (function)
+@ref{go to the DATA-LENS∶∶MATCHING-LIST-REDUCER function, , @t{matching-list-reducer}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>UPDATE function, , @t{update}} (function)
+@ref{go to the DATA-LENS∶∶UPDATE function, , @t{update}} (function)
 @item
-@ref{go to the DATA-LENS<colon><colon>UPDATEF macro, , @t{updatef}} (macro)
+@ref{go to the DATA-LENS∶∶UPDATEF macro, , @t{updatef}} (macro)
 @end itemize
+@end table
+
+
+@c -----------------------------
+@c The data-lens.package package
+@c -----------------------------
+@node The data-lens․package package, The data-lens․lenses package, The data-lens package, Packages
+@section @t{data-lens.package}
+@anchor{go to the DATA-LENS․PACKAGE package}@c
+@packageindex{data-lens.package}@c
+@table @strong
+@item Source
+@ref{go to the data-lens/package․lisp file, , @t{package.lisp}} (file)
+@item Use List
+@t{common-lisp}
 @end table
 
 
 @c ----------------------------
 @c The data-lens.lenses package
 @c ----------------------------
-@node The data-lens<dot>lenses package, , The data-lens package, Packages
+@node The data-lens․lenses package, , The data-lens․package package, Packages
 @section @t{data-lens.lenses}
-@anchor{go to the DATA-LENS<dot>LENSES package}@c
+@anchor{go to the DATA-LENS․LENSES package}@c
 @packageindex{data-lens.lenses}@c
 @table @strong
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/package․lisp file, , @t{package.lisp}} (file)
 @item Use List
 @t{common-lisp}
 @item Exported Definitions
 @itemize @bullet
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>MAKE-ALIST-LENS function, , @t{make-alist-lens}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶MAKE-ALIST-LENS function, , @t{make-alist-lens}} (function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>MAKE-HASH-TABLE-LENS function, , @t{make-hash-table-lens}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶MAKE-HASH-TABLE-LENS function, , @t{make-hash-table-lens}} (function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>MAKE-PLIST-LENS function, , @t{make-plist-lens}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶MAKE-LIST-LENS function, , @t{make-list-lens}} (function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>OVER function, , @t{over}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶MAKE-PLIST-LENS function, , @t{make-plist-lens}} (function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>SET function, , @t{set}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶OVER function, , @t{over}} (function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>VIEW function, , @t{view}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶SET function, , @t{set}} (function)
+@item
+@ref{go to the DATA-LENS․LENSES∶∶VIEW function, , @t{view}} (function)
 @end itemize
 @item Internal Definitions
 @itemize @bullet
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>CLONE generic function, , @t{clone}} (generic function)
+@ref{go to the DATA-LENS․LENSES∶∶CLONE generic function, , @t{clone}} (generic function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>CLONE COMMON-LISP<colon><colon>T AROUND method, , @t{clone}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶CLONE COMMON-LISP∶∶T AROUND method, , @t{clone}} (method)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>CONSTANT- class, , @t{constant-}} (class)
+@ref{go to the DATA-LENS․LENSES∶∶CONSTANT- class, , @t{constant-}} (class)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP generic function, , @t{fmap}} (generic function)
+@ref{go to the DATA-LENS․LENSES∶∶FMAP generic function, , @t{fmap}} (generic function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP COMMON-LISP<colon><colon>T DATA-LENS<dot>LENSES<colon><colon>IDENTITY- method, , @t{fmap}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T DATA-LENS․LENSES∶∶IDENTITY- method, , @t{fmap}} (method)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP COMMON-LISP<colon><colon>T DATA-LENS<dot>LENSES<colon><colon>CONSTANT- method, , @t{fmap}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T DATA-LENS․LENSES∶∶CONSTANT- method, , @t{fmap}} (method)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP COMMON-LISP<colon><colon>T COMMON-LISP<colon><colon>LIST method, , @t{fmap}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T COMMON-LISP∶∶LIST method, , @t{fmap}} (method)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP COMMON-LISP<colon><colon>T COMMON-LISP<colon><colon>VECTOR method, , @t{fmap}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T COMMON-LISP∶∶VECTOR method, , @t{fmap}} (method)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>IDENTITY- class, , @t{identity-}} (class)
+@ref{go to the DATA-LENS․LENSES∶∶IDENTITY- class, , @t{identity-}} (class)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>MAKE-ALIST-HISTORY-LENS function, , @t{make-alist-history-lens}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶MAKE-ALIST-HISTORY-LENS function, , @t{make-alist-history-lens}} (function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>UNCONSTANT generic function, , @t{unconstant}} (generic function)
+@ref{go to the DATA-LENS․LENSES∶∶UNCONSTANT generic function, , @t{unconstant}} (generic function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>UNCONSTANT DATA-LENS<dot>LENSES<colon><colon>CONSTANT- method, , @t{unconstant}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶UNCONSTANT DATA-LENS․LENSES∶∶CONSTANT- method, , @t{unconstant}} (method)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>UNIDENTITY generic function, , @t{unidentity}} (generic function)
+@ref{go to the DATA-LENS․LENSES∶∶UNIDENTITY generic function, , @t{unidentity}} (generic function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>UNIDENTITY DATA-LENS<dot>LENSES<colon><colon>IDENTITY- method, , @t{unidentity}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶UNIDENTITY DATA-LENS․LENSES∶∶IDENTITY- method, , @t{unidentity}} (method)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>WRAP-CONSTANT function, , @t{wrap-constant}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶WRAP-CONSTANT function, , @t{wrap-constant}} (function)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>WRAP-IDENTITY function, , @t{wrap-identity}} (function)
+@ref{go to the DATA-LENS․LENSES∶∶WRAP-IDENTITY function, , @t{wrap-identity}} (function)
 @end itemize
 @end table
 
@@ -683,441 +821,472 @@ lexicographic order.
 
 @node Exported macros, Exported functions, Exported definitions, Exported definitions
 @subsection Macros
-@deffn {Macro} <>1 &rest FUNS
-@anchor{go to the DATA-LENS<colon><colon><>1 macro}@c
+@deffn {Macro} {<>1} &rest FUNS
+@anchor{go to the DATA-LENS∶∶<>1 macro}@c
 @macrosubindex{<>1}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Macro} applying FUN &rest ARGS
-@anchor{go to the DATA-LENS<colon><colon>APPLYING macro}@c
+@deffn {Macro} {applying} FUN &rest ARGS
+@anchor{go to the DATA-LENS∶∶APPLYING macro}@c
 @macrosubindex{applying}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Macro} defun-ct NAME (&rest ARGS) &body BODY
-@anchor{go to the DATA-LENS<colon><colon>DEFUN-CT macro}@c
+@deffn {Macro} {defun-ct} NAME (&rest ARGS) &body BODY
+@anchor{go to the DATA-LENS∶∶DEFUN-CT macro}@c
 @macrosubindex{defun-ct}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Macro} let-fn (&rest BINDINGS) &body BODY
-@anchor{go to the DATA-LENS<colon><colon>LET-FN macro}@c
+@deffn {Macro} {let-fn} (&rest BINDINGS) &body BODY
+@anchor{go to the DATA-LENS∶∶LET-FN macro}@c
 @macrosubindex{let-fn}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Macro} shortcut NAME FUNCTION &body BOUND-ARGS
-@anchor{go to the DATA-LENS<colon><colon>SHORTCUT macro}@c
+@deffn {Macro} {shortcut} NAME FUNCTION &body BOUND-ARGS
+@anchor{go to the DATA-LENS∶∶SHORTCUT macro}@c
 @macrosubindex{shortcut}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
+@end table
+@end deffn
+@deffn {Macro} {•} &rest FUNS
+@anchor{go to the DATA-LENS∶∶• macro}@c
+@macrosubindex{•}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS package, , @t{data-lens}}
+@item Source
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
 
 @node Exported functions, Exported generic functions, Exported macros, Exported definitions
 @subsection Functions
-@deffn {Function} applicable-when FUN TEST
-@anchor{go to the DATA-LENS<colon><colon>APPLICABLE-WHEN function}@c
+@deffn {Function} {==} TARGET &key TEST
+@anchor{go to the DATA-LENS∶∶== function}@c
+@functionsubindex{==}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS package, , @t{data-lens}}
+@item Source
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
+@end table
+@end deffn
+@deffn {Function} {applicable-when} FUN TEST
+@anchor{go to the DATA-LENS∶∶APPLICABLE-WHEN function}@c
 @functionsubindex{applicable-when}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} combine-matching-lists &key TEST &allow-other-keys
-@anchor{go to the DATA-LENS<colon><colon>COMBINE-MATCHING-LISTS function}@c
+@deffn {Function} {combine-matching-lists} &key TEST &allow-other-keys
+@anchor{go to the DATA-LENS∶∶COMBINE-MATCHING-LISTS function}@c
 @functionsubindex{combine-matching-lists}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} compress-runs &key COLLECTOR TEST KEY
-@anchor{go to the DATA-LENS<colon><colon>COMPRESS-RUNS function}@c
+@deffn {Function} {compress-runs} &key COLLECTOR TEST KEY
+@anchor{go to the DATA-LENS∶∶COMPRESS-RUNS function}@c
 @functionsubindex{compress-runs}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} cumsum &key ADD-FUN KEY COMBINE ZERO
-@anchor{go to the DATA-LENS<colon><colon>CUMSUM function}@c
+@deffn {Function} {cumsum} &key ADD-FUN KEY COMBINE ZERO
+@anchor{go to the DATA-LENS∶∶CUMSUM function}@c
 @functionsubindex{cumsum}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} denest &key RESULT-TYPE
-@anchor{go to the DATA-LENS<colon><colon>DENEST function}@c
+@deffn {Function} {denest} &key RESULT-TYPE
+@anchor{go to the DATA-LENS∶∶DENEST function}@c
 @functionsubindex{denest}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} derive DIFF-FUN &key KEY
-@anchor{go to the DATA-LENS<colon><colon>DERIVE function}@c
+@deffn {Function} {derive} DIFF-FUN &key KEY
+@anchor{go to the DATA-LENS∶∶DERIVE function}@c
 @functionsubindex{derive}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} element NUM
-@anchor{go to the DATA-LENS<colon><colon>ELEMENT function}@c
+@deffn {Function} {element} NUM
+@anchor{go to the DATA-LENS∶∶ELEMENT function}@c
 @functionsubindex{element}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} exclude PRED
-@anchor{go to the DATA-LENS<colon><colon>EXCLUDE function}@c
+@deffn {Function} {exclude} PRED
+@anchor{go to the DATA-LENS∶∶EXCLUDE function}@c
 @functionsubindex{exclude}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} include PRED
-@anchor{go to the DATA-LENS<colon><colon>INCLUDE function}@c
+@deffn {Function} {include} PRED
+@anchor{go to the DATA-LENS∶∶INCLUDE function}@c
 @functionsubindex{include}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} juxt FUN1 &rest R
-@anchor{go to the DATA-LENS<colon><colon>JUXT function}@c
+@deffn {Function} {juxt} FUN1 &rest R
+@anchor{go to the DATA-LENS∶∶JUXT function}@c
 @functionsubindex{juxt}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} key KEY
-@anchor{go to the DATA-LENS<colon><colon>KEY function}@c
+@deffn {Function} {key} KEY
+@anchor{go to the DATA-LENS∶∶KEY function}@c
 @functionsubindex{key}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} key-transform FUN KEY-GET KEY-SET
-@anchor{go to the DATA-LENS<colon><colon>KEY-TRANSFORM function}@c
+@deffn {Function} {key-transform} FUN KEY-GET KEY-SET
+@anchor{go to the DATA-LENS∶∶KEY-TRANSFORM function}@c
 @functionsubindex{key-transform}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} make-alist-lens KEY
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>MAKE-ALIST-LENS function}@c
+@deffn {Function} {make-alist-lens} KEY
+@anchor{go to the DATA-LENS․LENSES∶∶MAKE-ALIST-LENS function}@c
 @functionsubindex{make-alist-lens}@c
-A lens for updating a alist, discarding previous values
+A lens for updating a alist@comma{} discarding previous values
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} make-hash-table-lens KEY
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>MAKE-HASH-TABLE-LENS function}@c
+@deffn {Function} {make-hash-table-lens} KEY
+@anchor{go to the DATA-LENS․LENSES∶∶MAKE-HASH-TABLE-LENS function}@c
 @functionsubindex{make-hash-table-lens}@c
-A lens for updating a hash-table, discarding previous values
+A lens for updating a hash-table@comma{} discarding previous values
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} make-plist-lens KEY
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>MAKE-PLIST-LENS function}@c
+@deffn {Function} {make-list-lens} INDEX
+@anchor{go to the DATA-LENS․LENSES∶∶MAKE-LIST-LENS function}@c
+@functionsubindex{make-list-lens}@c
+A lens for updating a sequence
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
+@item Source
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
+@end table
+@end deffn
+@deffn {Function} {make-plist-lens} KEY
+@anchor{go to the DATA-LENS․LENSES∶∶MAKE-PLIST-LENS function}@c
 @functionsubindex{make-plist-lens}@c
-A lens for updating a plist, preserving previous values
+A lens for updating a plist@comma{} preserving previous values
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} maximizing RELATION MEASURE
-@anchor{go to the DATA-LENS<colon><colon>MAXIMIZING function}@c
+@deffn {Function} {maximizing} RELATION MEASURE
+@anchor{go to the DATA-LENS∶∶MAXIMIZING function}@c
 @functionsubindex{maximizing}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} of-length LEN
-@anchor{go to the DATA-LENS<colon><colon>OF-LENGTH function}@c
+@deffn {Function} {of-length} LEN
+@anchor{go to the DATA-LENS∶∶OF-LENGTH function}@c
 @functionsubindex{of-length}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} of-max-length LEN
-@anchor{go to the DATA-LENS<colon><colon>OF-MAX-LENGTH function}@c
+@deffn {Function} {of-max-length} LEN
+@anchor{go to the DATA-LENS∶∶OF-MAX-LENGTH function}@c
 @functionsubindex{of-max-length}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} of-min-length LEN
-@anchor{go to the DATA-LENS<colon><colon>OF-MIN-LENGTH function}@c
+@deffn {Function} {of-min-length} LEN
+@anchor{go to the DATA-LENS∶∶OF-MIN-LENGTH function}@c
 @functionsubindex{of-min-length}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} on FUN KEY
-@anchor{go to the DATA-LENS<colon><colon>ON function}@c
+@deffn {Function} {on} FUN KEY
+@anchor{go to the DATA-LENS∶∶ON function}@c
 @functionsubindex{on}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} over FUN &key RESULT-TYPE
-@anchor{go to the DATA-LENS<colon><colon>OVER function}@c
+@deffn {Function} {over} FUN &key RESULT-TYPE
+@anchor{go to the DATA-LENS∶∶OVER function}@c
 @functionsubindex{over}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} over LENS CB REC
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>OVER function}@c
+@deffn {Function} {over} LENS CB REC
+@anchor{go to the DATA-LENS․LENSES∶∶OVER function}@c
 @functionsubindex{over}@c
-Given a lens, a callback and a record, apply the lens to the@*
-record, transform it by the callback and return copy of the record,@*
+Given a lens@comma{} a callback and a record@comma{} apply the lens to the
+record@comma{} transform it by the callback and return copy of the record@comma{}
 updated to contain the result of the callback. This is the fundamental
-operation on a lens and SET and VIEW are implemented in terms of it.@*
+operation on a lens and SET and VIEW are implemented in terms of it.
 
-A lens is any function of the form (lambda (fun) (lambda (rec) ...))@*
-that obeys the lens laws (where == is some reasonable equality@*
+A lens is any function of the form (lambda (fun) (lambda (rec) ...))
+that obeys the lens laws (where == is some reasonable equality
 operator):@*
 
     (== (view lens (set lens value rec))@*
         value)@*
- @*
+
     (== (set lens (view lens rec) rec)@*
         rec)@*
- @*
+
     (== (set lens value2 (set lens value1 rec))@*
         (set lens value2 rec))@*
 
-The inner lambda returns a functor that determines the policy to be@*
-applied to the focused part.  By default, this only uses IDENTITY- and
-CONSTANT- in order to implement the lens operations over, set and@*
+The inner lambda returns a functor that determines the policy to be
+applied to the focused part.  By default@comma{} this only uses IDENTITY- and
+CONSTANT- in order to implement the lens operations over@comma{} set and
 view.@*
 
-If these conditions are met, (over (data-lens:<>1 lens1 lens2) ...) is
+If these conditions are met@comma{} (over (data-lens:<>1 lens1 lens2) ...) is
 equivalent to using lens2 to focus the part lens1 focuses: note that
-composition is "backwards" from what one might expect: this is@*
-because composition composes the wrapper lambdas and applies the@*
+composition is "backwards" from what one might expect: this is
+because composition composes the wrapper lambdas and applies the
 lambda that actually pulls a value out of a record later.
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} pick SELECTOR
-@anchor{go to the DATA-LENS<colon><colon>PICK function}@c
+@deffn {Function} {pick} SELECTOR
+@anchor{go to the DATA-LENS∶∶PICK function}@c
 @functionsubindex{pick}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} regex-match REGEX
-@anchor{go to the DATA-LENS<colon><colon>REGEX-MATCH function}@c
+@deffn {Function} {regex-match} REGEX
+@anchor{go to the DATA-LENS∶∶REGEX-MATCH function}@c
 @functionsubindex{regex-match}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} set LENS V REC
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>SET function}@c
+@deffn {Function} {set} LENS V REC
+@anchor{go to the DATA-LENS․LENSES∶∶SET function}@c
 @functionsubindex{set}@c
-Given a lens, a value and a rec, immutably update the rec to@*
+Given a lens@comma{} a value and a rec@comma{} immutably update the rec to
 contain the new value at the location focused by the lens.
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} slice START &optional END
-@anchor{go to the DATA-LENS<colon><colon>SLICE function}@c
+@deffn {Function} {slice} START &optional END
+@anchor{go to the DATA-LENS∶∶SLICE function}@c
 @functionsubindex{slice}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} sorted COMPARATOR &rest R &key KEY
-@anchor{go to the DATA-LENS<colon><colon>SORTED function}@c
+@deffn {Function} {sorted} COMPARATOR &rest R &key KEY
+@anchor{go to the DATA-LENS∶∶SORTED function}@c
 @functionsubindex{sorted}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} splice-elt ELT FUN
-@anchor{go to the DATA-LENS<colon><colon>SPLICE-ELT function}@c
+@deffn {Function} {splice-elt} ELT FUN
+@anchor{go to the DATA-LENS∶∶SPLICE-ELT function}@c
 @functionsubindex{splice-elt}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} transform-elt ELT FUN
-@anchor{go to the DATA-LENS<colon><colon>TRANSFORM-ELT function}@c
+@deffn {Function} {transform-elt} ELT FUN
+@anchor{go to the DATA-LENS∶∶TRANSFORM-ELT function}@c
 @functionsubindex{transform-elt}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} transform-head FUN
-@anchor{go to the DATA-LENS<colon><colon>TRANSFORM-HEAD function}@c
+@deffn {Function} {transform-head} FUN
+@anchor{go to the DATA-LENS∶∶TRANSFORM-HEAD function}@c
 @functionsubindex{transform-head}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} transform-tail FUN
-@anchor{go to the DATA-LENS<colon><colon>TRANSFORM-TAIL function}@c
+@deffn {Function} {transform-tail} FUN
+@anchor{go to the DATA-LENS∶∶TRANSFORM-TAIL function}@c
 @functionsubindex{transform-tail}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} view LENS REC
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>VIEW function}@c
+@deffn {Function} {view} LENS REC
+@anchor{go to the DATA-LENS․LENSES∶∶VIEW function}@c
 @functionsubindex{view}@c
-Given a lens and a rec, return the focused value
+Given a lens and a rec@comma{} return the focused value
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} zipping RESULT-TYPE &key FILL-VALUE
-@anchor{go to the DATA-LENS<colon><colon>ZIPPING function}@c
+@deffn {Function} {zipping} RESULT-TYPE &key FILL-VALUE
+@anchor{go to the DATA-LENS∶∶ZIPPING function}@c
 @functionsubindex{zipping}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
 
 @node Exported generic functions, , Exported functions, Exported definitions
 @subsection Generic functions
-@deffn {Generic Function} extract-key MAP KEY
-@anchor{go to the DATA-LENS<colon><colon>EXTRACT-KEY generic function}@c
+@deffn {Generic Function} {extract-key} MAP KEY
+@anchor{go to the DATA-LENS∶∶EXTRACT-KEY generic function}@c
 @genericsubindex{extract-key}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @item Methods
-@deffn {Method} extract-key (MAP @t{hash-table}) KEY
-@anchor{go to the DATA-LENS<colon><colon>EXTRACT-KEY COMMON-LISP<colon><colon>HASH-TABLE COMMON-LISP<colon><colon>T method}@c
+@deffn {Method} {extract-key} (MAP @t{hash-table}) KEY
+@anchor{go to the DATA-LENS∶∶EXTRACT-KEY COMMON-LISP∶∶HASH-TABLE COMMON-LISP∶∶T method}@c
 @methodsubindex{extract-key}@c
 @end deffn
-@deffn {Method} extract-key (MAP @t{list}) KEY
-@anchor{go to the DATA-LENS<colon><colon>EXTRACT-KEY COMMON-LISP<colon><colon>LIST COMMON-LISP<colon><colon>T method}@c
+@deffn {Method} {extract-key} (MAP @t{list}) KEY
+@anchor{go to the DATA-LENS∶∶EXTRACT-KEY COMMON-LISP∶∶LIST COMMON-LISP∶∶T method}@c
 @methodsubindex{extract-key}@c
 @end deffn
 @end table
@@ -1138,187 +1307,187 @@ Given a lens and a rec, return the focused value
 
 @node Internal macros, Internal functions, Internal definitions, Internal definitions
 @subsection Macros
-@deffn {Macro} updatef PLACE FUN &rest ARGS
-@anchor{go to the DATA-LENS<colon><colon>UPDATEF macro}@c
+@deffn {Macro} {updatef} PLACE FUN &rest ARGS
+@anchor{go to the DATA-LENS∶∶UPDATEF macro}@c
 @macrosubindex{updatef}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
 
 @node Internal functions, Internal generic functions, Internal macros, Internal definitions
 @subsection Functions
-@deffn {Function} =>> FUN1 FUN2
-@anchor{go to the DATA-LENS<colon><colon>=>> function}@c
+@deffn {Function} {=>>} FUN1 FUN2
+@anchor{go to the DATA-LENS∶∶=>> function}@c
 @functionsubindex{=>>}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} cons-new &key TEST KEY
-@anchor{go to the DATA-LENS<colon><colon>CONS-NEW function}@c
+@deffn {Function} {cons-new} &key TEST KEY
+@anchor{go to the DATA-LENS∶∶CONS-NEW function}@c
 @functionsubindex{cons-new}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} deduplicate &optional TEST
-@anchor{go to the DATA-LENS<colon><colon>DEDUPLICATE function}@c
+@deffn {Function} {deduplicate} &optional TEST
+@anchor{go to the DATA-LENS∶∶DEDUPLICATE function}@c
 @functionsubindex{deduplicate}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} filler LENGTH1 LENGTH2 FILL-VALUE
-@anchor{go to the DATA-LENS<colon><colon>FILLER function}@c
+@deffn {Function} {filler} LENGTH1 LENGTH2 FILL-VALUE
+@anchor{go to the DATA-LENS∶∶FILLER function}@c
 @functionsubindex{filler}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} make-alist-history-lens KEY
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>MAKE-ALIST-HISTORY-LENS function}@c
+@deffn {Function} {make-alist-history-lens} KEY
+@anchor{go to the DATA-LENS․LENSES∶∶MAKE-ALIST-HISTORY-LENS function}@c
 @functionsubindex{make-alist-history-lens}@c
-A lens for updating a alist, preserving previous values
+A lens for updating a alist@comma{} preserving previous values
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} matching-list-reducer TEST ACC NEXT
-@anchor{go to the DATA-LENS<colon><colon>MATCHING-LIST-REDUCER function}@c
+@deffn {Function} {matching-list-reducer} TEST ACC NEXT
+@anchor{go to the DATA-LENS∶∶MATCHING-LIST-REDUCER function}@c
 @functionsubindex{matching-list-reducer}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} update THING FUN &rest ARGS
-@anchor{go to the DATA-LENS<colon><colon>UPDATE function}@c
+@deffn {Function} {update} THING FUN &rest ARGS
+@anchor{go to the DATA-LENS∶∶UPDATE function}@c
 @functionsubindex{update}@c
 @table @strong
 @item Package
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} wrap-constant V
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>WRAP-CONSTANT function}@c
+@deffn {Function} {wrap-constant} V
+@anchor{go to the DATA-LENS․LENSES∶∶WRAP-CONSTANT function}@c
 @functionsubindex{wrap-constant}@c
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @end table
 @end deffn
-@deffn {Function} wrap-identity V
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>WRAP-IDENTITY function}@c
+@deffn {Function} {wrap-identity} V
+@anchor{go to the DATA-LENS․LENSES∶∶WRAP-IDENTITY function}@c
 @functionsubindex{wrap-identity}@c
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @end table
 @end deffn
 
 @node Internal generic functions, Internal classes, Internal functions, Internal definitions
 @subsection Generic functions
-@deffn {Generic Function} clone OBJ &rest NEW-INITARGS &key
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>CLONE generic function}@c
+@deffn {Generic Function} {clone} OBJ &rest NEW-INITARGS &key
+@anchor{go to the DATA-LENS․LENSES∶∶CLONE generic function}@c
 @genericsubindex{clone}@c
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @item Methods
-@deffn {Method} clone OBJ &rest NEW-INITARGS &key @t{around}
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>CLONE COMMON-LISP<colon><colon>T AROUND method}@c
+@deffn {Method} {clone} OBJ &rest NEW-INITARGS &key @t{around}
+@anchor{go to the DATA-LENS․LENSES∶∶CLONE COMMON-LISP∶∶T AROUND method}@c
 @methodsubindex{clone}@c
 @end deffn
 @end table
 @end deffn
-@deffn {Generic Function} fmap FUNCTION DATA
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP generic function}@c
+@deffn {Generic Function} {fmap} FUNCTION DATA
+@anchor{go to the DATA-LENS․LENSES∶∶FMAP generic function}@c
 @genericsubindex{fmap}@c
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @item Methods
-@deffn {Method} fmap FUNCTION (DATA @t{identity-})
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP COMMON-LISP<colon><colon>T DATA-LENS<dot>LENSES<colon><colon>IDENTITY- method}@c
+@deffn {Method} {fmap} FUNCTION (DATA @t{identity-})
+@anchor{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T DATA-LENS․LENSES∶∶IDENTITY- method}@c
 @methodsubindex{fmap}@c
 @end deffn
-@deffn {Method} fmap FUNCTION (DATA @t{constant-})
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP COMMON-LISP<colon><colon>T DATA-LENS<dot>LENSES<colon><colon>CONSTANT- method}@c
+@deffn {Method} {fmap} FUNCTION (DATA @t{constant-})
+@anchor{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T DATA-LENS․LENSES∶∶CONSTANT- method}@c
 @methodsubindex{fmap}@c
 @end deffn
-@deffn {Method} fmap FUNCTION (DATA @t{list})
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP COMMON-LISP<colon><colon>T COMMON-LISP<colon><colon>LIST method}@c
+@deffn {Method} {fmap} FUNCTION (DATA @t{list})
+@anchor{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T COMMON-LISP∶∶LIST method}@c
 @methodsubindex{fmap}@c
 @end deffn
-@deffn {Method} fmap FUNCTION (DATA @t{vector})
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP COMMON-LISP<colon><colon>T COMMON-LISP<colon><colon>VECTOR method}@c
+@deffn {Method} {fmap} FUNCTION (DATA @t{vector})
+@anchor{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T COMMON-LISP∶∶VECTOR method}@c
 @methodsubindex{fmap}@c
 @end deffn
 @end table
 @end deffn
-@deffn {Generic Function} unconstant OBJECT
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>UNCONSTANT generic function}@c
+@deffn {Generic Function} {unconstant} OBJECT
+@anchor{go to the DATA-LENS․LENSES∶∶UNCONSTANT generic function}@c
 @genericsubindex{unconstant}@c
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Methods
-@deffn {Method} unconstant (CONSTANT- @t{constant-})
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>UNCONSTANT DATA-LENS<dot>LENSES<colon><colon>CONSTANT- method}@c
+@deffn {Method} {unconstant} (CONSTANT- @t{constant-})
+@anchor{go to the DATA-LENS․LENSES∶∶UNCONSTANT DATA-LENS․LENSES∶∶CONSTANT- method}@c
 @methodsubindex{unconstant}@c
 automatically generated reader method
 @table @strong
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @end table
 @end deffn
 @end table
 @end deffn
-@deffn {Generic Function} unidentity OBJECT
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>UNIDENTITY generic function}@c
+@deffn {Generic Function} {unidentity} OBJECT
+@anchor{go to the DATA-LENS․LENSES∶∶UNIDENTITY generic function}@c
 @genericsubindex{unidentity}@c
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Methods
-@deffn {Method} unidentity (IDENTITY- @t{identity-})
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>UNIDENTITY DATA-LENS<dot>LENSES<colon><colon>IDENTITY- method}@c
+@deffn {Method} {unidentity} (IDENTITY- @t{identity-})
+@anchor{go to the DATA-LENS․LENSES∶∶UNIDENTITY DATA-LENS․LENSES∶∶IDENTITY- method}@c
 @methodsubindex{unidentity}@c
 automatically generated reader method
 @table @strong
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @end table
 @end deffn
 @end table
@@ -1326,24 +1495,24 @@ automatically generated reader method
 
 @node Internal classes, , Internal generic functions, Internal definitions
 @subsection Classes
-@deftp {Class} constant- ()
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>CONSTANT- class}@c
+@deftp {Class} {constant-} ()
+@anchor{go to the DATA-LENS․LENSES∶∶CONSTANT- class}@c
 @classsubindex{constant-}@c
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @item Direct superclasses
 @t{standard-object} (class)
 @item Direct methods
 @itemize @bullet
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP COMMON-LISP<colon><colon>T DATA-LENS<dot>LENSES<colon><colon>CONSTANT- method, , @t{fmap}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T DATA-LENS․LENSES∶∶CONSTANT- method, , @t{fmap}} (method)
 @item
 @t{print-object} (method)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>UNCONSTANT DATA-LENS<dot>LENSES<colon><colon>CONSTANT- method, , @t{unconstant}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶UNCONSTANT DATA-LENS․LENSES∶∶CONSTANT- method, , @t{unconstant}} (method)
 @end itemize
 @item Direct slots
 @defvr {Slot} %v
@@ -1352,29 +1521,29 @@ automatically generated reader method
 @item Initargs
 @t{:value}
 @item Readers
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>UNCONSTANT generic function, , @t{unconstant}} (generic function)
+@ref{go to the DATA-LENS․LENSES∶∶UNCONSTANT generic function, , @t{unconstant}} (generic function)
 @end table
 @end defvr
 @end table
 @end deftp
-@deftp {Class} identity- ()
-@anchor{go to the DATA-LENS<dot>LENSES<colon><colon>IDENTITY- class}@c
+@deftp {Class} {identity-} ()
+@anchor{go to the DATA-LENS․LENSES∶∶IDENTITY- class}@c
 @classsubindex{identity-}@c
 @table @strong
 @item Package
-@ref{go to the DATA-LENS<dot>LENSES package, , @t{data-lens.lenses}}
+@ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
 @item Source
-@ref{go to the data-lens/lens<dot>lisp file, , @t{lens.lisp}} (file)
+@ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @item Direct superclasses
 @t{standard-object} (class)
 @item Direct methods
 @itemize @bullet
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>FMAP COMMON-LISP<colon><colon>T DATA-LENS<dot>LENSES<colon><colon>IDENTITY- method, , @t{fmap}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T DATA-LENS․LENSES∶∶IDENTITY- method, , @t{fmap}} (method)
 @item
 @t{print-object} (method)
 @item
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>UNIDENTITY DATA-LENS<dot>LENSES<colon><colon>IDENTITY- method, , @t{unidentity}} (method)
+@ref{go to the DATA-LENS․LENSES∶∶UNIDENTITY DATA-LENS․LENSES∶∶IDENTITY- method, , @t{unidentity}} (method)
 @end itemize
 @item Direct slots
 @defvr {Slot} %v
@@ -1383,7 +1552,7 @@ automatically generated reader method
 @item Initargs
 @t{:value}
 @item Readers
-@ref{go to the DATA-LENS<dot>LENSES<colon><colon>UNIDENTITY generic function, , @t{unidentity}} (generic function)
+@ref{go to the DATA-LENS․LENSES∶∶UNIDENTITY generic function, , @t{unidentity}} (generic function)
 @end table
 @end defvr
 @end table
