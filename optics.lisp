@@ -1,5 +1,42 @@
 (in-package :data-lens.lenses)
 
+#+fw.dev
+(progn
+  ;; maybe functor implementation
+  (defclass maybe ()
+    ())
+  (defclass just (maybe)
+    ((%v :initarg :value :reader value)))
+  (defclass nothing (maybe)
+    ())
+
+  (defun just (value)
+    (make-instance 'just :value value))
+  (defun nothing (&optional value)
+    (declare (ignore value))
+    (make-instance 'nothing))
+
+  (defgeneric maybe (default value)
+    (:method (default (value just))
+      (value value))
+    (:method (default (value nothing))
+      default))
+
+  (defgeneric maybe-apply (function value)
+    (:method (function (value just))
+      (just (funcall function (value value))))
+    (:method (function (value nothing))
+      value))
+
+  (defmethod print-object ((o just) s)
+    (format s "#.(~s ~s)"
+            'just
+            (value o)))
+
+  (defmethod print-object ((o nothing) s)
+    (format s "#.(~s)"
+            'nothing)))
+
 ;; identity functor, necessary for set and over
 (defclass identity- ()
   ((%v :initarg :value :reader unidentity)))
@@ -173,47 +210,10 @@ contain the new value at the location focused by the lens."
   (defun a-lens (cb)
     (lambda (foo)
       (fw.lu:prog1-bind (new (clone foo))
-        (setf (a new)
-              (funcall cb (a foo))))))
+                        (setf (a new)
+                              (funcall cb (a foo))))))
   (view 'a-lens
         (over 'a-lens '1+
               (set 'a-lens 2
                    (make-instance 'foo :a 1)))) #|
   ==> 3 |#)
-
-#+fw.dev
-(progn
-  ;; maybe functor implementation
-  (defclass maybe ()
-    ())
-  (defclass just (maybe)
-    ((%v :initarg :value :reader value)))
-  (defclass nothing (maybe)
-    ())
-
-  (defun just (value)
-    (make-instance 'just :value value))
-  (defun nothing (&optional value)
-    (declare (ignore value))
-    (make-instance 'nothing))
-
-  (defgeneric maybe (default value)
-    (:method (default (value just))
-      (value value))
-    (:method (default (value nothing))
-      default))
-
-  (defgeneric maybe-apply (function value)
-    (:method (function (value just))
-      (just (funcall function (value value))))
-    (:method (function (value nothing))
-      value))
-
-  (defmethod print-object ((o just) s)
-    (format s "#.(~s ~s)"
-            'just
-            (value o)))
-
-  (defmethod print-object ((o nothing) s)
-    (format s "#.(~s)"
-            'nothing)))
