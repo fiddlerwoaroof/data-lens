@@ -24,4 +24,4 @@
                :alexandria)
   :serial t
   :components ((:file "package")
-               (:file "transducer")))
+               (:file "transducers")))
