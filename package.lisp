@@ -20,3 +20,9 @@
            #:maximizing #:zipping #:applying #:splice-elt #:transform-elt #:denest
            #:op #:defalias #:<> #:<>1 #:== #:•
            ))
+
+(defpackage :data-lens.transducers.beta
+  (:use :cl)
+  (:export #:mapping :filtering :deduping :catting :splitting
+           #:exit-early :taking :dropping :transduce
+           #:hash-table-builder :vector-builder :list-builder))
