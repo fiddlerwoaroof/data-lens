@@ -3,22 +3,36 @@
                  exit-early taking dropping transduce
                  hash-table-builder vector-builder list-builder))
 
-(defun mapping (function)
-  (lambda (rf)
-    (lambda (acc next)
-      (funcall rf acc (funcall function next)))))
+(defmacro define-functional-transducer (name () &body body)
+  `(defun ,name (function &rest args)
+     (flet ((call-function (it) (apply function it args)))
+       (lambda (rf)
+         (lambda (acc next)
+           ,@body)))))
 
-(defun mv-mapping (function)
-  (lambda (rf)
-    (lambda (acc next)
-      (funcall rf acc (multiple-value-list (funcall function next))))))
+(define-functional-transducer mapping ()
+  (funcall rf acc (call-function next)))
 
-(defun filtering (predicate)
-  (lambda (rf)
-    (lambda (acc next)
-      (if (funcall predicate next)
-          (funcall rf acc next)
-          acc))))
+(define-functional-transducer mv-mapping ()
+  (funcall rf acc (multiple-value-list (call-function next))))
+
+(define-functional-transducer mv-selecting ()
+  (multiple-value-bind (value use-p) (call-function next)
+    (if use-p
+        (funcall rf acc value)
+        acc)))
+
+(defun hash-table-select (hash-table)
+  (mv-selecting #'gethash hash-table))
+
+(define-functional-transducer filtering ()
+  (if (call-function next)
+      (funcall rf acc next)
+      acc))
+
+(defun mv-filtering (function &rest args)
+  (filtering (lambda (it)
+               (nth-value 1 (apply function it args)))))
 
 (defun deduping (&optional (test 'eql))
   (lambda (rf)
