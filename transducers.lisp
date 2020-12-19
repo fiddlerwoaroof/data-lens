@@ -1,4 +1,26 @@
-(in-package :data-lens.transducers.beta)
+(in-package :data-lens.transducers.internals)
+
+(defgeneric unwrap (it obj)
+  (:method (it obj) obj))
+(defgeneric init (it))
+(defgeneric stepper (it))
+
+(defgeneric reduce-generic (seq func init)
+  (:method ((seq sequence) (func function) init)
+    (reduce func seq :initial-value init))
+  (:method ((seq sequence) (func symbol) init)
+    (reduce func seq :initial-value init))
+  (:method (seq (func symbol) init)
+    (reduce-generic seq (symbol-function func) init))
+  (:method ((seq hash-table) (func function) init)
+    (let ((acc init))
+      (maphash (lambda (k v)
+                 (setf acc (funcall func acc (list k v))))
+               seq)
+      acc)))
+
+(in-package :data-lens.transducers)
+
 (declaim (inline mapping filtering deduping catting splitting
                  exit-early taking dropping transduce
                  hash-table-builder vector-builder list-builder))
@@ -73,69 +95,41 @@
                    acc)
             (funcall rf acc next))))))
 
-(defgeneric unwrap (it obj)
-  (:method (it obj) obj))
-(defgeneric init (it))
-(defgeneric stepper (it))
-
-(defgeneric reduce-generic (seq func init)
-  (:method ((seq sequence) (func function) init)
-    (reduce func seq :initial-value init))
-  (:method ((seq sequence) (func symbol) init)
-    (reduce func seq :initial-value init))
-  (:method (seq (func symbol) init)
-    (foldling seq (symbol-function func) init))
-  (:method ((seq hash-table) (func function) init)
-    (let ((acc init))
-      (maphash (lambda (k v)
-                 (setf acc (funcall func acc (list k v))))
-               seq)
-      acc)))
-
 (defun transduce (xf build seq)
   (unwrap build
           (catch 'done
             (reduce-generic seq
                             (funcall xf (stepper build))
                             (init build)))))
+(defun eduction (xf seq)
+  (lambda (build)
+    (data-lens.transducers.internals:unwrap
+     build
+     (catch 'done
+       (data-lens.transducers.internals:reduce-generic seq
+                                                       (funcall xf (stepper build))
+                                                       (init build))))))
 
-(defclass lazy-sequence ()
-  ((%next :initarg :next :reader next)))
-(defun lazy-sequence (next)
-  (make-instance 'lazy-sequence :next next))
-(defmethod reduce-generic ((seq lazy-sequence) (func function) init)
-  (let ((next (next seq)))
-    (loop for next-val = (funcall next)
-          for acc = init then next-acc
-          for next-acc = (when next-val (funcall func acc next-val))
-          while next-val
-          finally (return acc))))
-
-(defmacro comment (&body body)
-  (declare (ignore body))
-  nil)
-
-(defmethod stepper ((it (eql 'hash-table-builder)))
+(defmethod data-lens.transducers.internals:init ((it (eql 'hash-table-builder)))
+  (make-hash-table))
+(defmethod data-lens.transducers.internals:stepper ((it (eql 'hash-table-builder)))
   (lambda (acc next)
     (destructuring-bind (k v) next
       (setf (gethash k acc) v))
     acc))
-(defmethod init ((it (eql 'hash-table-builder)))
-  (make-hash-table))
 
-(defmethod stepper ((it (eql 'vector-builder)))
+(defmethod data-lens.transducers.internals:init ((it (eql 'vector-builder)))
+  (make-array 0 :fill-pointer t :adjustable t))
+(defmethod data-lens.transducers.internals:stepper ((it (eql 'vector-builder)))
   (lambda (acc next)
     (vector-push-extend next acc)
     acc))
-(defmethod init ((it (eql 'vector-builder)))
-  (make-array 0 :fill-pointer t :adjustable t))
 
-
-(defmethod init ((it (eql 'list-builder)))
+(defmethod data-lens.transducers.internals:init ((it (eql 'list-builder)))
   (declare (optimize (speed 3)))
   (coerce (vector nil nil)
           '(simple-array list (2))))
-(defmethod stepper ((it (eql 'list-builder)))
+(defmethod data-lens.transducers.internals:stepper ((it (eql 'list-builder)))
   (lambda (acc a)
     (declare (optimize (speed 3))
              (type (simple-array list (2)) acc))
@@ -147,8 +141,24 @@
           (setf (elt acc 0) new
                 (elt acc 1) new)))
     acc))
-(defmethod unwrap ((it (eql 'list-builder)) obj)
+(defmethod data-lens.transducers.internals:unwrap ((it (eql 'list-builder)) obj)
   (elt obj 0))
+
+(defclass lazy-sequence ()
+  ((%next :initarg :next :reader next)))
+(defun lazy-sequence (next)
+  (make-instance 'lazy-sequence :next next))
+(defmethod data-lens.transducers.internals:reduce-generic ((seq lazy-sequence) (func function) init)
+  (let ((next (next seq)))
+    (loop for next-val = (funcall next)
+          for acc = init then next-acc
+          for next-acc = (when next-val (funcall func acc next-val))
+          while next-val
+          finally (return acc))))
+
+(defmacro comment (&body body)
+  (declare (ignore body))
+  nil)
 
 (comment
   (defun 2* (it)

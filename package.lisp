@@ -21,8 +21,18 @@
            #:op #:defalias #:<> #:<>1 #:== #:•
            ))
 
-(defpackage :data-lens.transducers.beta
+(defpackage :data-lens.transducers.internals
   (:use :cl)
+  (:export
+   #:unwrap
+   #:init
+   #:reduce-generic
+   #:stepper))
+
+(defpackage :data-lens.transducers
+  (:use :cl)
+  (:import-from :data-lens.transducers.internals
+                #:unwrap #:init #:reduce-generic #:stepper)
   (:export #:mapping :filtering :deduping :catting :splitting
            #:exit-early :taking :dropping :transduce
            #:hash-table-builder :vector-builder :list-builder
