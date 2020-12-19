@@ -78,21 +78,30 @@
 (defgeneric init (it))
 (defgeneric stepper (it))
 
-(defgeneric foldling (seq func init)
+(defgeneric reduce-generic (seq func init)
   (:method ((seq sequence) (func function) init)
     (reduce func seq :initial-value init))
   (:method ((seq sequence) (func symbol) init)
-    (reduce func seq :initial-value init)))
+    (reduce func seq :initial-value init))
+  (:method (seq (func symbol) init)
+    (foldling seq (symbol-function func) init))
+  (:method ((seq hash-table) (func function) init)
+    (let ((acc init))
+      (maphash (lambda (k v)
+                 (setf acc (funcall func acc (list k v))))
+               seq)
+      acc)))
+
 (defun transduce (xf build seq)
   (unwrap build
           (catch 'done
-            (foldling seq
-                      (funcall xf (stepper build))
-                      (init build)))))
+            (reduce-generic seq
+                            (funcall xf (stepper build))
+                            (init build)))))
 
 (defclass lazy-sequence ()
   ((%next :initarg :next :reader next)))
-(defmethod foldling ((seq lazy-sequence) (func function) init)
+(defmethod reduce-generic ((seq lazy-sequence) (func function) init)
   (let ((next (next seq)))
     (loop for next-val = (funcall next)
           for acc = init then next-acc
