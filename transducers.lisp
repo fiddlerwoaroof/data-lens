@@ -101,6 +101,8 @@
 
 (defclass lazy-sequence ()
   ((%next :initarg :next :reader next)))
+(defun lazy-sequence (next)
+  (make-instance 'lazy-sequence :next next))
 (defmethod reduce-generic ((seq lazy-sequence) (func function) init)
   (let ((next (next seq)))
     (loop for next-val = (funcall next)
