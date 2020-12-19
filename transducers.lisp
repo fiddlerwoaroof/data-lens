@@ -1,9 +1,17 @@
 (in-package :data-lens.transducers.beta)
+(declaim (inline mapping filtering deduping catting splitting
+                 exit-early taking dropping transduce
+                 hash-table-builder vector-builder list-builder))
 
 (defun mapping (function)
   (lambda (rf)
     (lambda (acc next)
       (funcall rf acc (funcall function next)))))
+
+(defun mv-mapping (function)
+  (lambda (rf)
+    (lambda (acc next)
+      (funcall rf acc (multiple-value-list (funcall function next))))))
 
 (defun filtering (predicate)
   (lambda (rf)
@@ -51,58 +59,87 @@
                    acc)
             (funcall rf acc next))))))
 
+(defgeneric unwrap (it obj)
+  (:method (it obj) obj))
+(defgeneric init (it))
+(defgeneric stepper (it))
+
+(defgeneric foldling (seq func init)
+  (:method ((seq sequence) (func function) init)
+    (reduce func seq :initial-value init))
+  (:method ((seq sequence) (func symbol) init)
+    (reduce func seq :initial-value init)))
 (defun transduce (xf build seq)
-  (funcall build
-           (catch 'done
-             (reduce (funcall xf build) seq :initial-value (funcall build)))))
+  (unwrap build
+          (catch 'done
+            (foldling seq
+                      (funcall xf (stepper build))
+                      (init build)))))
+
+(defclass lazy-sequence ()
+  ((%next :initarg :next :reader next)))
+(defmethod foldling ((seq lazy-sequence) (func function) init)
+  (let ((next (next seq)))
+    (loop for next-val = (funcall next)
+          for acc = init then next-acc
+          for next-acc = (when next-val (funcall func acc next-val))
+          while next-val
+          finally (return acc))))
 
 (defmacro comment (&body body)
   (declare (ignore body))
   nil)
 
-(defun hash-table-builder (&optional (acc nil acc-p) (next nil next-p))
-  (cond (next-p (destructuring-bind (k v) next
-                  (setf (gethash k acc) v)) acc)
-        (acc-p acc)
-        (t (make-hash-table))))
+(defmethod stepper ((it (eql 'hash-table-builder)))
+  (lambda (acc next)
+    (destructuring-bind (k v) next
+      (setf (gethash k acc) v))
+    acc))
+(defmethod init ((it (eql 'hash-table-builder)))
+  (make-hash-table))
 
-(defun vector-builder (&optional (acc nil acc-p) (next nil next-p))
-  (cond (next-p (vector-push-extend next acc) acc)
-        (acc-p acc)
-        (t (make-array 0 :fill-pointer t :adjustable t))))
+(defmethod stepper ((it (eql 'vector-builder)))
+  (lambda (acc next)
+    (vector-push-extend next acc)
+    acc))
+(defmethod init ((it (eql 'vector-builder)))
+  (make-array 0 :fill-pointer t :adjustable t))
 
-(eval-when (:load-toplevel :compile-toplevel :execute)
-  (labels ((make-snoc ()
-             (vector nil nil))
-           (add-to-snoc (acc a)
-             (if (elt acc 1)
-                 (let* ((to-build (elt acc 1)))
-                   (push a (cdr to-build))
-                   (setf (elt acc 1) (cdr to-build)))
-                 (let ((new (list a)))
-                   (setf (elt acc 0) new
-                         (elt acc 1) new)))
-             acc)
-           (desnoc (acc)
-             (elt acc 0)))
-    (defun list-builder (&optional (acc nil acc-p) (next nil next-p))
-      (cond (next-p (add-to-snoc acc next))
-            (acc-p (desnoc acc))
-            (t (make-snoc))))))
+
+(defmethod init ((it (eql 'list-builder)))
+  (declare (optimize (speed 3)))
+  (coerce (vector nil nil)
+          '(simple-array list (2))))
+(defmethod stepper ((it (eql 'list-builder)))
+  (lambda (acc a)
+    (declare (optimize (speed 3))
+             (type (simple-array list (2)) acc))
+    (if (elt acc 1)
+        (let* ((to-build (elt acc 1)))
+          (push a (cdr to-build))
+          (setf (elt acc 1) (cdr to-build)))
+        (let ((new (list a)))
+          (setf (elt acc 0) new
+                (elt acc 1) new)))
+    acc))
+(defmethod unwrap ((it (eql 'list-builder)) obj)
+  (elt obj 0))
 
 (comment
   (defun 2* (it)
     (* 2 it))
 
-  (let ((result (transduce (alexandria:compose (catting)
-                                               (mapping #'parse-integer)
-                                               (filtering (complement #'evenp))
-                                               (mapping (data-lens:juxt #'identity #'identity))
-                                               (mapping (data-lens:transform-head #'2*))
-                                               (mapping (data-lens:transform-head #'1+))
-                                               (taking 2))
+  (let ((result (transduce (alexandria:compose
+                            (catting)
+                            (mapping #'parse-integer)
+                            (filtering (complement #'evenp))
+                            (mapping (data-lens:juxt #'identity #'identity))
+                            (mapping (data-lens:transform-head #'2*))
+                            (mapping (data-lens:transform-head #'1+))
+                            (taking 2))
                            'hash-table-builder
-                           '(("123" "234" "345" "454") ("568" "490") ("567" "213")))
-                ))
+                           '(("123" "234" "345" "454")
+                             ("568" "490")
+                             ("567" "213")))))
     (values result
             (alexandria:hash-table-alist result))))
