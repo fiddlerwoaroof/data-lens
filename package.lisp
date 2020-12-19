@@ -25,4 +25,9 @@
   (:use :cl)
   (:export #:mapping :filtering :deduping :catting :splitting
            #:exit-early :taking :dropping :transduce
-           #:hash-table-builder :vector-builder :list-builder))
+           #:hash-table-builder :vector-builder :list-builder
+           #:mv-mapping
+           #:mv-selecting
+           #:hash-table-select
+           #:mv-filtering
+           #:lazy-sequence))
