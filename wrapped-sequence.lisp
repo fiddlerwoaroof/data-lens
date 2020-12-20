@@ -6,20 +6,26 @@
 (defgeneric underlying (wrapper)
   (:documentation "Return the underlying object of a wrapper"))
 
-(defclass tagged-sequence (standard-object sequence)
-  ((%underlying-sequence :initarg :underlying :accessor underlying)
-   (%key-fn :initarg :key :reader key)
-   (%invert-key :initarg :invert-key :reader invert-key)))
+(defgeneric key (tagged-sequence))
+(defgeneric invert-key (tagged-sequence))
+(defclass tagged-sequence (standard-object
+                           org.shirakumo.trivial-extensible-sequences:sequence)
+  ((%underlying-sequence :initarg :underlying :accessor underlying)))
 
-(defmethod sb-sequence:length ((sequence tagged-sequence))
+
+
+(defmethod org.shirakumo.trivial-extensible-sequences:length
+    ((sequence tagged-sequence))
   (length (underlying sequence)))
 
-(defmethod sb-sequence:elt ((sequence tagged-sequence) index)
+(defmethod org.shirakumo.trivial-extensible-sequences:elt
+    ((sequence tagged-sequence) index)
   (funcall (key sequence)
            (elt (underlying sequence)
                 index)))
 
-(defmethod (setf sb-sequence:elt) (new-value (sequence tagged-sequence) index)
+(defmethod (setf org.shirakumo.trivial-extensible-sequences:elt)
+    (new-value (sequence tagged-sequence) index)
   (setf (elt (underlying sequence)
              index)
         (funcall (invert-key sequence)
@@ -27,27 +33,25 @@
                       index)
                  new-value)))
 
-(defmethod sb-sequence:adjust-sequence ((sequence tagged-sequence) length
-                                        &rest r
-                                        &key initial-element initial-contents)
+(defmethod org.shirakumo.trivial-extensible-sequences:adjust-sequence
+    ((sequence tagged-sequence) length
+     &rest r
+     &key initial-element initial-contents)
   (declare (ignore initial-element initial-contents))
-  (make-instance 'tagged-sequence
-                 :underlying (apply #'sb-sequence:adjust-sequence
-                                    (copy-seq (underlying sequence)) length
-                                    r)
-                 :key-fn (key sequence)
-                 :invert-key (invert-key sequence)))
+  (unless (slot-boundp sequence '%underlying-sequence)
+    (setf (underlying sequence) ()))
+  (fw.lu:prog1-bind (it (make-instance (class-of sequence)
+                                       :underlying (apply
+                                                    #'org.shirakumo.trivial-extensible-sequences:adjust-sequence
+                                                    (copy-seq (underlying sequence)) length
+                                                    r)))
+    (describe it)))
 
-(defmethod sb-sequence:make-sequence-like
+(defmethod org.shirakumo.trivial-extensible-sequences:make-sequence-like
     ((sequence tagged-sequence) length &rest r)
-  (apply #'sb-sequence:adjust-sequence sequence length r))
+  (apply #'org.shirakumo.trivial-extensible-sequences:adjust-sequence
+         sequence length r))
 
-(defun wrap-sequence (seq key-fn invert-key-fn)
-  (if invert-key-fn
-      (make-instance 'tagged-sequence
-                     :underlying seq
-                     :key key-fn
-                     :invert-key invert-key-fn)
-      (make-instance 'tagged-sequence
-                     :underlying seq
-                     :key key-fn)))
+(defun wrap-sequence (class seq)
+  (make-instance class
+                 :underlying seq))
