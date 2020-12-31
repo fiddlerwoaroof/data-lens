@@ -151,6 +151,15 @@
 (define-modify-macro updatef (fun &rest args)
   update)
 
+(defun-ct suffixp (suffix &key (test 'eql test-p))
+  (lambda (it)
+    (if test-p
+        (alexandria:ends-with-subseq suffix
+                                     it
+                                     :test test)
+        (alexandria:ends-with-subseq suffix
+                                     it))))
+
 (defun-ct transform-head (fun)
   (lambda (it)
     (typecase it
