@@ -18,8 +18,7 @@
            #:compress-runs #:combine-matching-lists #:sorted #:applicable-when
            #:of-length #:of-min-length #:of-max-length #:transform-head
            #:maximizing #:zipping #:applying #:splice-elt #:transform-elt #:denest
-           #:op #:defalias #:<> #:<>1 #:== #:•
-           ))
+           #:op #:defalias #:<> #:<>1 #:== #:• #:suffixp #:functionalize))
 
 (defpackage :data-lens.transducers.internals
   (:use :cl)

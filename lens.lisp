@@ -7,6 +7,23 @@
          data-lens:compress-runs data-lens:combine-matching-lists
          data-lens:juxt data-lens:element data-lens:sorted))
 
+(defgeneric functionalize (it)
+  (:method ((it hash-table))
+    (lambda (key &optional default)
+      (gethash key it default)))
+  (:method ((it vector))
+    (lambda (idx &optional default)
+      (let ((present-p (and (>= idx 0)
+                            (< idx (length it)))))
+        (values (if present-p
+                    (aref it idx)
+                    default)
+                present-p))))
+  (:method ((it symbol))
+    (fdefinition it))
+  (:method ((it function))
+    it))
+
 ;;; TODO: consider making this wrap defalias?
 (defmacro shortcut (name function &body bound-args)
   `(eval-when (:load-toplevel :compile-toplevel :execute)

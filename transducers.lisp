@@ -11,7 +11,9 @@
   (:method ((seq sequence) (func symbol) init)
     (reduce func seq :initial-value init))
   (:method (seq (func symbol) init)
-    (reduce-generic seq (symbol-function func) init))
+    (reduce-generic seq
+                    (symbol-function func)
+                    init))
   (:method ((seq hash-table) (func function) init)
     (let ((acc init))
       (maphash (lambda (k v)
