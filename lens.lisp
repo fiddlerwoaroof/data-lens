@@ -248,8 +248,9 @@
              :initial-value ()))))
 
 (defun-ct over (fun &key (result-type 'list))
-  (lambda (seq)
-    (map result-type fun seq)))
+  (let ((fun (functionalize fun)))
+    (lambda (seq)
+      (map result-type fun seq))))
 
 (defun-ct denest (&key (result-type 'list))
   (lambda (seq)
@@ -257,13 +258,16 @@
            seq)))
 
 (defmacro applying (fun &rest args)
-  (alexandria:with-gensyms (seq)
-    `(lambda (,seq)
-       (apply ,fun ,@args ,seq))))
+  (alexandria:with-gensyms (seq fsym)
+    `(let ((,fsym (functionalize ,fun)))
+       (lambda (,seq)
+         (apply ,fsym ,@args ,seq)))))
 
 (defun-ct on (fun key)
-  (lambda (it)
-    (funcall fun (funcall key it))))
+  (let ((fun (functionalize fun))
+        (key (functionalize key)))
+    (lambda (it)
+      (funcall fun (funcall key it)))))
 
 (defun filler (length1 length2 fill-value)
   (if (< length1 length2)
