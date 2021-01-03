@@ -21,5 +21,17 @@
   :depends-on (:data-lens
                :alexandria)
   :serial t
+  :in-order-to ((test-op (test-op :data-lens/transducer/test)))
   :components ((:file "package")
                (:file "transducers")))
+
+(asdf:defsystem #:data-lens/transducer/test
+  :description "tests for the transducers"
+  :author "Edward Langley <el-cl@elangley.org>"
+  :license "MIT"
+  :depends-on (:data-lens/beta/transducer
+               :fiveam)
+  :serial t
+  :perform (test-op (o c) (symbol-call :fiveam '#:run! :data-lens.transducers))
+  :components ((:module "t"
+                :components ((:file "transducer")))))
