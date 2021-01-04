@@ -1,7 +1,7 @@
 (defpackage :data-lens.t.transducers
   (:use :cl )
   (:export ))
-(in-package :fwoar.lisp-sandbox.t.transducer)
+(in-package :data-lens.t.transducers)
 
 (5am:def-suite :data-lens.transducers)
 (5am:in-suite :data-lens.transducers)
