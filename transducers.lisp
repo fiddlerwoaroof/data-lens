@@ -67,20 +67,8 @@
   (filtering (lambda (it)
                (nth-value 1 (apply function it args)))))
 
-(defun deduping (&optional (test 'eql))
-  (lambda (rf)
-    (let (last)
-      (transducer-lambda
-        ((acc next)
-         (prog1 (if (or (null last)
-                        (funcall test last next))
-                    acc
-                    (funcall rf acc next))
-           (setf last next)))
-        ((it) (funcall rf it))))))
-
 (defun seq (a b) a b)
-(defun compressing-runs (&optional (test 'eql) (combiner 'seq))
+(defun compressing-runs (&key (test 'eql) (combiner 'seq))
   (lambda (rf)
     (let (last leftovers)
       (transducer-lambda
@@ -91,7 +79,7 @@
                           leftovers t)
                     acc)
              (progn (prog1 (funcall rf acc last)
-                      (setf last next)))))
+                      (setf last (funcall combiner last next))))))
         ((it)
          (funcall rf
                   (if leftovers
@@ -99,11 +87,14 @@
                       it)))))))
 
 
+(defun deduping (&optional (test 'eql))
+  (compressing-runs :test test))
+
 (defun catting ()
   (lambda (rf)
     (transducer-lambda
       ((acc next)
-       (reduce rf next :initial-value acc))
+       (reduce-generic next rf acc))
       ((it) (funcall rf it)))))
 
 (defun mapcatting (fun)
