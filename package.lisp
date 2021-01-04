@@ -39,4 +39,9 @@
            #:mv-selecting
            #:hash-table-select
            #:mv-filtering
-           #:lazy-sequence))
+           #:lazy-sequence
+           #:compressing-runs
+           #:mapcatting
+           #:iota
+           #:repeating
+           #:repeating*))
