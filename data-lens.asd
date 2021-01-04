@@ -23,7 +23,9 @@
   :serial t
   :in-order-to ((test-op (test-op :data-lens/transducer/test)))
   :components ((:file "package")
-               (:file "transducers")))
+               (:file "transducer-protocol")
+               (:file "transducers")
+               (:file "lazy-sequence")))
 
 (asdf:defsystem #:data-lens/transducer/test
   :description "tests for the transducers"

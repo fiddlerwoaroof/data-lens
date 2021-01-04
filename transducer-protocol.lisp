@@ -1,0 +1,22 @@
+(in-package :data-lens.transducers.internals)
+
+(defgeneric unwrap (it obj)
+  (:method (it obj) obj))
+(defgeneric init (it))
+(defgeneric stepper (it))
+
+(defgeneric reduce-generic (seq func init)
+  (:method ((seq sequence) (func function) init)
+    (reduce func seq :initial-value init))
+  (:method ((seq sequence) (func symbol) init)
+    (reduce func seq :initial-value init))
+  (:method (seq (func symbol) init)
+    (reduce-generic seq
+                    (symbol-function func)
+                    init))
+  (:method ((seq hash-table) (func function) init)
+    (let ((acc init))
+      (maphash (lambda (k v)
+                 (setf acc (funcall func acc (list k v))))
+               seq)
+      acc)))

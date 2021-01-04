@@ -1,26 +1,3 @@
-(in-package :data-lens.transducers.internals)
-
-(defgeneric unwrap (it obj)
-  (:method (it obj) obj))
-(defgeneric init (it))
-(defgeneric stepper (it))
-
-(defgeneric reduce-generic (seq func init)
-  (:method ((seq sequence) (func function) init)
-    (reduce func seq :initial-value init))
-  (:method ((seq sequence) (func symbol) init)
-    (reduce func seq :initial-value init))
-  (:method (seq (func symbol) init)
-    (reduce-generic seq
-                    (symbol-function func)
-                    init))
-  (:method ((seq hash-table) (func function) init)
-    (let ((acc init))
-      (maphash (lambda (k v)
-                 (setf acc (funcall func acc (list k v))))
-               seq)
-      acc)))
-
 (in-package :data-lens.transducers)
 
 (declaim (inline mapping filtering deduping catting splitting
@@ -212,18 +189,6 @@
      acc)))
 (defmethod unwrap ((it (eql 'list-builder)) obj)
   (cdr (elt obj 0)))
-
-(defclass lazy-sequence ()
-  ((%next :initarg :next :reader next)))
-(defun lazy-sequence (next)
-  (make-instance 'lazy-sequence :next next))
-(defmethod reduce-generic ((seq lazy-sequence) (func function) init)
-  (let ((next (next seq)))
-    (loop for next-val = (funcall next)
-          for acc = init then next-acc
-          for next-acc = (when next-val (funcall func acc next-val))
-          while next-val
-          finally (return acc))))
 
 (defmacro comment (&body body)
   (declare (ignore body))
