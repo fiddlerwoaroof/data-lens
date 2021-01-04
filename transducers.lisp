@@ -86,6 +86,18 @@
                       (funcall rf it last)
                       it)))))))
 
+
+(defun collecting (collector)
+  (lambda (rf)
+    (let (sofar)
+      (transducer-lambda
+        ((acc next)
+         (if sofar
+             (setf sofar (funcall collector sofar next))
+             (setf sofar next))
+         (funcall rf acc sofar))))))
+
+
 (defun deduping (&optional (test 'eql))
   (compressing-runs :test test))
 

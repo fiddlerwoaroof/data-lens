@@ -22,11 +22,7 @@
 
 (defpackage :data-lens.transducers.internals
   (:use :cl)
-  (:export
-   #:unwrap
-   #:init
-   #:reduce-generic
-   #:stepper))
+  (:export #:unwrap #:init #:reduce-generic #:stepper))
 
 (defpackage :data-lens.transducers
   (:use :cl)
@@ -35,13 +31,7 @@
   (:export #:mapping :filtering :deduping :catting :splitting
            #:exit-early :taking :dropping :transduce
            #:hash-table-builder :vector-builder :list-builder
-           #:mv-mapping
-           #:mv-selecting
-           #:hash-table-select
-           #:mv-filtering
-           #:lazy-sequence
-           #:compressing-runs
-           #:mapcatting
-           #:iota
-           #:repeating
-           #:repeating*))
+           #:collecting #:mv-mapping #:mv-selecting
+           #:hash-table-select #:mv-filtering #:mapcatting
+           #:lazy-sequence #:compressing-runs #:iota
+           #:repeating #:repeating*))

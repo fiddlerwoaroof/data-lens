@@ -107,6 +107,16 @@
              (2 4 4 4) (2 5 5 5)
              (3 6 6 6))))))
 
+(5am:def-test collecting (:suite :data-lens.transducers)
+  (5am:is (equal '(1 3 6 9 13 18 22 27 33 40)
+                 (data-lens.transducers:transduce (data-lens:• (data-lens.transducers:taking 5)
+                                                               (data-lens.transducers:mapcatting 'identity)
+                                                               (data-lens.transducers::collecting '+))
+                                                  'data-lens.transducers:list-builder
+                                                  (loop for x from 1
+                                                        repeat 4
+                                                        collect (data-lens.transducers:iota :start x :count x))))))
+
 (5am:def-test catting (:suite :data-lens.transducers)
   (5am:is (equal '(1 1 2 1 2 2 3 3 4 1)
                  (data-lens.transducers:transduce (data-lens.transducers:catting)
@@ -117,14 +127,19 @@
   (5am:is (equal '(1 1 2 1 2 2 3 3 4 1)
                  (data-lens.transducers:transduce (data-lens.transducers:mapcatting 'list)
                                                   'data-lens.transducers:list-builder
-                                                  '(1 1 2 1 2 2 3 3 4 1)))))
+                                                  '(1 1 2 1 2 2 3 3 4 1))))
+  (5am:is (equal '(0 0 1 0 1 2)
+                 (data-lens.transducers:transduce (data-lens.transducers:mapcatting 'identity)
+                                                  'data-lens.transducers:list-builder
+                                                  (list (data-lens.transducers:iota :count 1)
+                                                        (data-lens.transducers:iota :count 2)
+                                                        (data-lens.transducers:iota :count 3))))))
 
 (5am:def-test splitting (:suite :data-lens.transducers)
   (5am:is (equal '((2 0) (3 1) (4 2))
                  (data-lens.transducers:transduce (data-lens.transducers:splitting '1+ '1-)
                                                   'data-lens.transducers:list-builder
                                                   '(1 2 3)))))
-
 
 (5am:def-test transducer-composition (:suite :data-lens.transducers)
   (5am:is (equal '(3 5 7)
