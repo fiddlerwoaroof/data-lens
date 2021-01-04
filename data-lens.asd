@@ -13,7 +13,7 @@
                (:file "optics")
                (:file "lens")))
 
-(asdf:defsystem #:data-lens/beta/transducer
+(asdf:defsystem #:data-lens/beta/transducers
   :description #.(format nil "~@{~a~^ ~}"
                          "A collection of transducers to reduce stream-manipulation overhead")
   :author "Edward Langley <el-cl@elangley.org>"
@@ -27,7 +27,7 @@
                (:file "transducers")
                (:file "lazy-sequence")))
 
-(asdf:defsystem #:data-lens/transducer/test
+(asdf:defsystem #:data-lens/transducers/test
   :description "tests for the transducers"
   :author "Edward Langley <el-cl@elangley.org>"
   :license "MIT"
@@ -36,4 +36,4 @@
   :serial t
   :perform (test-op (o c) (symbol-call :fiveam '#:run! :data-lens.transducers))
   :components ((:module "t"
-                :components ((:file "transducer")))))
+                :components ((:file "transducers")))))
