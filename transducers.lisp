@@ -131,7 +131,10 @@
         ((it) (funcall rf it))))))
 
 (defun transduce (xf build seq)
-  (let ((transducer (funcall xf (stepper build))))
+  (let* ((xf (etypecase xf
+               (list (apply 'alexandria:compose xf))
+               ((or function symbol) xf)))
+         (transducer (funcall xf (stepper build))))
     (unwrap build
             (funcall transducer
                      (catch 'done
