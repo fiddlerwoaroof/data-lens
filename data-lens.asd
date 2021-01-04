@@ -21,7 +21,7 @@
   :depends-on (:data-lens
                :alexandria)
   :serial t
-  :in-order-to ((test-op (test-op :data-lens/transducer/test)))
+  :in-order-to ((test-op (test-op :data-lens/transducers/test)))
   :components ((:file "package")
                (:file "transducer-protocol")
                (:file "transducers")
@@ -31,7 +31,7 @@
   :description "tests for the transducers"
   :author "Edward Langley <el-cl@elangley.org>"
   :license "MIT"
-  :depends-on (:data-lens/beta/transducer
+  :depends-on (:data-lens/beta/transducers
                :fiveam)
   :serial t
   :perform (test-op (o c) (symbol-call :fiveam '#:run! :data-lens.transducers))
