@@ -79,13 +79,12 @@
                           leftovers t)
                     acc)
              (progn (prog1 (funcall rf acc last)
-                      (setf last (funcall combiner last next))))))
+                      (setf last next)))))
         ((it)
          (funcall rf
                   (if leftovers
                       (funcall rf it last)
                       it)))))))
-
 
 (defun deduping (&optional (test 'eql))
   (compressing-runs :test test))

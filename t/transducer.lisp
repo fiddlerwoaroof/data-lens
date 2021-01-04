@@ -89,7 +89,23 @@
           (5am:is (equal '(1 2)
                          (data-lens.transducers:transduce (data-lens.transducers:compressing-runs)
                                                           'data-lens.transducers:list-builder
-                                                          input)))))
+                                                          input))))
+
+  (5am:is
+   (equal '((1 2 2 2 3 3 3)
+            (2 4 4 4 5 5 5)
+            (3 6 6 6))
+          (data-lens.transducers:transduce
+           (data-lens.transducers:compressing-runs
+            :test (lambda (a b) (eql (car a) (car b)))
+            :combiner (lambda (a b)
+                        (if a
+                            (append a (cdr b))
+                            b)))
+           'data-lens.transducers:list-builder
+           '((1 2 2 2) (1 3 3 3)
+             (2 4 4 4) (2 5 5 5)
+             (3 6 6 6))))))
 
 (5am:def-test catting (:suite :data-lens.transducers)
   (5am:is (equal '(1 1 2 1 2 2 3 3 4 1)
