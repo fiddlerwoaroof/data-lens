@@ -1,3 +1,5 @@
+(in-package :asdf-user)
+
 (asdf:defsystem #:data-lens
   :description #.(format nil "~@{~a~^ ~}"
                          "Utilities for building data transformations from"
@@ -34,6 +36,7 @@
   :depends-on (:data-lens/beta/transducers
                :fiveam)
   :serial t
-  :perform (test-op (o c) (symbol-call :fiveam '#:run! :data-lens.transducers))
+  :perform (test-op (o c) (unless (symbol-call :fiveam '#:run! :data-lens.transducers)
+                            (quit 41)))
   :components ((:module "t"
                 :components ((:file "transducers")))))
