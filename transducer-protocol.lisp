@@ -1,10 +1,5 @@
 (in-package :data-lens.transducers.internals)
 
-(defgeneric unwrap (it obj)
-  (:method (it obj) obj))
-(defgeneric init (it))
-(defgeneric stepper (it))
-
 (defgeneric reduce-generic (seq func init)
   (:method ((seq sequence) (func function) init)
     (reduce func seq :initial-value init))
@@ -20,3 +15,34 @@
                  (setf acc (funcall func acc (list k v))))
                seq)
       acc)))
+
+(defgeneric init (client))
+(defgeneric stepper (client))
+(defgeneric unwrap (client obj)
+  (:method (client obj) obj))
+
+(defun exit-early (acc)
+  (throw 'done acc))
+
+(defun transduce (xf build seq)
+  (let* ((xf (etypecase xf
+               (list (apply 'alexandria:compose xf))
+               ((or function symbol) xf)))
+         (transducer (funcall xf (stepper build))))
+    (unwrap build
+            (funcall transducer
+                     (catch 'done
+                       (reduce-generic seq
+                                       transducer
+                                       (init build)))))))
+
+#+(or)
+(defdocumentation transducer-protocol
+    (:function transduce (xf build seq)
+               )
+  (:generic-function unwrap (client obj)
+                     )
+  (:generic-function unwrap (client obj)
+                     )
+  (:generic-function unwrap (client obj)
+                     ))

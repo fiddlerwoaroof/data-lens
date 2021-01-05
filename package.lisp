@@ -22,12 +22,14 @@
 
 (defpackage :data-lens.transducers.internals
   (:use :cl)
-  (:export #:unwrap #:init #:reduce-generic #:stepper))
+  (:export #:unwrap #:init #:reduce-generic #:stepper #:transduce
+           #:exit-early))
 
 (defpackage :data-lens.transducers
   (:use :cl)
   (:import-from :data-lens.transducers.internals
-                #:unwrap #:init #:reduce-generic #:stepper)
+                #:unwrap #:init #:reduce-generic #:stepper #:transduce
+                #:exit-early)
   (:export #:mapping :filtering :deduping :catting :splitting
            #:exit-early :taking :dropping :transduce
            #:hash-table-builder :vector-builder :list-builder

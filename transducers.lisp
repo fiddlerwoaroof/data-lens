@@ -116,9 +116,6 @@
   (let ((splitter (apply #'data-lens:juxt functions)))
     (mapping splitter)))
 
-(defun exit-early (acc)
-  (throw 'done acc))
-
 (defun taking (n)
   (lambda (rf)
     (let ((taken 0))
@@ -141,17 +138,6 @@
              (funcall rf acc next)))
         ((it) (funcall rf it))))))
 
-(defun transduce (xf build seq)
-  (let* ((xf (etypecase xf
-               (list (apply 'alexandria:compose xf))
-               ((or function symbol) xf)))
-         (transducer (funcall xf (stepper build))))
-    (unwrap build
-            (funcall transducer
-                     (catch 'done
-                       (reduce-generic seq
-                                       transducer
-                                       (init build)))))))
 (defun eduction (xf seq)
   (lambda (build)
     (unwrap
