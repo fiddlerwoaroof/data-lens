@@ -2,7 +2,7 @@
 
 @c data-lens.texi --- Reference manual
 
-@c Copyright (C) 2020 Edward Langley
+@c Copyright (C) 2021 Edward Langley
 
 @c This file is part of data-lens.
 
@@ -11,7 +11,7 @@
 @c Commentary:
 
 @c Generated automatically by Declt version 3.0 "Montgomery Scott"
-@c on Mon Oct 12 20:22:22 2020 GMT-8.
+@c on Wed Jan 06 14:19:05 2021 GMT-8.
 
 
 @c ====================================================================
@@ -272,13 +272,13 @@ The data-lens Reference Manual.
 @c ====================================================================
 @titlepage
 @title The data-lens Reference Manual
-@subtitle Utilities for building data transormations from composable functions@comma{} modeled on lenses and transducers
+@subtitle Utilities for building data transformations from composable functions@comma{} modeled on lenses and transducers
 
 @author Edward Langley <@email{el-cl@atchar{}elangley.org}>
 
 @page
 @quotation
-This manual was generated automatically by Declt 3.0 "Montgomery Scott" on Mon Oct 12 20:22:22 2020 GMT-8.
+This manual was generated automatically by Declt 3.0 "Montgomery Scott" on Wed Jan 06 14:19:05 2021 GMT-8.
 @end quotation
 @end titlepage
 
@@ -299,7 +299,7 @@ This manual was generated automatically by Declt 3.0 "Montgomery Scott" on Mon O
 @top The data-lens Reference Manual
 This is the data-lens Reference Manual,
 generated automatically by Declt version 3.0 "Montgomery Scott"
-on Mon Oct 12 20:22:22 2020 GMT-8.
+on Wed Jan 06 14:19:05 2021 GMT-8.
 
 @menu
 * Systems:: The systems documentation
@@ -337,7 +337,7 @@ Edward Langley <@email{el-cl@atchar{}elangley.org}>
 @item License
 MIT
 @item Description
-Utilities for building data transormations from composable functions@comma{} modeled on lenses and transducers
+Utilities for building data transformations from composable functions@comma{} modeled on lenses and transducers
 @item Dependencies
 @itemize @bullet
 @item
@@ -412,9 +412,13 @@ components trees.
 @item
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item
 @ref{go to the DATA-LENS․PACKAGE package, , @t{data-lens.package}}
 @item
 @ref{go to the DATA-LENS․LENSES package, , @t{data-lens.lenses}}
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS package, , @t{data-lens.transducers.internals}}
 @end itemize
 @end table
 
@@ -523,6 +527,16 @@ components trees.
 @item
 @ref{go to the DATA-LENS∶∶EXTRACT-KEY COMMON-LISP∶∶LIST COMMON-LISP∶∶T method, , @t{extract-key}} (method)
 @item
+@ref{go to the DATA-LENS∶∶FUNCTIONALIZE generic function, , @t{functionalize}} (generic function)
+@item
+@ref{go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶HASH-TABLE method, , @t{functionalize}} (method)
+@item
+@ref{go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶VECTOR method, , @t{functionalize}} (method)
+@item
+@ref{go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶SYMBOL method, , @t{functionalize}} (method)
+@item
+@ref{go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶FUNCTION method, , @t{functionalize}} (method)
+@item
 @ref{go to the DATA-LENS∶∶INCLUDE function, , @t{include}} (function)
 @item
 @ref{go to the DATA-LENS∶∶JUXT function, , @t{juxt}} (function)
@@ -556,6 +570,8 @@ components trees.
 @ref{go to the DATA-LENS∶∶SORTED function, , @t{sorted}} (function)
 @item
 @ref{go to the DATA-LENS∶∶SPLICE-ELT function, , @t{splice-elt}} (function)
+@item
+@ref{go to the DATA-LENS∶∶SUFFIXP function, , @t{suffixp}} (function)
 @item
 @ref{go to the DATA-LENS∶∶TRANSFORM-ELT function, , @t{transform-elt}} (function)
 @item
@@ -597,15 +613,17 @@ Packages are listed by definition order.
 
 @menu
 * The data-lens package::
+* The data-lens.transducers package: The data-lens․transducers package.
 * The data-lens.package package: The data-lens․package package.
 * The data-lens.lenses package: The data-lens․lenses package.
+* The data-lens.transducers.internals package: The data-lens․transducers․internals package.
 @end menu
 
 
 @c ---------------------
 @c The data-lens package
 @c ---------------------
-@node The data-lens package, The data-lens․package package, Packages, Packages
+@node The data-lens package, The data-lens․transducers package, Packages, Packages
 @section @t{data-lens}
 @anchor{go to the DATA-LENS package}@c
 @packageindex{data-lens}@c
@@ -647,6 +665,16 @@ Packages are listed by definition order.
 @item
 @ref{go to the DATA-LENS∶∶EXTRACT-KEY COMMON-LISP∶∶LIST COMMON-LISP∶∶T method, , @t{extract-key}} (method)
 @item
+@ref{go to the DATA-LENS∶∶FUNCTIONALIZE generic function, , @t{functionalize}} (generic function)
+@item
+@ref{go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶HASH-TABLE method, , @t{functionalize}} (method)
+@item
+@ref{go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶VECTOR method, , @t{functionalize}} (method)
+@item
+@ref{go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶SYMBOL method, , @t{functionalize}} (method)
+@item
+@ref{go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶FUNCTION method, , @t{functionalize}} (method)
+@item
 @ref{go to the DATA-LENS∶∶INCLUDE function, , @t{include}} (function)
 @item
 @ref{go to the DATA-LENS∶∶JUXT function, , @t{juxt}} (function)
@@ -681,6 +709,8 @@ Packages are listed by definition order.
 @item
 @ref{go to the DATA-LENS∶∶SPLICE-ELT function, , @t{splice-elt}} (function)
 @item
+@ref{go to the DATA-LENS∶∶SUFFIXP function, , @t{suffixp}} (function)
+@item
 @ref{go to the DATA-LENS∶∶TRANSFORM-ELT function, , @t{transform-elt}} (function)
 @item
 @ref{go to the DATA-LENS∶∶TRANSFORM-HEAD function, , @t{transform-head}} (function)
@@ -711,10 +741,81 @@ Packages are listed by definition order.
 @end table
 
 
+@c ---------------------------------
+@c The data-lens.transducers package
+@c ---------------------------------
+@node The data-lens․transducers package, The data-lens․package package, The data-lens package, Packages
+@section @t{data-lens.transducers}
+@anchor{go to the DATA-LENS․TRANSDUCERS package}@c
+@packageindex{data-lens.transducers}@c
+@table @strong
+@item Source
+@ref{go to the data-lens/package․lisp file, , @t{package.lisp}} (file)
+@item Use List
+@t{common-lisp}
+@item Exported Definitions
+@itemize @bullet
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶CATTING function, , @t{catting}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶COLLECTING function, , @t{collecting}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶COMPRESSING-RUNS function, , @t{compressing-runs}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶DEDUPING function, , @t{deduping}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶DROPPING function, , @t{dropping}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶FILTERING function, , @t{filtering}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-SELECT function, , @t{hash-table-select}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶IOTA function, , @t{iota}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE function, , @t{lazy-sequence}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE class, , @t{lazy-sequence}} (class)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶MAPCATTING function, , @t{mapcatting}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶MAPPING function, , @t{mapping}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶MV-FILTERING function, , @t{mv-filtering}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶MV-MAPPING function, , @t{mv-mapping}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶MV-SELECTING function, , @t{mv-selecting}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶REPEATING macro, , @t{repeating}} (macro)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶REPEATING* function, , @t{repeating*}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶SPLITTING function, , @t{splitting}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶TAKING function, , @t{taking}} (function)
+@end itemize
+@item Internal Definitions
+@itemize @bullet
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶COMMENT macro, , @t{comment}} (macro)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶EDUCTION function, , @t{eduction}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶NEXT generic function, , @t{next}} (generic function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶NEXT DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE method, , @t{next}} (method)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶SEQ function, , @t{seq}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶TRANSDUCER-LAMBDA macro, , @t{transducer-lambda}} (macro)
+@end itemize
+@end table
+
+
 @c -----------------------------
 @c The data-lens.package package
 @c -----------------------------
-@node The data-lens․package package, The data-lens․lenses package, The data-lens package, Packages
+@node The data-lens․package package, The data-lens․lenses package, The data-lens․transducers package, Packages
 @section @t{data-lens.package}
 @anchor{go to the DATA-LENS․PACKAGE package}@c
 @packageindex{data-lens.package}@c
@@ -729,7 +830,7 @@ Packages are listed by definition order.
 @c ----------------------------
 @c The data-lens.lenses package
 @c ----------------------------
-@node The data-lens․lenses package, , The data-lens․package package, Packages
+@node The data-lens․lenses package, The data-lens․transducers․internals package, The data-lens․package package, Packages
 @section @t{data-lens.lenses}
 @anchor{go to the DATA-LENS․LENSES package}@c
 @packageindex{data-lens.lenses}@c
@@ -793,6 +894,64 @@ Packages are listed by definition order.
 @end table
 
 
+@c -------------------------------------------
+@c The data-lens.transducers.internals package
+@c -------------------------------------------
+@node The data-lens․transducers․internals package, , The data-lens․lenses package, Packages
+@section @t{data-lens.transducers.internals}
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS package}@c
+@packageindex{data-lens.transducers.internals}@c
+@table @strong
+@item Source
+@ref{go to the data-lens/package․lisp file, , @t{package.lisp}} (file)
+@item Use List
+@t{common-lisp}
+@item Exported Definitions
+@itemize @bullet
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶EXIT-EARLY function, , @t{exit-early}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT generic function, , @t{init}} (generic function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT ❨eql DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ method, , @t{init}} (method)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT ❨eql DATA-LENS․TRANSDUCERS∶∶VECTOR-BUILDER❩ method, , @t{init}} (method)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT ❨eql DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-BUILDER❩ method, , @t{init}} (method)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC generic function, , @t{reduce-generic}} (generic function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T method, , @t{reduce-generic}} (method)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC COMMON-LISP∶∶SEQUENCE COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T method, , @t{reduce-generic}} (method)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC COMMON-LISP∶∶SEQUENCE COMMON-LISP∶∶SYMBOL COMMON-LISP∶∶T method, , @t{reduce-generic}} (method)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC COMMON-LISP∶∶T COMMON-LISP∶∶SYMBOL COMMON-LISP∶∶T method, , @t{reduce-generic}} (method)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC COMMON-LISP∶∶HASH-TABLE COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T method, , @t{reduce-generic}} (method)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER generic function, , @t{stepper}} (generic function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ method, , @t{stepper}} (method)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql DATA-LENS․TRANSDUCERS∶∶VECTOR-BUILDER❩ method, , @t{stepper}} (method)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-BUILDER❩ method, , @t{stepper}} (method)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶TRANSDUCE function, , @t{transduce}} (function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP generic function, , @t{unwrap}} (generic function)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP ❨eql DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ COMMON-LISP∶∶T method, , @t{unwrap}} (method)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP COMMON-LISP∶∶T COMMON-LISP∶∶T method, , @t{unwrap}} (method)
+@end itemize
+@item Internal Definitions
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶DEFDOCUMENTATION macro, , @t{defdocumentation}} (macro)
+@end table
+
+
 
 @c ====================================================================
 @c Definitions
@@ -817,6 +976,7 @@ lexicographic order.
 * Exported macros::
 * Exported functions::
 * Exported generic functions::
+* Exported classes::
 @end menu
 
 @node Exported macros, Exported functions, Exported definitions, Exported definitions
@@ -859,6 +1019,16 @@ lexicographic order.
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
 @ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
+@end table
+@end deffn
+@deffn {Macro} {repeating} V
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶REPEATING macro}@c
+@macrosubindex{repeating}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{lazy-sequence.lisp}
 @end table
 @end deffn
 @deffn {Macro} {shortcut} NAME FUNCTION &body BOUND-ARGS
@@ -904,6 +1074,26 @@ lexicographic order.
 @ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
+@deffn {Function} {catting} ()
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶CATTING function}@c
+@functionsubindex{catting}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@deffn {Function} {collecting} COLLECTOR
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶COLLECTING function}@c
+@functionsubindex{collecting}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
 @deffn {Function} {combine-matching-lists} &key TEST &allow-other-keys
 @anchor{go to the DATA-LENS∶∶COMBINE-MATCHING-LISTS function}@c
 @functionsubindex{combine-matching-lists}@c
@@ -924,6 +1114,16 @@ lexicographic order.
 @ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
+@deffn {Function} {compressing-runs} &key TEST COMBINER
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶COMPRESSING-RUNS function}@c
+@functionsubindex{compressing-runs}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
 @deffn {Function} {cumsum} &key ADD-FUN KEY COMBINE ZERO
 @anchor{go to the DATA-LENS∶∶CUMSUM function}@c
 @functionsubindex{cumsum}@c
@@ -932,6 +1132,16 @@ lexicographic order.
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
 @ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
+@end table
+@end deffn
+@deffn {Function} {deduping} &optional TEST
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶DEDUPING function}@c
+@functionsubindex{deduping}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
 @end table
 @end deffn
 @deffn {Function} {denest} &key RESULT-TYPE
@@ -954,6 +1164,16 @@ lexicographic order.
 @ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
+@deffn {Function} {dropping} N
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶DROPPING function}@c
+@functionsubindex{dropping}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
 @deffn {Function} {element} NUM
 @anchor{go to the DATA-LENS∶∶ELEMENT function}@c
 @functionsubindex{element}@c
@@ -974,6 +1194,36 @@ lexicographic order.
 @ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
+@deffn {Function} {exit-early} ACC
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶EXIT-EARLY function}@c
+@functionsubindex{exit-early}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS package, , @t{data-lens.transducers.internals}}
+@item Source
+@t{transducer-protocol.lisp}
+@end table
+@end deffn
+@deffn {Function} {filtering} FUNCTION &rest ARGS
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶FILTERING function}@c
+@functionsubindex{filtering}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@deffn {Function} {hash-table-select} HASH-TABLE
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-SELECT function}@c
+@functionsubindex{hash-table-select}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
 @deffn {Function} {include} PRED
 @anchor{go to the DATA-LENS∶∶INCLUDE function}@c
 @functionsubindex{include}@c
@@ -982,6 +1232,16 @@ lexicographic order.
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
 @ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
+@end table
+@end deffn
+@deffn {Function} {iota} &key START STEP COUNT
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶IOTA function}@c
+@functionsubindex{iota}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{lazy-sequence.lisp}
 @end table
 @end deffn
 @deffn {Function} {juxt} FUN1 &rest R
@@ -1012,6 +1272,16 @@ lexicographic order.
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
 @ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
+@end table
+@end deffn
+@deffn {Function} {lazy-sequence} NEXT
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE function}@c
+@functionsubindex{lazy-sequence}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{lazy-sequence.lisp}
 @end table
 @end deffn
 @deffn {Function} {make-alist-lens} KEY
@@ -1058,6 +1328,26 @@ A lens for updating a plist@comma{} preserving previous values
 @ref{go to the data-lens/optics․lisp file, , @t{optics.lisp}} (file)
 @end table
 @end deffn
+@deffn {Function} {mapcatting} FUN
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶MAPCATTING function}@c
+@functionsubindex{mapcatting}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@deffn {Function} {mapping} FUNCTION &rest ARGS
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶MAPPING function}@c
+@functionsubindex{mapping}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
 @deffn {Function} {maximizing} RELATION MEASURE
 @anchor{go to the DATA-LENS∶∶MAXIMIZING function}@c
 @functionsubindex{maximizing}@c
@@ -1066,6 +1356,36 @@ A lens for updating a plist@comma{} preserving previous values
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
 @ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
+@end table
+@end deffn
+@deffn {Function} {mv-filtering} FUNCTION &rest ARGS
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶MV-FILTERING function}@c
+@functionsubindex{mv-filtering}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@deffn {Function} {mv-mapping} FUNCTION &rest ARGS
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶MV-MAPPING function}@c
+@functionsubindex{mv-mapping}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@deffn {Function} {mv-selecting} FUNCTION &rest ARGS
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶MV-SELECTING function}@c
+@functionsubindex{mv-selecting}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
 @end table
 @end deffn
 @deffn {Function} {of-length} LEN
@@ -1176,6 +1496,16 @@ lambda that actually pulls a value out of a record later.
 @ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
+@deffn {Function} {repeating*} V &key COUNT
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶REPEATING* function}@c
+@functionsubindex{repeating*}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{lazy-sequence.lisp}
+@end table
+@end deffn
 @deffn {Function} {set} LENS V REC
 @anchor{go to the DATA-LENS․LENSES∶∶SET function}@c
 @functionsubindex{set}@c
@@ -1216,6 +1546,46 @@ contain the new value at the location focused by the lens.
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
 @ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
+@end table
+@end deffn
+@deffn {Function} {splitting} &rest FUNCTIONS
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶SPLITTING function}@c
+@functionsubindex{splitting}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@deffn {Function} {suffixp} SUFFIX &key TEST
+@anchor{go to the DATA-LENS∶∶SUFFIXP function}@c
+@functionsubindex{suffixp}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS package, , @t{data-lens}}
+@item Source
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
+@end table
+@end deffn
+@deffn {Function} {taking} N
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶TAKING function}@c
+@functionsubindex{taking}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@deffn {Function} {transduce} XF BUILD SEQ
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶TRANSDUCE function}@c
+@functionsubindex{transduce}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS package, , @t{data-lens.transducers.internals}}
+@item Source
+@t{transducer-protocol.lisp}
 @end table
 @end deffn
 @deffn {Function} {transform-elt} ELT FUN
@@ -1270,7 +1640,7 @@ Given a lens and a rec@comma{} return the focused value
 @end table
 @end deffn
 
-@node Exported generic functions, , Exported functions, Exported definitions
+@node Exported generic functions, Exported classes, Exported functions, Exported definitions
 @subsection Generic functions
 @deffn {Generic Function} {extract-key} MAP KEY
 @anchor{go to the DATA-LENS∶∶EXTRACT-KEY generic function}@c
@@ -1291,6 +1661,193 @@ Given a lens and a rec@comma{} return the focused value
 @end deffn
 @end table
 @end deffn
+@deffn {Generic Function} {functionalize} IT
+@anchor{go to the DATA-LENS∶∶FUNCTIONALIZE generic function}@c
+@genericsubindex{functionalize}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS package, , @t{data-lens}}
+@item Source
+@ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
+@item Methods
+@deffn {Method} {functionalize} (IT @t{hash-table})
+@anchor{go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶HASH-TABLE method}@c
+@methodsubindex{functionalize}@c
+@end deffn
+@deffn {Method} {functionalize} (IT @t{vector})
+@anchor{go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶VECTOR method}@c
+@methodsubindex{functionalize}@c
+@end deffn
+@deffn {Method} {functionalize} (IT @t{symbol})
+@anchor{go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶SYMBOL method}@c
+@methodsubindex{functionalize}@c
+@end deffn
+@deffn {Method} {functionalize} (IT @t{function})
+@anchor{go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶FUNCTION method}@c
+@methodsubindex{functionalize}@c
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {init} CLIENT
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT generic function}@c
+@genericsubindex{init}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS package, , @t{data-lens.transducers.internals}}
+@item Source
+@t{transducer-protocol.lisp}
+@item Methods
+@deffn {Method} {init} (IT @t{(eql list-builder)})
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT ❨eql DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ method}@c
+@methodsubindex{init}@c
+@table @strong
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@deffn {Method} {init} (IT @t{(eql vector-builder)})
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT ❨eql DATA-LENS․TRANSDUCERS∶∶VECTOR-BUILDER❩ method}@c
+@methodsubindex{init}@c
+@table @strong
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@deffn {Method} {init} (IT @t{(eql hash-table-builder)})
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT ❨eql DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-BUILDER❩ method}@c
+@methodsubindex{init}@c
+@table @strong
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {reduce-generic} SEQ FUNC INIT
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC generic function}@c
+@genericsubindex{reduce-generic}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS package, , @t{data-lens.transducers.internals}}
+@item Source
+@t{transducer-protocol.lisp}
+@item Methods
+@deffn {Method} {reduce-generic} (SEQ @t{lazy-sequence}) (FUNC @t{function}) INIT
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T method}@c
+@methodsubindex{reduce-generic}@c
+@table @strong
+@item Source
+@t{lazy-sequence.lisp}
+@end table
+@end deffn
+@deffn {Method} {reduce-generic} (SEQ @t{sequence}) (FUNC @t{function}) INIT
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC COMMON-LISP∶∶SEQUENCE COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T method}@c
+@methodsubindex{reduce-generic}@c
+@end deffn
+@deffn {Method} {reduce-generic} (SEQ @t{sequence}) (FUNC @t{symbol}) INIT
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC COMMON-LISP∶∶SEQUENCE COMMON-LISP∶∶SYMBOL COMMON-LISP∶∶T method}@c
+@methodsubindex{reduce-generic}@c
+@end deffn
+@deffn {Method} {reduce-generic} SEQ (FUNC @t{symbol}) INIT
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC COMMON-LISP∶∶T COMMON-LISP∶∶SYMBOL COMMON-LISP∶∶T method}@c
+@methodsubindex{reduce-generic}@c
+@end deffn
+@deffn {Method} {reduce-generic} (SEQ @t{hash-table}) (FUNC @t{function}) INIT
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC COMMON-LISP∶∶HASH-TABLE COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T method}@c
+@methodsubindex{reduce-generic}@c
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {stepper} CLIENT
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER generic function}@c
+@genericsubindex{stepper}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS package, , @t{data-lens.transducers.internals}}
+@item Source
+@t{transducer-protocol.lisp}
+@item Methods
+@deffn {Method} {stepper} (IT @t{(eql list-builder)})
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ method}@c
+@methodsubindex{stepper}@c
+@table @strong
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@deffn {Method} {stepper} (IT @t{(eql vector-builder)})
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql DATA-LENS․TRANSDUCERS∶∶VECTOR-BUILDER❩ method}@c
+@methodsubindex{stepper}@c
+@table @strong
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@deffn {Method} {stepper} (IT @t{(eql hash-table-builder)})
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-BUILDER❩ method}@c
+@methodsubindex{stepper}@c
+@table @strong
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {unwrap} CLIENT OBJ
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP generic function}@c
+@genericsubindex{unwrap}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS package, , @t{data-lens.transducers.internals}}
+@item Source
+@t{transducer-protocol.lisp}
+@item Methods
+@deffn {Method} {unwrap} (IT @t{(eql list-builder)}) OBJ
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP ❨eql DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ COMMON-LISP∶∶T method}@c
+@methodsubindex{unwrap}@c
+@table @strong
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@deffn {Method} {unwrap} CLIENT OBJ
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP COMMON-LISP∶∶T COMMON-LISP∶∶T method}@c
+@methodsubindex{unwrap}@c
+@end deffn
+@end table
+@end deffn
+
+@node Exported classes, , Exported generic functions, Exported definitions
+@subsection Classes
+@deftp {Class} {lazy-sequence} ()
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE class}@c
+@classsubindex{lazy-sequence}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{lazy-sequence.lisp}
+@item Direct superclasses
+@t{standard-object} (class)
+@item Direct methods
+@itemize @bullet
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T method, , @t{reduce-generic}} (method)
+@item
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶NEXT DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE method, , @t{next}} (method)
+@end itemize
+@item Direct slots
+@defvr {Slot} %next
+@slotsubindex{%next}@c
+@table @strong
+@item Initargs
+@t{:next}
+@item Readers
+@ref{go to the DATA-LENS․TRANSDUCERS∶∶NEXT generic function, , @t{next}} (generic function)
+@end table
+@end defvr
+@end table
+@end deftp
 
 
 @c --------------------
@@ -1307,6 +1864,36 @@ Given a lens and a rec@comma{} return the focused value
 
 @node Internal macros, Internal functions, Internal definitions, Internal definitions
 @subsection Macros
+@deffn {Macro} {comment} &body BODY
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶COMMENT macro}@c
+@macrosubindex{comment}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
+@deffn {Macro} {defdocumentation} NAME &body DOC-SPECS
+@anchor{go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶DEFDOCUMENTATION macro}@c
+@macrosubindex{defdocumentation}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS․INTERNALS package, , @t{data-lens.transducers.internals}}
+@item Source
+@t{transducer-protocol.lisp}
+@end table
+@end deffn
+@deffn {Macro} {transducer-lambda} &body ((TWO-ARG-ACC TWO-ARG-NEXT) &body TWO-ARG-BODY)
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶TRANSDUCER-LAMBDA macro}@c
+@macrosubindex{transducer-lambda}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
 @deffn {Macro} {updatef} PLACE FUN &rest ARGS
 @anchor{go to the DATA-LENS∶∶UPDATEF macro}@c
 @macrosubindex{updatef}@c
@@ -1350,6 +1937,16 @@ Given a lens and a rec@comma{} return the focused value
 @ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
 @end table
 @end deffn
+@deffn {Function} {eduction} XF SEQ
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶EDUCTION function}@c
+@functionsubindex{eduction}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
+@end table
+@end deffn
 @deffn {Function} {filler} LENGTH1 LENGTH2 FILL-VALUE
 @anchor{go to the DATA-LENS∶∶FILLER function}@c
 @functionsubindex{filler}@c
@@ -1379,6 +1976,16 @@ A lens for updating a alist@comma{} preserving previous values
 @ref{go to the DATA-LENS package, , @t{data-lens}}
 @item Source
 @ref{go to the data-lens/lens․lisp file, , @t{lens.lisp}} (file)
+@end table
+@end deffn
+@deffn {Function} {seq} A B
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶SEQ function}@c
+@functionsubindex{seq}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Source
+@t{transducers.lisp}
 @end table
 @end deffn
 @deffn {Function} {update} THING FUN &rest ARGS
@@ -1453,6 +2060,24 @@ A lens for updating a alist@comma{} preserving previous values
 @deffn {Method} {fmap} FUNCTION (DATA @t{vector})
 @anchor{go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T COMMON-LISP∶∶VECTOR method}@c
 @methodsubindex{fmap}@c
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {next} OBJECT
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶NEXT generic function}@c
+@genericsubindex{next}@c
+@table @strong
+@item Package
+@ref{go to the DATA-LENS․TRANSDUCERS package, , @t{data-lens.transducers}}
+@item Methods
+@deffn {Method} {next} (LAZY-SEQUENCE @t{lazy-sequence})
+@anchor{go to the DATA-LENS․TRANSDUCERS∶∶NEXT DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE method}@c
+@methodsubindex{next}@c
+automatically generated reader method
+@table @strong
+@item Source
+@t{lazy-sequence.lisp}
+@end table
 @end deffn
 @end table
 @end deffn

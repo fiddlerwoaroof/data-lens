@@ -1,0 +1,2230 @@
+This is data-lens-transducers.texi.info, produced by makeinfo version
+6.7 from data-lens-transducers.texi.
+
+INFO-DIR-SECTION Common Lisp
+START-INFO-DIR-ENTRY
+* data-lens/beta/transducers Reference: (data-lens-transducers.texi). The data-lens/beta/transducers Reference Manual.
+END-INFO-DIR-ENTRY
+
+
+File: data-lens-transducers.texi.info,  Node: Top,  Next: Systems,  Prev: (dir),  Up: (dir)
+
+The data-lens/beta/transducers Reference Manual
+***********************************************
+
+This is the data-lens/beta/transducers Reference Manual, generated
+automatically by Declt version 3.0 "Montgomery Scott" on Wed Jan 06
+14:22:25 2021 GMT-8.
+
+* Menu:
+
+* Systems:: The systems documentation
+* Files:: The files documentation
+* Packages:: The packages documentation
+* Definitions:: The symbols documentation
+* Indexes:: Concepts, functions, variables and data types
+
+
+File: data-lens-transducers.texi.info,  Node: Systems,  Next: Files,  Prev: Top,  Up: Top
+
+1 Systems
+*********
+
+The main system appears first, followed by any subsystem dependency.
+
+* Menu:
+
+* The data-lens/beta/transducers system::
+* The data-lens system::
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens/beta/transducers system,  Next: The data-lens system,  Prev: Systems,  Up: Systems
+
+1.1 data-lens/beta/transducers
+==============================
+
+*Author*
+     Edward Langley <<el-cl@elangley.org>>
+*License*
+     MIT
+*Description*
+     A collection of transducers to reduce stream-manipulation overhead
+*Dependencies*
+        • *note data-lens: go to the data-lens system. (system)
+        • alexandria
+*Source*
+     *note data-lens.asd: go to the data-lens․asd file. (file)
+*Components*
+        • *note package.lisp: go to the
+          data-lens/beta/transducers/package․lisp file. (file)
+        • *note transducer-protocol.lisp: go to the
+          data-lens/beta/transducers/transducer-protocol․lisp file.
+          (file)
+        • *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+        • *note lazy-sequence.lisp: go to the
+          data-lens/beta/transducers/lazy-sequence․lisp file. (file)
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens system,  Prev: The data-lens/beta/transducers system,  Up: Systems
+
+1.2 data-lens
+=============
+
+*Author*
+     Edward Langley <<el-cl@elangley.org>>
+*License*
+     MIT
+*Description*
+     Utilities for building data transformations from composable
+     functions, modeled on lenses and transducers
+*Dependencies*
+        • cl-ppcre
+        • alexandria
+        • serapeum
+*Source*
+     *note data-lens.asd: go to the data-lens․asd file. (file)
+*Components*
+        • *note package.lisp: go to the data-lens/package․lisp file.
+          (file)
+        • *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+        • *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+
+
+File: data-lens-transducers.texi.info,  Node: Files,  Next: Packages,  Prev: Systems,  Up: Top
+
+2 Files
+*******
+
+Files are sorted by type and then listed depth-first from the systems
+components trees.
+
+* Menu:
+
+* Lisp files::
+
+
+File: data-lens-transducers.texi.info,  Node: Lisp files,  Prev: Files,  Up: Files
+
+2.1 Lisp
+========
+
+* Menu:
+
+* The data-lens.asd file: The data-lens․asd file.
+* The data-lens/beta/transducers/package.lisp file: The data-lens/beta/transducers/package․lisp file.
+* The data-lens/beta/transducers/transducer-protocol.lisp file: The data-lens/beta/transducers/transducer-protocol․lisp file.
+* The data-lens/beta/transducers/transducers.lisp file: The data-lens/beta/transducers/transducers․lisp file.
+* The data-lens/beta/transducers/lazy-sequence.lisp file: The data-lens/beta/transducers/lazy-sequence․lisp file.
+* The data-lens/package.lisp file: The data-lens/package․lisp file.
+* The data-lens/optics.lisp file: The data-lens/optics․lisp file.
+* The data-lens/lens.lisp file: The data-lens/lens․lisp file.
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens․asd file,  Next: The data-lens/beta/transducers/package․lisp file,  Prev: Lisp files,  Up: Lisp files
+
+2.1.1 data-lens.asd
+-------------------
+
+*Location*
+     data-lens.asd
+*Systems*
+        • *note data-lens/beta/transducers: go to the
+          data-lens/beta/transducers system. (system)
+        • *note data-lens: go to the data-lens system. (system)
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens/beta/transducers/package․lisp file,  Next: The data-lens/beta/transducers/transducer-protocol․lisp file,  Prev: The data-lens․asd file,  Up: Lisp files
+
+2.1.2 data-lens/beta/transducers/package.lisp
+---------------------------------------------
+
+*Parent*
+     *note data-lens/beta/transducers: go to the
+     data-lens/beta/transducers system. (system)
+*Location*
+     package.lisp
+*Packages*
+        • *note data-lens: go to the DATA-LENS package.
+        • *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+        • *note data-lens.package: go to the DATA-LENS․PACKAGE package.
+        • *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+        • *note data-lens.transducers.internals: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS package.
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens/beta/transducers/transducer-protocol․lisp file,  Next: The data-lens/beta/transducers/transducers․lisp file,  Prev: The data-lens/beta/transducers/package․lisp file,  Up: Lisp files
+
+2.1.3 data-lens/beta/transducers/transducer-protocol.lisp
+---------------------------------------------------------
+
+*Dependency*
+     *note package.lisp: go to the
+     data-lens/beta/transducers/package․lisp file. (file)
+*Parent*
+     *note data-lens/beta/transducers: go to the
+     data-lens/beta/transducers system. (system)
+*Location*
+     transducer-protocol.lisp
+*Exported Definitions*
+        • *note exit-early: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶EXIT-EARLY function.
+          (function)
+        • *note init: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT
+          generic function. (generic function)
+        • *note reduce-generic: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC generic
+          function. (generic function)
+        • *note reduce-generic: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC
+          COMMON-LISP∶∶SEQUENCE COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T
+          method. (method)
+        • *note reduce-generic: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC
+          COMMON-LISP∶∶SEQUENCE COMMON-LISP∶∶SYMBOL COMMON-LISP∶∶T
+          method. (method)
+        • *note reduce-generic: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC COMMON-LISP∶∶T
+          COMMON-LISP∶∶SYMBOL COMMON-LISP∶∶T method. (method)
+        • *note reduce-generic: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC
+          COMMON-LISP∶∶HASH-TABLE COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T
+          method. (method)
+        • *note stepper: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER generic function.
+          (generic function)
+        • *note transduce: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶TRANSDUCE function.
+          (function)
+        • *note unwrap: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP generic function.
+          (generic function)
+        • *note unwrap: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP COMMON-LISP∶∶T
+          COMMON-LISP∶∶T method. (method)
+*Internal Definitions*
+     *note defdocumentation: go to the
+     DATA-LENS․TRANSDUCERS․INTERNALS∶∶DEFDOCUMENTATION macro. (macro)
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens/beta/transducers/transducers․lisp file,  Next: The data-lens/beta/transducers/lazy-sequence․lisp file,  Prev: The data-lens/beta/transducers/transducer-protocol․lisp file,  Up: Lisp files
+
+2.1.4 data-lens/beta/transducers/transducers.lisp
+-------------------------------------------------
+
+*Dependency*
+     *note transducer-protocol.lisp: go to the
+     data-lens/beta/transducers/transducer-protocol․lisp file. (file)
+*Parent*
+     *note data-lens/beta/transducers: go to the
+     data-lens/beta/transducers system. (system)
+*Location*
+     transducers.lisp
+*Exported Definitions*
+        • *note catting: go to the DATA-LENS․TRANSDUCERS∶∶CATTING
+          function. (function)
+        • *note collecting: go to the DATA-LENS․TRANSDUCERS∶∶COLLECTING
+          function. (function)
+        • *note compressing-runs: go to the
+          DATA-LENS․TRANSDUCERS∶∶COMPRESSING-RUNS function. (function)
+        • *note deduping: go to the DATA-LENS․TRANSDUCERS∶∶DEDUPING
+          function. (function)
+        • *note dropping: go to the DATA-LENS․TRANSDUCERS∶∶DROPPING
+          function. (function)
+        • *note filtering: go to the DATA-LENS․TRANSDUCERS∶∶FILTERING
+          function. (function)
+        • *note hash-table-select: go to the
+          DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-SELECT function. (function)
+        • *note init: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT
+          ❨eql DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ method. (method)
+        • *note init: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT
+          ❨eql DATA-LENS․TRANSDUCERS∶∶VECTOR-BUILDER❩ method. (method)
+        • *note init: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT
+          ❨eql DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-BUILDER❩ method.
+          (method)
+        • *note mapcatting: go to the DATA-LENS․TRANSDUCERS∶∶MAPCATTING
+          function. (function)
+        • *note mapping: go to the DATA-LENS․TRANSDUCERS∶∶MAPPING
+          function. (function)
+        • *note mv-filtering: go to the
+          DATA-LENS․TRANSDUCERS∶∶MV-FILTERING function. (function)
+        • *note mv-mapping: go to the DATA-LENS․TRANSDUCERS∶∶MV-MAPPING
+          function. (function)
+        • *note mv-selecting: go to the
+          DATA-LENS․TRANSDUCERS∶∶MV-SELECTING function. (function)
+        • *note splitting: go to the DATA-LENS․TRANSDUCERS∶∶SPLITTING
+          function. (function)
+        • *note stepper: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql
+          DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ method. (method)
+        • *note stepper: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql
+          DATA-LENS․TRANSDUCERS∶∶VECTOR-BUILDER❩ method. (method)
+        • *note stepper: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql
+          DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-BUILDER❩ method. (method)
+        • *note taking: go to the DATA-LENS․TRANSDUCERS∶∶TAKING
+          function. (function)
+        • *note unwrap: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP ❨eql
+          DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ COMMON-LISP∶∶T method.
+          (method)
+*Internal Definitions*
+        • *note comment: go to the DATA-LENS․TRANSDUCERS∶∶COMMENT macro.
+          (macro)
+        • *note eduction: go to the DATA-LENS․TRANSDUCERS∶∶EDUCTION
+          function. (function)
+        • *note seq: go to the DATA-LENS․TRANSDUCERS∶∶SEQ function.
+          (function)
+        • *note transducer-lambda: go to the
+          DATA-LENS․TRANSDUCERS∶∶TRANSDUCER-LAMBDA macro. (macro)
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens/beta/transducers/lazy-sequence․lisp file,  Next: The data-lens/package․lisp file,  Prev: The data-lens/beta/transducers/transducers․lisp file,  Up: Lisp files
+
+2.1.5 data-lens/beta/transducers/lazy-sequence.lisp
+---------------------------------------------------
+
+*Dependency*
+     *note transducers.lisp: go to the
+     data-lens/beta/transducers/transducers․lisp file. (file)
+*Parent*
+     *note data-lens/beta/transducers: go to the
+     data-lens/beta/transducers system. (system)
+*Location*
+     lazy-sequence.lisp
+*Exported Definitions*
+        • *note iota: go to the DATA-LENS․TRANSDUCERS∶∶IOTA function.
+          (function)
+        • *note lazy-sequence: go to the
+          DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE function. (function)
+        • *note lazy-sequence: go to the
+          DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE class. (class)
+        • *note reduce-generic: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC
+          DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE COMMON-LISP∶∶FUNCTION
+          COMMON-LISP∶∶T method. (method)
+        • *note repeating: go to the DATA-LENS․TRANSDUCERS∶∶REPEATING
+          macro. (macro)
+        • *note repeating*: go to the DATA-LENS․TRANSDUCERS∶∶REPEATING*
+          function. (function)
+*Internal Definitions*
+     *note next: go to the DATA-LENS․TRANSDUCERS∶∶NEXT
+     DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE method. (method)
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens/package․lisp file,  Next: The data-lens/optics․lisp file,  Prev: The data-lens/beta/transducers/lazy-sequence․lisp file,  Up: Lisp files
+
+2.1.6 data-lens/package.lisp
+----------------------------
+
+*Parent*
+     *note data-lens: go to the data-lens system. (system)
+*Location*
+     package.lisp
+*Packages*
+        • *note data-lens: go to the DATA-LENS package.
+        • *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+        • *note data-lens.package: go to the DATA-LENS․PACKAGE package.
+        • *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+        • *note data-lens.transducers.internals: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS package.
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens/optics․lisp file,  Next: The data-lens/lens․lisp file,  Prev: The data-lens/package․lisp file,  Up: Lisp files
+
+2.1.7 data-lens/optics.lisp
+---------------------------
+
+*Dependency*
+     *note package.lisp: go to the data-lens/package․lisp file. (file)
+*Parent*
+     *note data-lens: go to the data-lens system. (system)
+*Location*
+     optics.lisp
+*Exported Definitions*
+        • *note make-alist-lens: go to the
+          DATA-LENS․LENSES∶∶MAKE-ALIST-LENS function. (function)
+        • *note make-hash-table-lens: go to the
+          DATA-LENS․LENSES∶∶MAKE-HASH-TABLE-LENS function. (function)
+        • *note make-list-lens: go to the
+          DATA-LENS․LENSES∶∶MAKE-LIST-LENS function. (function)
+        • *note make-plist-lens: go to the
+          DATA-LENS․LENSES∶∶MAKE-PLIST-LENS function. (function)
+        • *note over: go to the DATA-LENS․LENSES∶∶OVER function.
+          (function)
+        • *note set: go to the DATA-LENS․LENSES∶∶SET function.
+          (function)
+        • *note view: go to the DATA-LENS․LENSES∶∶VIEW function.
+          (function)
+*Internal Definitions*
+        • *note clone: go to the DATA-LENS․LENSES∶∶CLONE generic
+          function. (generic function)
+        • *note clone: go to the DATA-LENS․LENSES∶∶CLONE COMMON-LISP∶∶T
+          AROUND method. (method)
+        • *note constant-: go to the DATA-LENS․LENSES∶∶CONSTANT- class.
+          (class)
+        • *note fmap: go to the DATA-LENS․LENSES∶∶FMAP generic function.
+          (generic function)
+        • *note fmap: go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T
+          DATA-LENS․LENSES∶∶IDENTITY- method. (method)
+        • *note fmap: go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T
+          DATA-LENS․LENSES∶∶CONSTANT- method. (method)
+        • *note fmap: go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T
+          COMMON-LISP∶∶LIST method. (method)
+        • *note fmap: go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T
+          COMMON-LISP∶∶VECTOR method. (method)
+        • *note identity-: go to the DATA-LENS․LENSES∶∶IDENTITY- class.
+          (class)
+        • *note make-alist-history-lens: go to the
+          DATA-LENS․LENSES∶∶MAKE-ALIST-HISTORY-LENS function. (function)
+        • *note unconstant: go to the DATA-LENS․LENSES∶∶UNCONSTANT
+          DATA-LENS․LENSES∶∶CONSTANT- method. (method)
+        • *note unidentity: go to the DATA-LENS․LENSES∶∶UNIDENTITY
+          DATA-LENS․LENSES∶∶IDENTITY- method. (method)
+        • *note wrap-constant: go to the DATA-LENS․LENSES∶∶WRAP-CONSTANT
+          function. (function)
+        • *note wrap-identity: go to the DATA-LENS․LENSES∶∶WRAP-IDENTITY
+          function. (function)
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens/lens․lisp file,  Prev: The data-lens/optics․lisp file,  Up: Lisp files
+
+2.1.8 data-lens/lens.lisp
+-------------------------
+
+*Dependency*
+     *note optics.lisp: go to the data-lens/optics․lisp file. (file)
+*Parent*
+     *note data-lens: go to the data-lens system. (system)
+*Location*
+     lens.lisp
+*Exported Definitions*
+        • *note <>1: go to the DATA-LENS∶∶<>1 macro. (macro)
+        • *note ==: go to the DATA-LENS∶∶== function. (function)
+        • *note applicable-when: go to the DATA-LENS∶∶APPLICABLE-WHEN
+          function. (function)
+        • *note applying: go to the DATA-LENS∶∶APPLYING macro. (macro)
+        • *note combine-matching-lists: go to the
+          DATA-LENS∶∶COMBINE-MATCHING-LISTS function. (function)
+        • *note compress-runs: go to the DATA-LENS∶∶COMPRESS-RUNS
+          function. (function)
+        • *note cumsum: go to the DATA-LENS∶∶CUMSUM function. (function)
+        • *note defun-ct: go to the DATA-LENS∶∶DEFUN-CT macro. (macro)
+        • *note denest: go to the DATA-LENS∶∶DENEST function. (function)
+        • *note derive: go to the DATA-LENS∶∶DERIVE function. (function)
+        • *note element: go to the DATA-LENS∶∶ELEMENT function.
+          (function)
+        • *note exclude: go to the DATA-LENS∶∶EXCLUDE function.
+          (function)
+        • *note extract-key: go to the DATA-LENS∶∶EXTRACT-KEY generic
+          function. (generic function)
+        • *note extract-key: go to the DATA-LENS∶∶EXTRACT-KEY
+          COMMON-LISP∶∶HASH-TABLE COMMON-LISP∶∶T method. (method)
+        • *note extract-key: go to the DATA-LENS∶∶EXTRACT-KEY
+          COMMON-LISP∶∶LIST COMMON-LISP∶∶T method. (method)
+        • *note functionalize: go to the DATA-LENS∶∶FUNCTIONALIZE
+          generic function. (generic function)
+        • *note functionalize: go to the DATA-LENS∶∶FUNCTIONALIZE
+          COMMON-LISP∶∶HASH-TABLE method. (method)
+        • *note functionalize: go to the DATA-LENS∶∶FUNCTIONALIZE
+          COMMON-LISP∶∶VECTOR method. (method)
+        • *note functionalize: go to the DATA-LENS∶∶FUNCTIONALIZE
+          COMMON-LISP∶∶SYMBOL method. (method)
+        • *note functionalize: go to the DATA-LENS∶∶FUNCTIONALIZE
+          COMMON-LISP∶∶FUNCTION method. (method)
+        • *note include: go to the DATA-LENS∶∶INCLUDE function.
+          (function)
+        • *note juxt: go to the DATA-LENS∶∶JUXT function. (function)
+        • *note key: go to the DATA-LENS∶∶KEY function. (function)
+        • *note key-transform: go to the DATA-LENS∶∶KEY-TRANSFORM
+          function. (function)
+        • *note let-fn: go to the DATA-LENS∶∶LET-FN macro. (macro)
+        • *note maximizing: go to the DATA-LENS∶∶MAXIMIZING function.
+          (function)
+        • *note of-length: go to the DATA-LENS∶∶OF-LENGTH function.
+          (function)
+        • *note of-max-length: go to the DATA-LENS∶∶OF-MAX-LENGTH
+          function. (function)
+        • *note of-min-length: go to the DATA-LENS∶∶OF-MIN-LENGTH
+          function. (function)
+        • *note on: go to the DATA-LENS∶∶ON function. (function)
+        • *note over: go to the DATA-LENS∶∶OVER function. (function)
+        • *note pick: go to the DATA-LENS∶∶PICK function. (function)
+        • *note regex-match: go to the DATA-LENS∶∶REGEX-MATCH function.
+          (function)
+        • *note shortcut: go to the DATA-LENS∶∶SHORTCUT macro. (macro)
+        • *note slice: go to the DATA-LENS∶∶SLICE function. (function)
+        • *note sorted: go to the DATA-LENS∶∶SORTED function. (function)
+        • *note splice-elt: go to the DATA-LENS∶∶SPLICE-ELT function.
+          (function)
+        • *note suffixp: go to the DATA-LENS∶∶SUFFIXP function.
+          (function)
+        • *note transform-elt: go to the DATA-LENS∶∶TRANSFORM-ELT
+          function. (function)
+        • *note transform-head: go to the DATA-LENS∶∶TRANSFORM-HEAD
+          function. (function)
+        • *note transform-tail: go to the DATA-LENS∶∶TRANSFORM-TAIL
+          function. (function)
+        • *note zipping: go to the DATA-LENS∶∶ZIPPING function.
+          (function)
+        • *note •: go to the DATA-LENS∶∶• macro. (macro)
+*Internal Definitions*
+        • *note =>>: go to the DATA-LENS∶∶=>> function. (function)
+        • *note cons-new: go to the DATA-LENS∶∶CONS-NEW function.
+          (function)
+        • *note deduplicate: go to the DATA-LENS∶∶DEDUPLICATE function.
+          (function)
+        • *note filler: go to the DATA-LENS∶∶FILLER function. (function)
+        • *note matching-list-reducer: go to the
+          DATA-LENS∶∶MATCHING-LIST-REDUCER function. (function)
+        • *note update: go to the DATA-LENS∶∶UPDATE function. (function)
+        • *note updatef: go to the DATA-LENS∶∶UPDATEF macro. (macro)
+
+
+File: data-lens-transducers.texi.info,  Node: Packages,  Next: Definitions,  Prev: Files,  Up: Top
+
+3 Packages
+**********
+
+Packages are listed by definition order.
+
+* Menu:
+
+* The data-lens package::
+* The data-lens.transducers package: The data-lens․transducers package.
+* The data-lens.package package: The data-lens․package package.
+* The data-lens.lenses package: The data-lens․lenses package.
+* The data-lens.transducers.internals package: The data-lens․transducers․internals package.
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens package,  Next: The data-lens․transducers package,  Prev: Packages,  Up: Packages
+
+3.1 data-lens
+=============
+
+*Source*
+     *note package.lisp: go to the
+     data-lens/beta/transducers/package․lisp file. (file)
+*Use List*
+     common-lisp
+*Exported Definitions*
+        • *note <>1: go to the DATA-LENS∶∶<>1 macro. (macro)
+        • *note ==: go to the DATA-LENS∶∶== function. (function)
+        • *note applicable-when: go to the DATA-LENS∶∶APPLICABLE-WHEN
+          function. (function)
+        • *note applying: go to the DATA-LENS∶∶APPLYING macro. (macro)
+        • *note combine-matching-lists: go to the
+          DATA-LENS∶∶COMBINE-MATCHING-LISTS function. (function)
+        • *note compress-runs: go to the DATA-LENS∶∶COMPRESS-RUNS
+          function. (function)
+        • *note cumsum: go to the DATA-LENS∶∶CUMSUM function. (function)
+        • *note defun-ct: go to the DATA-LENS∶∶DEFUN-CT macro. (macro)
+        • *note denest: go to the DATA-LENS∶∶DENEST function. (function)
+        • *note derive: go to the DATA-LENS∶∶DERIVE function. (function)
+        • *note element: go to the DATA-LENS∶∶ELEMENT function.
+          (function)
+        • *note exclude: go to the DATA-LENS∶∶EXCLUDE function.
+          (function)
+        • *note extract-key: go to the DATA-LENS∶∶EXTRACT-KEY generic
+          function. (generic function)
+        • *note extract-key: go to the DATA-LENS∶∶EXTRACT-KEY
+          COMMON-LISP∶∶HASH-TABLE COMMON-LISP∶∶T method. (method)
+        • *note extract-key: go to the DATA-LENS∶∶EXTRACT-KEY
+          COMMON-LISP∶∶LIST COMMON-LISP∶∶T method. (method)
+        • *note functionalize: go to the DATA-LENS∶∶FUNCTIONALIZE
+          generic function. (generic function)
+        • *note functionalize: go to the DATA-LENS∶∶FUNCTIONALIZE
+          COMMON-LISP∶∶HASH-TABLE method. (method)
+        • *note functionalize: go to the DATA-LENS∶∶FUNCTIONALIZE
+          COMMON-LISP∶∶VECTOR method. (method)
+        • *note functionalize: go to the DATA-LENS∶∶FUNCTIONALIZE
+          COMMON-LISP∶∶SYMBOL method. (method)
+        • *note functionalize: go to the DATA-LENS∶∶FUNCTIONALIZE
+          COMMON-LISP∶∶FUNCTION method. (method)
+        • *note include: go to the DATA-LENS∶∶INCLUDE function.
+          (function)
+        • *note juxt: go to the DATA-LENS∶∶JUXT function. (function)
+        • *note key: go to the DATA-LENS∶∶KEY function. (function)
+        • *note key-transform: go to the DATA-LENS∶∶KEY-TRANSFORM
+          function. (function)
+        • *note let-fn: go to the DATA-LENS∶∶LET-FN macro. (macro)
+        • *note maximizing: go to the DATA-LENS∶∶MAXIMIZING function.
+          (function)
+        • *note of-length: go to the DATA-LENS∶∶OF-LENGTH function.
+          (function)
+        • *note of-max-length: go to the DATA-LENS∶∶OF-MAX-LENGTH
+          function. (function)
+        • *note of-min-length: go to the DATA-LENS∶∶OF-MIN-LENGTH
+          function. (function)
+        • *note on: go to the DATA-LENS∶∶ON function. (function)
+        • *note over: go to the DATA-LENS∶∶OVER function. (function)
+        • *note pick: go to the DATA-LENS∶∶PICK function. (function)
+        • *note regex-match: go to the DATA-LENS∶∶REGEX-MATCH function.
+          (function)
+        • *note shortcut: go to the DATA-LENS∶∶SHORTCUT macro. (macro)
+        • *note slice: go to the DATA-LENS∶∶SLICE function. (function)
+        • *note sorted: go to the DATA-LENS∶∶SORTED function. (function)
+        • *note splice-elt: go to the DATA-LENS∶∶SPLICE-ELT function.
+          (function)
+        • *note suffixp: go to the DATA-LENS∶∶SUFFIXP function.
+          (function)
+        • *note transform-elt: go to the DATA-LENS∶∶TRANSFORM-ELT
+          function. (function)
+        • *note transform-head: go to the DATA-LENS∶∶TRANSFORM-HEAD
+          function. (function)
+        • *note transform-tail: go to the DATA-LENS∶∶TRANSFORM-TAIL
+          function. (function)
+        • *note zipping: go to the DATA-LENS∶∶ZIPPING function.
+          (function)
+        • *note •: go to the DATA-LENS∶∶• macro. (macro)
+*Internal Definitions*
+        • *note =>>: go to the DATA-LENS∶∶=>> function. (function)
+        • *note cons-new: go to the DATA-LENS∶∶CONS-NEW function.
+          (function)
+        • *note deduplicate: go to the DATA-LENS∶∶DEDUPLICATE function.
+          (function)
+        • *note filler: go to the DATA-LENS∶∶FILLER function. (function)
+        • *note matching-list-reducer: go to the
+          DATA-LENS∶∶MATCHING-LIST-REDUCER function. (function)
+        • *note update: go to the DATA-LENS∶∶UPDATE function. (function)
+        • *note updatef: go to the DATA-LENS∶∶UPDATEF macro. (macro)
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens․transducers package,  Next: The data-lens․package package,  Prev: The data-lens package,  Up: Packages
+
+3.2 data-lens.transducers
+=========================
+
+*Source*
+     *note package.lisp: go to the
+     data-lens/beta/transducers/package․lisp file. (file)
+*Use List*
+     common-lisp
+*Exported Definitions*
+        • *note catting: go to the DATA-LENS․TRANSDUCERS∶∶CATTING
+          function. (function)
+        • *note collecting: go to the DATA-LENS․TRANSDUCERS∶∶COLLECTING
+          function. (function)
+        • *note compressing-runs: go to the
+          DATA-LENS․TRANSDUCERS∶∶COMPRESSING-RUNS function. (function)
+        • *note deduping: go to the DATA-LENS․TRANSDUCERS∶∶DEDUPING
+          function. (function)
+        • *note dropping: go to the DATA-LENS․TRANSDUCERS∶∶DROPPING
+          function. (function)
+        • *note filtering: go to the DATA-LENS․TRANSDUCERS∶∶FILTERING
+          function. (function)
+        • *note hash-table-select: go to the
+          DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-SELECT function. (function)
+        • *note iota: go to the DATA-LENS․TRANSDUCERS∶∶IOTA function.
+          (function)
+        • *note lazy-sequence: go to the
+          DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE function. (function)
+        • *note lazy-sequence: go to the
+          DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE class. (class)
+        • *note mapcatting: go to the DATA-LENS․TRANSDUCERS∶∶MAPCATTING
+          function. (function)
+        • *note mapping: go to the DATA-LENS․TRANSDUCERS∶∶MAPPING
+          function. (function)
+        • *note mv-filtering: go to the
+          DATA-LENS․TRANSDUCERS∶∶MV-FILTERING function. (function)
+        • *note mv-mapping: go to the DATA-LENS․TRANSDUCERS∶∶MV-MAPPING
+          function. (function)
+        • *note mv-selecting: go to the
+          DATA-LENS․TRANSDUCERS∶∶MV-SELECTING function. (function)
+        • *note repeating: go to the DATA-LENS․TRANSDUCERS∶∶REPEATING
+          macro. (macro)
+        • *note repeating*: go to the DATA-LENS․TRANSDUCERS∶∶REPEATING*
+          function. (function)
+        • *note splitting: go to the DATA-LENS․TRANSDUCERS∶∶SPLITTING
+          function. (function)
+        • *note taking: go to the DATA-LENS․TRANSDUCERS∶∶TAKING
+          function. (function)
+*Internal Definitions*
+        • *note comment: go to the DATA-LENS․TRANSDUCERS∶∶COMMENT macro.
+          (macro)
+        • *note eduction: go to the DATA-LENS․TRANSDUCERS∶∶EDUCTION
+          function. (function)
+        • *note next: go to the DATA-LENS․TRANSDUCERS∶∶NEXT generic
+          function. (generic function)
+        • *note next: go to the DATA-LENS․TRANSDUCERS∶∶NEXT
+          DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE method. (method)
+        • *note seq: go to the DATA-LENS․TRANSDUCERS∶∶SEQ function.
+          (function)
+        • *note transducer-lambda: go to the
+          DATA-LENS․TRANSDUCERS∶∶TRANSDUCER-LAMBDA macro. (macro)
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens․package package,  Next: The data-lens․lenses package,  Prev: The data-lens․transducers package,  Up: Packages
+
+3.3 data-lens.package
+=====================
+
+*Source*
+     *note package.lisp: go to the
+     data-lens/beta/transducers/package․lisp file. (file)
+*Use List*
+     common-lisp
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens․lenses package,  Next: The data-lens․transducers․internals package,  Prev: The data-lens․package package,  Up: Packages
+
+3.4 data-lens.lenses
+====================
+
+*Source*
+     *note package.lisp: go to the
+     data-lens/beta/transducers/package․lisp file. (file)
+*Use List*
+     common-lisp
+*Exported Definitions*
+        • *note make-alist-lens: go to the
+          DATA-LENS․LENSES∶∶MAKE-ALIST-LENS function. (function)
+        • *note make-hash-table-lens: go to the
+          DATA-LENS․LENSES∶∶MAKE-HASH-TABLE-LENS function. (function)
+        • *note make-list-lens: go to the
+          DATA-LENS․LENSES∶∶MAKE-LIST-LENS function. (function)
+        • *note make-plist-lens: go to the
+          DATA-LENS․LENSES∶∶MAKE-PLIST-LENS function. (function)
+        • *note over: go to the DATA-LENS․LENSES∶∶OVER function.
+          (function)
+        • *note set: go to the DATA-LENS․LENSES∶∶SET function.
+          (function)
+        • *note view: go to the DATA-LENS․LENSES∶∶VIEW function.
+          (function)
+*Internal Definitions*
+        • *note clone: go to the DATA-LENS․LENSES∶∶CLONE generic
+          function. (generic function)
+        • *note clone: go to the DATA-LENS․LENSES∶∶CLONE COMMON-LISP∶∶T
+          AROUND method. (method)
+        • *note constant-: go to the DATA-LENS․LENSES∶∶CONSTANT- class.
+          (class)
+        • *note fmap: go to the DATA-LENS․LENSES∶∶FMAP generic function.
+          (generic function)
+        • *note fmap: go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T
+          DATA-LENS․LENSES∶∶IDENTITY- method. (method)
+        • *note fmap: go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T
+          DATA-LENS․LENSES∶∶CONSTANT- method. (method)
+        • *note fmap: go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T
+          COMMON-LISP∶∶LIST method. (method)
+        • *note fmap: go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T
+          COMMON-LISP∶∶VECTOR method. (method)
+        • *note identity-: go to the DATA-LENS․LENSES∶∶IDENTITY- class.
+          (class)
+        • *note make-alist-history-lens: go to the
+          DATA-LENS․LENSES∶∶MAKE-ALIST-HISTORY-LENS function. (function)
+        • *note unconstant: go to the DATA-LENS․LENSES∶∶UNCONSTANT
+          generic function. (generic function)
+        • *note unconstant: go to the DATA-LENS․LENSES∶∶UNCONSTANT
+          DATA-LENS․LENSES∶∶CONSTANT- method. (method)
+        • *note unidentity: go to the DATA-LENS․LENSES∶∶UNIDENTITY
+          generic function. (generic function)
+        • *note unidentity: go to the DATA-LENS․LENSES∶∶UNIDENTITY
+          DATA-LENS․LENSES∶∶IDENTITY- method. (method)
+        • *note wrap-constant: go to the DATA-LENS․LENSES∶∶WRAP-CONSTANT
+          function. (function)
+        • *note wrap-identity: go to the DATA-LENS․LENSES∶∶WRAP-IDENTITY
+          function. (function)
+
+
+File: data-lens-transducers.texi.info,  Node: The data-lens․transducers․internals package,  Prev: The data-lens․lenses package,  Up: Packages
+
+3.5 data-lens.transducers.internals
+===================================
+
+*Source*
+     *note package.lisp: go to the
+     data-lens/beta/transducers/package․lisp file. (file)
+*Use List*
+     common-lisp
+*Exported Definitions*
+        • *note exit-early: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶EXIT-EARLY function.
+          (function)
+        • *note init: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT
+          generic function. (generic function)
+        • *note init: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT
+          ❨eql DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ method. (method)
+        • *note init: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT
+          ❨eql DATA-LENS․TRANSDUCERS∶∶VECTOR-BUILDER❩ method. (method)
+        • *note init: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT
+          ❨eql DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-BUILDER❩ method.
+          (method)
+        • *note reduce-generic: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC generic
+          function. (generic function)
+        • *note reduce-generic: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC
+          DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE COMMON-LISP∶∶FUNCTION
+          COMMON-LISP∶∶T method. (method)
+        • *note reduce-generic: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC
+          COMMON-LISP∶∶SEQUENCE COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T
+          method. (method)
+        • *note reduce-generic: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC
+          COMMON-LISP∶∶SEQUENCE COMMON-LISP∶∶SYMBOL COMMON-LISP∶∶T
+          method. (method)
+        • *note reduce-generic: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC COMMON-LISP∶∶T
+          COMMON-LISP∶∶SYMBOL COMMON-LISP∶∶T method. (method)
+        • *note reduce-generic: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC
+          COMMON-LISP∶∶HASH-TABLE COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T
+          method. (method)
+        • *note stepper: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER generic function.
+          (generic function)
+        • *note stepper: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql
+          DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ method. (method)
+        • *note stepper: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql
+          DATA-LENS․TRANSDUCERS∶∶VECTOR-BUILDER❩ method. (method)
+        • *note stepper: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql
+          DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-BUILDER❩ method. (method)
+        • *note transduce: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶TRANSDUCE function.
+          (function)
+        • *note unwrap: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP generic function.
+          (generic function)
+        • *note unwrap: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP ❨eql
+          DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ COMMON-LISP∶∶T method.
+          (method)
+        • *note unwrap: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP COMMON-LISP∶∶T
+          COMMON-LISP∶∶T method. (method)
+*Internal Definitions*
+     *note defdocumentation: go to the
+     DATA-LENS․TRANSDUCERS․INTERNALS∶∶DEFDOCUMENTATION macro. (macro)
+
+
+File: data-lens-transducers.texi.info,  Node: Definitions,  Next: Indexes,  Prev: Packages,  Up: Top
+
+4 Definitions
+*************
+
+Definitions are sorted by export status, category, package, and then by
+lexicographic order.
+
+* Menu:
+
+* Exported definitions::
+* Internal definitions::
+
+
+File: data-lens-transducers.texi.info,  Node: Exported definitions,  Next: Internal definitions,  Prev: Definitions,  Up: Definitions
+
+4.1 Exported definitions
+========================
+
+* Menu:
+
+* Exported macros::
+* Exported functions::
+* Exported generic functions::
+* Exported classes::
+
+
+File: data-lens-transducers.texi.info,  Node: Exported macros,  Next: Exported functions,  Prev: Exported definitions,  Up: Exported definitions
+
+4.1.1 Macros
+------------
+
+ -- Macro: <>1 &rest FUNS
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Macro: applying FUN &rest ARGS
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Macro: defun-ct NAME (&rest ARGS) &body BODY
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Macro: let-fn (&rest BINDINGS) &body BODY
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Macro: repeating V
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note lazy-sequence.lisp: go to the
+          data-lens/beta/transducers/lazy-sequence․lisp file. (file)
+ -- Macro: shortcut NAME FUNCTION &body BOUND-ARGS
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Macro: • &rest FUNS
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+
+
+File: data-lens-transducers.texi.info,  Node: Exported functions,  Next: Exported generic functions,  Prev: Exported macros,  Up: Exported definitions
+
+4.1.2 Functions
+---------------
+
+ -- Function: == TARGET &key TEST
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: applicable-when FUN TEST
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: catting ()
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: collecting COLLECTOR
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: combine-matching-lists &key TEST &allow-other-keys
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: compress-runs &key COLLECTOR TEST KEY
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: compressing-runs &key TEST COMBINER
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: cumsum &key ADD-FUN KEY COMBINE ZERO
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: deduping &optional TEST
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: denest &key RESULT-TYPE
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: derive DIFF-FUN &key KEY
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: dropping N
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: element NUM
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: exclude PRED
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: exit-early ACC
+     *Package*
+          *note data-lens.transducers.internals: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS package.
+     *Source*
+          *note transducer-protocol.lisp: go to the
+          data-lens/beta/transducers/transducer-protocol․lisp file.
+          (file)
+ -- Function: filtering FUNCTION &rest ARGS
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: hash-table-select HASH-TABLE
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: include PRED
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: iota &key START STEP COUNT
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note lazy-sequence.lisp: go to the
+          data-lens/beta/transducers/lazy-sequence․lisp file. (file)
+ -- Function: juxt FUN1 &rest R
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: key KEY
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: key-transform FUN KEY-GET KEY-SET
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: lazy-sequence NEXT
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note lazy-sequence.lisp: go to the
+          data-lens/beta/transducers/lazy-sequence․lisp file. (file)
+ -- Function: make-alist-lens KEY
+     A lens for updating a alist, discarding previous values
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Source*
+          *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+ -- Function: make-hash-table-lens KEY
+     A lens for updating a hash-table, discarding previous values
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Source*
+          *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+ -- Function: make-list-lens INDEX
+     A lens for updating a sequence
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Source*
+          *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+ -- Function: make-plist-lens KEY
+     A lens for updating a plist, preserving previous values
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Source*
+          *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+ -- Function: mapcatting FUN
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: mapping FUNCTION &rest ARGS
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: maximizing RELATION MEASURE
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: mv-filtering FUNCTION &rest ARGS
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: mv-mapping FUNCTION &rest ARGS
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: mv-selecting FUNCTION &rest ARGS
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: of-length LEN
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: of-max-length LEN
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: of-min-length LEN
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: on FUN KEY
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: over FUN &key RESULT-TYPE
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: over LENS CB REC
+     Given a lens, a callback and a record, apply the lens to the
+     record, transform it by the callback and return copy of the record,
+     updated to contain the result of the callback.  This is the
+     fundamental operation on a lens and SET and VIEW are implemented in
+     terms of it.
+
+     A lens is any function of the form (lambda (fun) (lambda (rec)
+     ...))  that obeys the lens laws (where == is some reasonable
+     equality operator):
+
+     (== (view lens (set lens value rec))
+     value)
+
+     (== (set lens (view lens rec) rec)
+     rec)
+
+     (== (set lens value2 (set lens value1 rec))
+     (set lens value2 rec))
+
+     The inner lambda returns a functor that determines the policy to be
+     applied to the focused part.  By default, this only uses IDENTITY-
+     and CONSTANT- in order to implement the lens operations over, set
+     and view.
+
+     If these conditions are met, (over (data-lens:<>1 lens1 lens2) ...)
+     is equivalent to using lens2 to focus the part lens1 focuses: note
+     that composition is "backwards" from what one might expect: this is
+     because composition composes the wrapper lambdas and applies the
+     lambda that actually pulls a value out of a record later.
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Source*
+          *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+ -- Function: pick SELECTOR
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: regex-match REGEX
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: repeating* V &key COUNT
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note lazy-sequence.lisp: go to the
+          data-lens/beta/transducers/lazy-sequence․lisp file. (file)
+ -- Function: set LENS V REC
+     Given a lens, a value and a rec, immutably update the rec to
+     contain the new value at the location focused by the lens.
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Source*
+          *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+ -- Function: slice START &optional END
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: sorted COMPARATOR &rest R &key KEY
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: splice-elt ELT FUN
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: splitting &rest FUNCTIONS
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: suffixp SUFFIX &key TEST
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: taking N
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: transduce XF BUILD SEQ
+     *Package*
+          *note data-lens.transducers.internals: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS package.
+     *Source*
+          *note transducer-protocol.lisp: go to the
+          data-lens/beta/transducers/transducer-protocol․lisp file.
+          (file)
+ -- Function: transform-elt ELT FUN
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: transform-head FUN
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: transform-tail FUN
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: view LENS REC
+     Given a lens and a rec, return the focused value
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Source*
+          *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+ -- Function: zipping RESULT-TYPE &key FILL-VALUE
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+
+
+File: data-lens-transducers.texi.info,  Node: Exported generic functions,  Next: Exported classes,  Prev: Exported functions,  Up: Exported definitions
+
+4.1.3 Generic functions
+-----------------------
+
+ -- Generic Function: extract-key MAP KEY
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+     *Methods*
+           -- Method: extract-key (MAP hash-table) KEY
+           -- Method: extract-key (MAP list) KEY
+ -- Generic Function: functionalize IT
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+     *Methods*
+           -- Method: functionalize (IT hash-table)
+           -- Method: functionalize (IT vector)
+           -- Method: functionalize (IT symbol)
+           -- Method: functionalize (IT function)
+ -- Generic Function: init CLIENT
+     *Package*
+          *note data-lens.transducers.internals: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS package.
+     *Source*
+          *note transducer-protocol.lisp: go to the
+          data-lens/beta/transducers/transducer-protocol․lisp file.
+          (file)
+     *Methods*
+           -- Method: init (IT (eql list-builder))
+               *Source*
+                    *note transducers.lisp: go to the
+                    data-lens/beta/transducers/transducers․lisp file.
+                    (file)
+           -- Method: init (IT (eql vector-builder))
+               *Source*
+                    *note transducers.lisp: go to the
+                    data-lens/beta/transducers/transducers․lisp file.
+                    (file)
+           -- Method: init (IT (eql hash-table-builder))
+               *Source*
+                    *note transducers.lisp: go to the
+                    data-lens/beta/transducers/transducers․lisp file.
+                    (file)
+ -- Generic Function: reduce-generic SEQ FUNC INIT
+     *Package*
+          *note data-lens.transducers.internals: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS package.
+     *Source*
+          *note transducer-protocol.lisp: go to the
+          data-lens/beta/transducers/transducer-protocol․lisp file.
+          (file)
+     *Methods*
+           -- Method: reduce-generic (SEQ lazy-sequence) (FUNC function)
+                    INIT
+               *Source*
+                    *note lazy-sequence.lisp: go to the
+                    data-lens/beta/transducers/lazy-sequence․lisp file.
+                    (file)
+           -- Method: reduce-generic (SEQ sequence) (FUNC function) INIT
+           -- Method: reduce-generic (SEQ sequence) (FUNC symbol) INIT
+           -- Method: reduce-generic SEQ (FUNC symbol) INIT
+           -- Method: reduce-generic (SEQ hash-table) (FUNC function)
+                    INIT
+ -- Generic Function: stepper CLIENT
+     *Package*
+          *note data-lens.transducers.internals: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS package.
+     *Source*
+          *note transducer-protocol.lisp: go to the
+          data-lens/beta/transducers/transducer-protocol․lisp file.
+          (file)
+     *Methods*
+           -- Method: stepper (IT (eql list-builder))
+               *Source*
+                    *note transducers.lisp: go to the
+                    data-lens/beta/transducers/transducers․lisp file.
+                    (file)
+           -- Method: stepper (IT (eql vector-builder))
+               *Source*
+                    *note transducers.lisp: go to the
+                    data-lens/beta/transducers/transducers․lisp file.
+                    (file)
+           -- Method: stepper (IT (eql hash-table-builder))
+               *Source*
+                    *note transducers.lisp: go to the
+                    data-lens/beta/transducers/transducers․lisp file.
+                    (file)
+ -- Generic Function: unwrap CLIENT OBJ
+     *Package*
+          *note data-lens.transducers.internals: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS package.
+     *Source*
+          *note transducer-protocol.lisp: go to the
+          data-lens/beta/transducers/transducer-protocol․lisp file.
+          (file)
+     *Methods*
+           -- Method: unwrap (IT (eql list-builder)) OBJ
+               *Source*
+                    *note transducers.lisp: go to the
+                    data-lens/beta/transducers/transducers․lisp file.
+                    (file)
+           -- Method: unwrap CLIENT OBJ
+
+
+File: data-lens-transducers.texi.info,  Node: Exported classes,  Prev: Exported generic functions,  Up: Exported definitions
+
+4.1.4 Classes
+-------------
+
+ -- Class: lazy-sequence ()
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note lazy-sequence.lisp: go to the
+          data-lens/beta/transducers/lazy-sequence․lisp file. (file)
+     *Direct superclasses*
+          standard-object (class)
+     *Direct methods*
+             • *note reduce-generic: go to the
+               DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC
+               DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE
+               COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T method. (method)
+             • *note next: go to the DATA-LENS․TRANSDUCERS∶∶NEXT
+               DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE method. (method)
+     *Direct slots*
+           -- Slot: %next
+               *Initargs*
+                    :next
+               *Readers*
+                    *note next: go to the DATA-LENS․TRANSDUCERS∶∶NEXT
+                    generic function. (generic function)
+
+
+File: data-lens-transducers.texi.info,  Node: Internal definitions,  Prev: Exported definitions,  Up: Definitions
+
+4.2 Internal definitions
+========================
+
+* Menu:
+
+* Internal macros::
+* Internal functions::
+* Internal generic functions::
+* Internal classes::
+
+
+File: data-lens-transducers.texi.info,  Node: Internal macros,  Next: Internal functions,  Prev: Internal definitions,  Up: Internal definitions
+
+4.2.1 Macros
+------------
+
+ -- Macro: comment &body BODY
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Macro: defdocumentation NAME &body DOC-SPECS
+     *Package*
+          *note data-lens.transducers.internals: go to the
+          DATA-LENS․TRANSDUCERS․INTERNALS package.
+     *Source*
+          *note transducer-protocol.lisp: go to the
+          data-lens/beta/transducers/transducer-protocol․lisp file.
+          (file)
+ -- Macro: transducer-lambda &body ((TWO-ARG-ACC TWO-ARG-NEXT) &body
+          TWO-ARG-BODY)
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Macro: updatef PLACE FUN &rest ARGS
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+
+
+File: data-lens-transducers.texi.info,  Node: Internal functions,  Next: Internal generic functions,  Prev: Internal macros,  Up: Internal definitions
+
+4.2.2 Functions
+---------------
+
+ -- Function: =>> FUN1 FUN2
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: cons-new &key TEST KEY
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: deduplicate &optional TEST
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: eduction XF SEQ
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: filler LENGTH1 LENGTH2 FILL-VALUE
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: make-alist-history-lens KEY
+     A lens for updating a alist, preserving previous values
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Source*
+          *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+ -- Function: matching-list-reducer TEST ACC NEXT
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: seq A B
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Source*
+          *note transducers.lisp: go to the
+          data-lens/beta/transducers/transducers․lisp file. (file)
+ -- Function: update THING FUN &rest ARGS
+     *Package*
+          *note data-lens: go to the DATA-LENS package.
+     *Source*
+          *note lens.lisp: go to the data-lens/lens․lisp file. (file)
+ -- Function: wrap-constant V
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Source*
+          *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+ -- Function: wrap-identity V
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Source*
+          *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+
+
+File: data-lens-transducers.texi.info,  Node: Internal generic functions,  Next: Internal classes,  Prev: Internal functions,  Up: Internal definitions
+
+4.2.3 Generic functions
+-----------------------
+
+ -- Generic Function: clone OBJ &rest NEW-INITARGS &key
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Source*
+          *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+     *Methods*
+           -- Method: clone OBJ &rest NEW-INITARGS &key around
+ -- Generic Function: fmap FUNCTION DATA
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Source*
+          *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+     *Methods*
+           -- Method: fmap FUNCTION (DATA identity-)
+           -- Method: fmap FUNCTION (DATA constant-)
+           -- Method: fmap FUNCTION (DATA list)
+           -- Method: fmap FUNCTION (DATA vector)
+ -- Generic Function: next OBJECT
+     *Package*
+          *note data-lens.transducers: go to the DATA-LENS․TRANSDUCERS
+          package.
+     *Methods*
+           -- Method: next (LAZY-SEQUENCE lazy-sequence)
+               automatically generated reader method
+               *Source*
+                    *note lazy-sequence.lisp: go to the
+                    data-lens/beta/transducers/lazy-sequence․lisp file.
+                    (file)
+ -- Generic Function: unconstant OBJECT
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Methods*
+           -- Method: unconstant (CONSTANT- constant-)
+               automatically generated reader method
+               *Source*
+                    *note optics.lisp: go to the data-lens/optics․lisp
+                    file. (file)
+ -- Generic Function: unidentity OBJECT
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Methods*
+           -- Method: unidentity (IDENTITY- identity-)
+               automatically generated reader method
+               *Source*
+                    *note optics.lisp: go to the data-lens/optics․lisp
+                    file. (file)
+
+
+File: data-lens-transducers.texi.info,  Node: Internal classes,  Prev: Internal generic functions,  Up: Internal definitions
+
+4.2.4 Classes
+-------------
+
+ -- Class: constant- ()
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Source*
+          *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+     *Direct superclasses*
+          standard-object (class)
+     *Direct methods*
+             • *note fmap: go to the DATA-LENS․LENSES∶∶FMAP
+               COMMON-LISP∶∶T DATA-LENS․LENSES∶∶CONSTANT- method.
+               (method)
+             • print-object (method)
+             • *note unconstant: go to the DATA-LENS․LENSES∶∶UNCONSTANT
+               DATA-LENS․LENSES∶∶CONSTANT- method. (method)
+     *Direct slots*
+           -- Slot: %v
+               *Initargs*
+                    :value
+               *Readers*
+                    *note unconstant: go to the
+                    DATA-LENS․LENSES∶∶UNCONSTANT generic function.
+                    (generic function)
+ -- Class: identity- ()
+     *Package*
+          *note data-lens.lenses: go to the DATA-LENS․LENSES package.
+     *Source*
+          *note optics.lisp: go to the data-lens/optics․lisp file.
+          (file)
+     *Direct superclasses*
+          standard-object (class)
+     *Direct methods*
+             • *note fmap: go to the DATA-LENS․LENSES∶∶FMAP
+               COMMON-LISP∶∶T DATA-LENS․LENSES∶∶IDENTITY- method.
+               (method)
+             • print-object (method)
+             • *note unidentity: go to the DATA-LENS․LENSES∶∶UNIDENTITY
+               DATA-LENS․LENSES∶∶IDENTITY- method. (method)
+     *Direct slots*
+           -- Slot: %v
+               *Initargs*
+                    :value
+               *Readers*
+                    *note unidentity: go to the
+                    DATA-LENS․LENSES∶∶UNIDENTITY generic function.
+                    (generic function)
+
+
+File: data-lens-transducers.texi.info,  Node: Indexes,  Prev: Definitions,  Up: Top
+
+Appendix A Indexes
+******************
+
+* Menu:
+
+* Concept index::
+* Function index::
+* Variable index::
+* Data type index::
+
+
+File: data-lens-transducers.texi.info,  Node: Concept index,  Next: Function index,  Prev: Indexes,  Up: Indexes
+
+A.1 Concepts
+============
+
+ [index ]
+* Menu:
+
+* data-lens.asd:                         The data-lens․asd file.
+                                                                (line 6)
+* data-lens/beta/transducers/lazy-sequence.lisp: The data-lens/beta/transducers/lazy-sequence․lisp file.
+                                                                (line 6)
+* data-lens/beta/transducers/package.lisp: The data-lens/beta/transducers/package․lisp file.
+                                                                (line 6)
+* data-lens/beta/transducers/transducer-protocol.lisp: The data-lens/beta/transducers/transducer-protocol․lisp file.
+                                                                (line 6)
+* data-lens/beta/transducers/transducers.lisp: The data-lens/beta/transducers/transducers․lisp file.
+                                                                (line 6)
+* data-lens/lens.lisp:                   The data-lens/lens․lisp file.
+                                                                (line 6)
+* data-lens/optics.lisp:                 The data-lens/optics․lisp file.
+                                                                (line 6)
+* data-lens/package.lisp:                The data-lens/package․lisp file.
+                                                                (line 6)
+* File, Lisp, data-lens.asd:             The data-lens․asd file.
+                                                                (line 6)
+* File, Lisp, data-lens/beta/transducers/lazy-sequence.lisp: The data-lens/beta/transducers/lazy-sequence․lisp file.
+                                                                (line 6)
+* File, Lisp, data-lens/beta/transducers/package.lisp: The data-lens/beta/transducers/package․lisp file.
+                                                                (line 6)
+* File, Lisp, data-lens/beta/transducers/transducer-protocol.lisp: The data-lens/beta/transducers/transducer-protocol․lisp file.
+                                                                (line 6)
+* File, Lisp, data-lens/beta/transducers/transducers.lisp: The data-lens/beta/transducers/transducers․lisp file.
+                                                                (line 6)
+* File, Lisp, data-lens/lens.lisp:       The data-lens/lens․lisp file.
+                                                                (line 6)
+* File, Lisp, data-lens/optics.lisp:     The data-lens/optics․lisp file.
+                                                                (line 6)
+* File, Lisp, data-lens/package.lisp:    The data-lens/package․lisp file.
+                                                                (line 6)
+* Lisp File, data-lens.asd:              The data-lens․asd file.
+                                                                (line 6)
+* Lisp File, data-lens/beta/transducers/lazy-sequence.lisp: The data-lens/beta/transducers/lazy-sequence․lisp file.
+                                                                (line 6)
+* Lisp File, data-lens/beta/transducers/package.lisp: The data-lens/beta/transducers/package․lisp file.
+                                                                (line 6)
+* Lisp File, data-lens/beta/transducers/transducer-protocol.lisp: The data-lens/beta/transducers/transducer-protocol․lisp file.
+                                                                (line 6)
+* Lisp File, data-lens/beta/transducers/transducers.lisp: The data-lens/beta/transducers/transducers․lisp file.
+                                                                (line 6)
+* Lisp File, data-lens/lens.lisp:        The data-lens/lens․lisp file.
+                                                                (line 6)
+* Lisp File, data-lens/optics.lisp:      The data-lens/optics․lisp file.
+                                                                (line 6)
+* Lisp File, data-lens/package.lisp:     The data-lens/package․lisp file.
+                                                                (line 6)
+
+
+File: data-lens-transducers.texi.info,  Node: Function index,  Next: Variable index,  Prev: Concept index,  Up: Indexes
+
+A.2 Functions
+=============
+
+ [index ]
+* Menu:
+
+* <>1:                                   Exported macros.     (line   6)
+* ==:                                    Exported functions.  (line   6)
+* =>>:                                   Internal functions.  (line   6)
+* •:                                     Exported macros.     (line  38)
+* applicable-when:                       Exported functions.  (line  11)
+* applying:                              Exported macros.     (line  11)
+* catting:                               Exported functions.  (line  16)
+* clone:                                 Internal generic functions.
+                                                              (line   6)
+* clone <1>:                             Internal generic functions.
+                                                              (line  13)
+* collecting:                            Exported functions.  (line  23)
+* combine-matching-lists:                Exported functions.  (line  30)
+* comment:                               Internal macros.     (line   6)
+* compress-runs:                         Exported functions.  (line  35)
+* compressing-runs:                      Exported functions.  (line  40)
+* cons-new:                              Internal functions.  (line  11)
+* cumsum:                                Exported functions.  (line  47)
+* deduping:                              Exported functions.  (line  52)
+* deduplicate:                           Internal functions.  (line  16)
+* defdocumentation:                      Internal macros.     (line  13)
+* defun-ct:                              Exported macros.     (line  16)
+* denest:                                Exported functions.  (line  59)
+* derive:                                Exported functions.  (line  64)
+* dropping:                              Exported functions.  (line  69)
+* eduction:                              Internal functions.  (line  21)
+* element:                               Exported functions.  (line  76)
+* exclude:                               Exported functions.  (line  81)
+* exit-early:                            Exported functions.  (line  86)
+* extract-key:                           Exported generic functions.
+                                                              (line   6)
+* extract-key <1>:                       Exported generic functions.
+                                                              (line  12)
+* extract-key <2>:                       Exported generic functions.
+                                                              (line  13)
+* filler:                                Internal functions.  (line  28)
+* filtering:                             Exported functions.  (line  94)
+* fmap:                                  Internal generic functions.
+                                                              (line  14)
+* fmap <1>:                              Internal generic functions.
+                                                              (line  21)
+* fmap <2>:                              Internal generic functions.
+                                                              (line  22)
+* fmap <3>:                              Internal generic functions.
+                                                              (line  23)
+* fmap <4>:                              Internal generic functions.
+                                                              (line  24)
+* Function, ==:                          Exported functions.  (line   7)
+* Function, =>>:                         Internal functions.  (line   7)
+* Function, applicable-when:             Exported functions.  (line  12)
+* Function, catting:                     Exported functions.  (line  17)
+* Function, collecting:                  Exported functions.  (line  24)
+* Function, combine-matching-lists:      Exported functions.  (line  31)
+* Function, compress-runs:               Exported functions.  (line  36)
+* Function, compressing-runs:            Exported functions.  (line  41)
+* Function, cons-new:                    Internal functions.  (line  12)
+* Function, cumsum:                      Exported functions.  (line  48)
+* Function, deduping:                    Exported functions.  (line  53)
+* Function, deduplicate:                 Internal functions.  (line  17)
+* Function, denest:                      Exported functions.  (line  60)
+* Function, derive:                      Exported functions.  (line  65)
+* Function, dropping:                    Exported functions.  (line  70)
+* Function, eduction:                    Internal functions.  (line  22)
+* Function, element:                     Exported functions.  (line  77)
+* Function, exclude:                     Exported functions.  (line  82)
+* Function, exit-early:                  Exported functions.  (line  87)
+* Function, filler:                      Internal functions.  (line  29)
+* Function, filtering:                   Exported functions.  (line  95)
+* Function, hash-table-select:           Exported functions.  (line 102)
+* Function, include:                     Exported functions.  (line 109)
+* Function, iota:                        Exported functions.  (line 114)
+* Function, juxt:                        Exported functions.  (line 121)
+* Function, key:                         Exported functions.  (line 126)
+* Function, key-transform:               Exported functions.  (line 131)
+* Function, lazy-sequence:               Exported functions.  (line 136)
+* Function, make-alist-history-lens:     Internal functions.  (line  34)
+* Function, make-alist-lens:             Exported functions.  (line 143)
+* Function, make-hash-table-lens:        Exported functions.  (line 150)
+* Function, make-list-lens:              Exported functions.  (line 157)
+* Function, make-plist-lens:             Exported functions.  (line 164)
+* Function, mapcatting:                  Exported functions.  (line 171)
+* Function, mapping:                     Exported functions.  (line 178)
+* Function, matching-list-reducer:       Internal functions.  (line  41)
+* Function, maximizing:                  Exported functions.  (line 185)
+* Function, mv-filtering:                Exported functions.  (line 190)
+* Function, mv-mapping:                  Exported functions.  (line 197)
+* Function, mv-selecting:                Exported functions.  (line 204)
+* Function, of-length:                   Exported functions.  (line 211)
+* Function, of-max-length:               Exported functions.  (line 216)
+* Function, of-min-length:               Exported functions.  (line 221)
+* Function, on:                          Exported functions.  (line 226)
+* Function, over:                        Exported functions.  (line 231)
+* Function, over <1>:                    Exported functions.  (line 236)
+* Function, pick:                        Exported functions.  (line 271)
+* Function, regex-match:                 Exported functions.  (line 276)
+* Function, repeating*:                  Exported functions.  (line 281)
+* Function, seq:                         Internal functions.  (line  46)
+* Function, set:                         Exported functions.  (line 288)
+* Function, slice:                       Exported functions.  (line 296)
+* Function, sorted:                      Exported functions.  (line 301)
+* Function, splice-elt:                  Exported functions.  (line 306)
+* Function, splitting:                   Exported functions.  (line 311)
+* Function, suffixp:                     Exported functions.  (line 318)
+* Function, taking:                      Exported functions.  (line 323)
+* Function, transduce:                   Exported functions.  (line 330)
+* Function, transform-elt:               Exported functions.  (line 338)
+* Function, transform-head:              Exported functions.  (line 343)
+* Function, transform-tail:              Exported functions.  (line 348)
+* Function, update:                      Internal functions.  (line  53)
+* Function, view:                        Exported functions.  (line 353)
+* Function, wrap-constant:               Internal functions.  (line  58)
+* Function, wrap-identity:               Internal functions.  (line  64)
+* Function, zipping:                     Exported functions.  (line 360)
+* functionalize:                         Exported generic functions.
+                                                              (line  14)
+* functionalize <1>:                     Exported generic functions.
+                                                              (line  20)
+* functionalize <2>:                     Exported generic functions.
+                                                              (line  21)
+* functionalize <3>:                     Exported generic functions.
+                                                              (line  22)
+* functionalize <4>:                     Exported generic functions.
+                                                              (line  23)
+* Generic Function, clone:               Internal generic functions.
+                                                              (line   7)
+* Generic Function, extract-key:         Exported generic functions.
+                                                              (line   7)
+* Generic Function, fmap:                Internal generic functions.
+                                                              (line  15)
+* Generic Function, functionalize:       Exported generic functions.
+                                                              (line  15)
+* Generic Function, init:                Exported generic functions.
+                                                              (line  25)
+* Generic Function, next:                Internal generic functions.
+                                                              (line  26)
+* Generic Function, reduce-generic:      Exported generic functions.
+                                                              (line  49)
+* Generic Function, stepper:             Exported generic functions.
+                                                              (line  69)
+* Generic Function, unconstant:          Internal generic functions.
+                                                              (line  37)
+* Generic Function, unidentity:          Internal generic functions.
+                                                              (line  46)
+* Generic Function, unwrap:              Exported generic functions.
+                                                              (line  93)
+* hash-table-select:                     Exported functions.  (line 101)
+* include:                               Exported functions.  (line 108)
+* init:                                  Exported generic functions.
+                                                              (line  24)
+* init <1>:                              Exported generic functions.
+                                                              (line  33)
+* init <2>:                              Exported generic functions.
+                                                              (line  38)
+* init <3>:                              Exported generic functions.
+                                                              (line  43)
+* iota:                                  Exported functions.  (line 113)
+* juxt:                                  Exported functions.  (line 120)
+* key:                                   Exported functions.  (line 125)
+* key-transform:                         Exported functions.  (line 130)
+* lazy-sequence:                         Exported functions.  (line 135)
+* let-fn:                                Exported macros.     (line  21)
+* Macro, <>1:                            Exported macros.     (line   7)
+* Macro, applying:                       Exported macros.     (line  12)
+* Macro, comment:                        Internal macros.     (line   7)
+* Macro, defdocumentation:               Internal macros.     (line  14)
+* Macro, defun-ct:                       Exported macros.     (line  17)
+* Macro, let-fn:                         Exported macros.     (line  22)
+* Macro, repeating:                      Exported macros.     (line  27)
+* Macro, shortcut:                       Exported macros.     (line  34)
+* Macro, transducer-lambda:              Internal macros.     (line  23)
+* Macro, updatef:                        Internal macros.     (line  30)
+* Macro, •:                              Exported macros.     (line  39)
+* make-alist-history-lens:               Internal functions.  (line  33)
+* make-alist-lens:                       Exported functions.  (line 142)
+* make-hash-table-lens:                  Exported functions.  (line 149)
+* make-list-lens:                        Exported functions.  (line 156)
+* make-plist-lens:                       Exported functions.  (line 163)
+* mapcatting:                            Exported functions.  (line 170)
+* mapping:                               Exported functions.  (line 177)
+* matching-list-reducer:                 Internal functions.  (line  40)
+* maximizing:                            Exported functions.  (line 184)
+* Method, clone:                         Internal generic functions.
+                                                              (line  14)
+* Method, extract-key:                   Exported generic functions.
+                                                              (line  13)
+* Method, extract-key <1>:               Exported generic functions.
+                                                              (line  14)
+* Method, fmap:                          Internal generic functions.
+                                                              (line  22)
+* Method, fmap <1>:                      Internal generic functions.
+                                                              (line  23)
+* Method, fmap <2>:                      Internal generic functions.
+                                                              (line  24)
+* Method, fmap <3>:                      Internal generic functions.
+                                                              (line  25)
+* Method, functionalize:                 Exported generic functions.
+                                                              (line  21)
+* Method, functionalize <1>:             Exported generic functions.
+                                                              (line  22)
+* Method, functionalize <2>:             Exported generic functions.
+                                                              (line  23)
+* Method, functionalize <3>:             Exported generic functions.
+                                                              (line  24)
+* Method, init:                          Exported generic functions.
+                                                              (line  34)
+* Method, init <1>:                      Exported generic functions.
+                                                              (line  39)
+* Method, init <2>:                      Exported generic functions.
+                                                              (line  44)
+* Method, next:                          Internal generic functions.
+                                                              (line  31)
+* Method, reduce-generic:                Exported generic functions.
+                                                              (line  59)
+* Method, reduce-generic <1>:            Exported generic functions.
+                                                              (line  64)
+* Method, reduce-generic <2>:            Exported generic functions.
+                                                              (line  65)
+* Method, reduce-generic <3>:            Exported generic functions.
+                                                              (line  66)
+* Method, reduce-generic <4>:            Exported generic functions.
+                                                              (line  68)
+* Method, stepper:                       Exported generic functions.
+                                                              (line  78)
+* Method, stepper <1>:                   Exported generic functions.
+                                                              (line  83)
+* Method, stepper <2>:                   Exported generic functions.
+                                                              (line  88)
+* Method, unconstant:                    Internal generic functions.
+                                                              (line  41)
+* Method, unidentity:                    Internal generic functions.
+                                                              (line  50)
+* Method, unwrap:                        Exported generic functions.
+                                                              (line 102)
+* Method, unwrap <1>:                    Exported generic functions.
+                                                              (line 107)
+* mv-filtering:                          Exported functions.  (line 189)
+* mv-mapping:                            Exported functions.  (line 196)
+* mv-selecting:                          Exported functions.  (line 203)
+* next:                                  Internal generic functions.
+                                                              (line  25)
+* next <1>:                              Internal generic functions.
+                                                              (line  30)
+* of-length:                             Exported functions.  (line 210)
+* of-max-length:                         Exported functions.  (line 215)
+* of-min-length:                         Exported functions.  (line 220)
+* on:                                    Exported functions.  (line 225)
+* over:                                  Exported functions.  (line 230)
+* over <1>:                              Exported functions.  (line 235)
+* pick:                                  Exported functions.  (line 270)
+* reduce-generic:                        Exported generic functions.
+                                                              (line  48)
+* reduce-generic <1>:                    Exported generic functions.
+                                                              (line  57)
+* reduce-generic <2>:                    Exported generic functions.
+                                                              (line  63)
+* reduce-generic <3>:                    Exported generic functions.
+                                                              (line  64)
+* reduce-generic <4>:                    Exported generic functions.
+                                                              (line  65)
+* reduce-generic <5>:                    Exported generic functions.
+                                                              (line  66)
+* regex-match:                           Exported functions.  (line 275)
+* repeating:                             Exported macros.     (line  26)
+* repeating*:                            Exported functions.  (line 280)
+* seq:                                   Internal functions.  (line  45)
+* set:                                   Exported functions.  (line 287)
+* shortcut:                              Exported macros.     (line  33)
+* slice:                                 Exported functions.  (line 295)
+* sorted:                                Exported functions.  (line 300)
+* splice-elt:                            Exported functions.  (line 305)
+* splitting:                             Exported functions.  (line 310)
+* stepper:                               Exported generic functions.
+                                                              (line  68)
+* stepper <1>:                           Exported generic functions.
+                                                              (line  77)
+* stepper <2>:                           Exported generic functions.
+                                                              (line  82)
+* stepper <3>:                           Exported generic functions.
+                                                              (line  87)
+* suffixp:                               Exported functions.  (line 317)
+* taking:                                Exported functions.  (line 322)
+* transduce:                             Exported functions.  (line 329)
+* transducer-lambda:                     Internal macros.     (line  21)
+* transform-elt:                         Exported functions.  (line 337)
+* transform-head:                        Exported functions.  (line 342)
+* transform-tail:                        Exported functions.  (line 347)
+* unconstant:                            Internal generic functions.
+                                                              (line  36)
+* unconstant <1>:                        Internal generic functions.
+                                                              (line  40)
+* unidentity:                            Internal generic functions.
+                                                              (line  45)
+* unidentity <1>:                        Internal generic functions.
+                                                              (line  49)
+* unwrap:                                Exported generic functions.
+                                                              (line  92)
+* unwrap <1>:                            Exported generic functions.
+                                                              (line 101)
+* unwrap <2>:                            Exported generic functions.
+                                                              (line 106)
+* update:                                Internal functions.  (line  52)
+* updatef:                               Internal macros.     (line  29)
+* view:                                  Exported functions.  (line 352)
+* wrap-constant:                         Internal functions.  (line  57)
+* wrap-identity:                         Internal functions.  (line  63)
+* zipping:                               Exported functions.  (line 359)
+
+
+File: data-lens-transducers.texi.info,  Node: Variable index,  Next: Data type index,  Prev: Function index,  Up: Indexes
+
+A.3 Variables
+=============
+
+ [index ]
+* Menu:
+
+* %next:                                 Exported classes.     (line 23)
+* %v:                                    Internal classes.     (line 22)
+* %v <1>:                                Internal classes.     (line 45)
+* Slot, %next:                           Exported classes.     (line 24)
+* Slot, %v:                              Internal classes.     (line 23)
+* Slot, %v <1>:                          Internal classes.     (line 46)
+
+
+File: data-lens-transducers.texi.info,  Node: Data type index,  Prev: Variable index,  Up: Indexes
+
+A.4 Data types
+==============
+
+ [index ]
+* Menu:
+
+* Class, constant-:                      Internal classes.     (line  7)
+* Class, identity-:                      Internal classes.     (line 30)
+* Class, lazy-sequence:                  Exported classes.     (line  7)
+* constant-:                             Internal classes.     (line  6)
+* data-lens:                             The data-lens system. (line  6)
+* data-lens <1>:                         The data-lens package.
+                                                               (line  6)
+* data-lens.lenses:                      The data-lens․lenses package.
+                                                               (line  6)
+* data-lens.package:                     The data-lens․package package.
+                                                               (line  6)
+* data-lens.transducers:                 The data-lens․transducers package.
+                                                               (line  6)
+* data-lens.transducers.internals:       The data-lens․transducers․internals package.
+                                                               (line  6)
+* data-lens/beta/transducers:            The data-lens/beta/transducers system.
+                                                               (line  6)
+* identity-:                             Internal classes.     (line 29)
+* lazy-sequence:                         Exported classes.     (line  6)
+* Package, data-lens:                    The data-lens package.
+                                                               (line  6)
+* Package, data-lens.lenses:             The data-lens․lenses package.
+                                                               (line  6)
+* Package, data-lens.package:            The data-lens․package package.
+                                                               (line  6)
+* Package, data-lens.transducers:        The data-lens․transducers package.
+                                                               (line  6)
+* Package, data-lens.transducers.internals: The data-lens․transducers․internals package.
+                                                               (line  6)
+* System, data-lens:                     The data-lens system. (line  6)
+* System, data-lens/beta/transducers:    The data-lens/beta/transducers system.
+                                                               (line  6)
+
+
+
+Tag Table:
+Node: Top297
+Node: Systems868
+Node: The data-lens/beta/transducers system1129
+Ref: go to the data-lens/beta/transducers system1338
+Node: The data-lens system2169
+Ref: go to the data-lens system2328
+Node: Files2948
+Node: Lisp files3177
+Node: The data-lens․asd file4006
+Ref: go to the data-lens․asd file4216
+Node: The data-lens/beta/transducers/package․lisp file4433
+Ref: go to the data-lens/beta/transducers/package․lisp file4747
+Node: The data-lens/beta/transducers/transducer-protocol․lisp file5313
+Ref: go to the data-lens/beta/transducers/transducer-protocol․lisp file5681
+Node: The data-lens/beta/transducers/transducers․lisp file7945
+Ref: go to the data-lens/beta/transducers/transducers․lisp file8303
+Node: The data-lens/beta/transducers/lazy-sequence․lisp file11830
+Ref: go to the data-lens/beta/transducers/lazy-sequence․lisp file12163
+Node: The data-lens/package․lisp file13370
+Ref: go to the data-lens/package․lisp file13635
+Node: The data-lens/optics․lisp file14162
+Ref: go to the data-lens/optics․lisp file14399
+Node: The data-lens/lens․lisp file17094
+Ref: go to the data-lens/lens․lisp file17285
+Node: Packages22204
+Node: The data-lens package22707
+Ref: go to the DATA-LENS package22883
+Node: The data-lens․transducers package27756
+Ref: go to the DATA-LENS․TRANSDUCERS package27979
+Node: The data-lens․package package30930
+Ref: go to the DATA-LENS․PACKAGE package31154
+Node: The data-lens․lenses package31287
+Ref: go to the DATA-LENS․LENSES package31521
+Node: The data-lens․transducers․internals package34410
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS package34634
+Node: Definitions38239
+Node: Exported definitions38526
+Node: Exported macros38819
+Ref: go to the DATA-LENS∶∶<>1 macro39020
+Ref: go to the DATA-LENS∶∶APPLYING macro39212
+Ref: go to the DATA-LENS∶∶DEFUN-CT macro39418
+Ref: go to the DATA-LENS∶∶LET-FN macro39621
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶REPEATING macro39801
+Ref: go to the DATA-LENS∶∶SHORTCUT macro40090
+Ref: go to the DATA-LENS∶∶• macro40273
+Node: Exported functions40431
+Ref: go to the DATA-LENS∶∶== function40652
+Ref: go to the DATA-LENS∶∶APPLICABLE-WHEN function40848
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶CATTING function41030
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶COLLECTING function41299
+Ref: go to the DATA-LENS∶∶COMBINE-MATCHING-LISTS function41598
+Ref: go to the DATA-LENS∶∶COMPRESS-RUNS function41807
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶COMPRESSING-RUNS function42014
+Ref: go to the DATA-LENS∶∶CUMSUM function42299
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶DEDUPING function42494
+Ref: go to the DATA-LENS∶∶DENEST function42766
+Ref: go to the DATA-LENS∶∶DERIVE function42962
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶DROPPING function43144
+Ref: go to the DATA-LENS∶∶ELEMENT function43404
+Ref: go to the DATA-LENS∶∶EXCLUDE function43588
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶EXIT-EARLY function43774
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶FILTERING function44100
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-SELECT function44377
+Ref: go to the DATA-LENS∶∶INCLUDE function44638
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶IOTA function44836
+Ref: go to the DATA-LENS∶∶JUXT function45106
+Ref: go to the DATA-LENS∶∶KEY function45285
+Ref: go to the DATA-LENS∶∶KEY-TRANSFORM function45490
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE function45680
+Ref: go to the DATA-LENS․LENSES∶∶MAKE-ALIST-LENS function45952
+Ref: go to the DATA-LENS․LENSES∶∶MAKE-HASH-TABLE-LENS function46239
+Ref: go to the DATA-LENS․LENSES∶∶MAKE-LIST-LENS function46527
+Ref: go to the DATA-LENS․LENSES∶∶MAKE-PLIST-LENS function46784
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶MAPCATTING function47061
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶MAPPING function47337
+Ref: go to the DATA-LENS∶∶MAXIMIZING function47613
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶MV-FILTERING function47817
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶MV-MAPPING function48096
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶MV-SELECTING function48377
+Ref: go to the DATA-LENS∶∶OF-LENGTH function48639
+Ref: go to the DATA-LENS∶∶OF-MAX-LENGTH function48828
+Ref: go to the DATA-LENS∶∶OF-MIN-LENGTH function49017
+Ref: go to the DATA-LENS∶∶ON function49199
+Ref: go to the DATA-LENS∶∶OVER function49396
+Ref: go to the DATA-LENS․LENSES∶∶OVER function49584
+Ref: go to the DATA-LENS∶∶PICK function51022
+Ref: go to the DATA-LENS∶∶REGEX-MATCH function51211
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶REPEATING* function51406
+Ref: go to the DATA-LENS․LENSES∶∶SET function51673
+Ref: go to the DATA-LENS∶∶SLICE function52030
+Ref: go to the DATA-LENS∶∶SORTED function52236
+Ref: go to the DATA-LENS∶∶SPLICE-ELT function52426
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶SPLITTING function52623
+Ref: go to the DATA-LENS∶∶SUFFIXP function52896
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶TAKING function53076
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶TRANSDUCE function53347
+Ref: go to the DATA-LENS∶∶TRANSFORM-ELT function53665
+Ref: go to the DATA-LENS∶∶TRANSFORM-HEAD function53855
+Ref: go to the DATA-LENS∶∶TRANSFORM-TAIL function54045
+Ref: go to the DATA-LENS․LENSES∶∶VIEW function54230
+Ref: go to the DATA-LENS∶∶ZIPPING function54521
+Node: Exported generic functions54679
+Ref: go to the DATA-LENS∶∶EXTRACT-KEY generic function54925
+Ref: go to the DATA-LENS∶∶EXTRACT-KEY COMMON-LISP∶∶HASH-TABLE COMMON-LISP∶∶T method55152
+Ref: go to the DATA-LENS∶∶EXTRACT-KEY COMMON-LISP∶∶LIST COMMON-LISP∶∶T method55201
+Ref: go to the DATA-LENS∶∶FUNCTIONALIZE generic function55240
+Ref: go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶HASH-TABLE method55464
+Ref: go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶VECTOR method55512
+Ref: go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶SYMBOL method55560
+Ref: go to the DATA-LENS∶∶FUNCTIONALIZE COMMON-LISP∶∶FUNCTION method55610
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT generic function55644
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT ❨eql DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ method55992
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT ❨eql DATA-LENS․TRANSDUCERS∶∶VECTOR-BUILDER❩ method56222
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶INIT ❨eql DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-BUILDER❩ method56456
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC generic function56684
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T method57079
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC COMMON-LISP∶∶SEQUENCE COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T method57333
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC COMMON-LISP∶∶SEQUENCE COMMON-LISP∶∶SYMBOL COMMON-LISP∶∶T method57404
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC COMMON-LISP∶∶T COMMON-LISP∶∶SYMBOL COMMON-LISP∶∶T method57464
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶REDUCE-GENERIC COMMON-LISP∶∶HASH-TABLE COMMON-LISP∶∶FUNCTION COMMON-LISP∶∶T method57559
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER generic function57596
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ method57947
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql DATA-LENS․TRANSDUCERS∶∶VECTOR-BUILDER❩ method58180
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶STEPPER ❨eql DATA-LENS․TRANSDUCERS∶∶HASH-TABLE-BUILDER❩ method58417
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP generic function58634
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP ❨eql DATA-LENS․TRANSDUCERS∶∶LIST-BUILDER❩ COMMON-LISP∶∶T method58988
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶UNWRAP COMMON-LISP∶∶T COMMON-LISP∶∶T method59205
+Node: Exported classes59206
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE class59391
+Node: Internal definitions60372
+Node: Internal macros60645
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶COMMENT macro60850
+Ref: go to the DATA-LENS․TRANSDUCERS․INTERNALS∶∶DEFDOCUMENTATION macro61133
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶TRANSDUCER-LAMBDA macro61508
+Ref: go to the DATA-LENS∶∶UPDATEF macro61782
+Node: Internal functions61940
+Ref: go to the DATA-LENS∶∶=>> function62155
+Ref: go to the DATA-LENS∶∶CONS-NEW function62349
+Ref: go to the DATA-LENS∶∶DEDUPLICATE function62547
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶EDUCTION function62734
+Ref: go to the DATA-LENS∶∶FILLER function63016
+Ref: go to the DATA-LENS․LENSES∶∶MAKE-ALIST-HISTORY-LENS function63215
+Ref: go to the DATA-LENS∶∶MATCHING-LIST-REDUCER function63513
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶SEQ function63692
+Ref: go to the DATA-LENS∶∶UPDATE function63968
+Ref: go to the DATA-LENS․LENSES∶∶WRAP-CONSTANT function64155
+Ref: go to the DATA-LENS․LENSES∶∶WRAP-IDENTITY function64372
+Node: Internal generic functions64560
+Ref: go to the DATA-LENS․LENSES∶∶CLONE generic function64820
+Ref: go to the DATA-LENS․LENSES∶∶CLONE COMMON-LISP∶∶T AROUND method65085
+Ref: go to the DATA-LENS․LENSES∶∶FMAP generic function65126
+Ref: go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T DATA-LENS․LENSES∶∶IDENTITY- method65381
+Ref: go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T DATA-LENS․LENSES∶∶CONSTANT- method65434
+Ref: go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T COMMON-LISP∶∶LIST method65482
+Ref: go to the DATA-LENS․LENSES∶∶FMAP COMMON-LISP∶∶T COMMON-LISP∶∶VECTOR method65532
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶NEXT generic function65566
+Ref: go to the DATA-LENS․TRANSDUCERS∶∶NEXT DATA-LENS․TRANSDUCERS∶∶LAZY-SEQUENCE method65745
+Ref: go to the DATA-LENS․LENSES∶∶UNCONSTANT generic function66019
+Ref: go to the DATA-LENS․LENSES∶∶UNCONSTANT DATA-LENS․LENSES∶∶CONSTANT- method66176
+Ref: go to the DATA-LENS․LENSES∶∶UNIDENTITY generic function66399
+Ref: go to the DATA-LENS․LENSES∶∶UNIDENTITY DATA-LENS․LENSES∶∶IDENTITY- method66556
+Node: Internal classes66740
+Ref: go to the DATA-LENS․LENSES∶∶CONSTANT- class66921
+Ref: go to the DATA-LENS․LENSES∶∶IDENTITY- class67849
+Node: Indexes68754
+Node: Concept index68966
+Node: Function index73120
+Node: Variable index95332
+Node: Data type index95946
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:

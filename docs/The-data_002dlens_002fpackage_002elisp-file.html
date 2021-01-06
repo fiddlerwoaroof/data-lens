@@ -1,42 +1,33 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>The data-lens/package․lisp file (The data-lens Reference Manual)</title>
+<title>The data-lens/package․lisp file (The data-lens/beta/transducers Reference Manual)</title>
 
-<meta name="description" content="The data-lens Reference Manual.">
-<meta name="keywords" content="The data-lens/package․lisp file (The data-lens Reference Manual)">
+<meta name="description" content="The data-lens/beta/transducers Reference Manual.">
+<meta name="keywords" content="The data-lens/package․lisp file (The data-lens/beta/transducers Reference Manual)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
-<link href="index.html#Top" rel="start" title="Top">
-<link href="Indexes.html#Indexes" rel="index" title="Indexes">
+<link href="index.html" rel="start" title="Top">
+<link href="Indexes.html" rel="index" title="Indexes">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Lisp-files.html#Lisp-files" rel="up" title="Lisp files">
-<link href="The-data_002dlens_002foptics_002elisp-file.html#The-data_002dlens_002foptics_2024lisp-file" rel="next" title="The data-lens/optics․lisp file">
-<link href="The-data_002dlens_002easd-file.html#The-data_002dlens_2024asd-file" rel="prev" title="The data-lens․asd file">
+<link href="Lisp-files.html" rel="up" title="Lisp files">
+<link href="The-data_002dlens_002foptics_002elisp-file.html" rel="next" title="The data-lens/optics․lisp file">
+<link href="The-data_002dlens_002fbeta_002ftransducers_002flazy_002dsequence_002elisp-file.html" rel="prev" title="The data-lens/beta/transducers/lazy-sequence․lisp file">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -48,17 +39,15 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a name="The-data_002dlens_002fpackage_2024lisp-file"></a>
-<div class="header">
+<span id="The-data_002dlens_002fpackage_2024lisp-file"></span><div class="header">
 <p>
-Next: <a href="The-data_002dlens_002foptics_002elisp-file.html#The-data_002dlens_002foptics_2024lisp-file" accesskey="n" rel="next">The data-lens/optics․lisp file</a>, Previous: <a href="The-data_002dlens_002easd-file.html#The-data_002dlens_2024asd-file" accesskey="p" rel="prev">The data-lens․asd file</a>, Up: <a href="Lisp-files.html#Lisp-files" accesskey="u" rel="up">Lisp files</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Indexes.html#Indexes" title="Index" rel="index">Index</a>]</p>
+Next: <a href="The-data_002dlens_002foptics_002elisp-file.html" accesskey="n" rel="next">The data-lens/optics․lisp file</a>, Previous: <a href="The-data_002dlens_002fbeta_002ftransducers_002flazy_002dsequence_002elisp-file.html" accesskey="p" rel="prev">The data-lens/beta/transducers/lazy-sequence․lisp file</a>, Up: <a href="Lisp-files.html" accesskey="u" rel="up">Lisp files</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Indexes.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="data_002dlens_002fpackage_002elisp"></a>
-<h4 class="subsection">2.1.2 <tt>data-lens/package.lisp</tt></h4>
-<a name="go-to-the-data_002dlens_002fpackage_2024lisp-file"></a><a name="index-data_002dlens_002fpackage_002elisp"></a>
-<a name="index-Lisp-File_002c-data_002dlens_002fpackage_002elisp"></a>
-<a name="index-File_002c-Lisp_002c-data_002dlens_002fpackage_002elisp"></a>
+<span id="data_002dlens_002fpackage_002elisp"></span><h4 class="subsection">2.1.6 <tt>data-lens/package.lisp</tt></h4>
+<span id="go-to-the-data_002dlens_002fpackage_2024lisp-file"></span><span id="index-data_002dlens_002fpackage_002elisp"></span>
+<span id="index-Lisp-File_002c-data_002dlens_002fpackage_002elisp"></span>
+<span id="index-File_002c-Lisp_002c-data_002dlens_002fpackage_002elisp"></span>
 <dl compact="compact">
 <dt><strong>Parent</strong></dt>
 <dd><p><a href="The-data_002dlens-system.html#go-to-the-data_002dlens-system"><tt>data-lens</tt></a> (system)
@@ -69,8 +58,10 @@ Next: <a href="The-data_002dlens_002foptics_002elisp-file.html#The-data_002dlens
 <dt><strong>Packages</strong></dt>
 <dd><ul>
 <li> <a href="The-data_002dlens-package.html#go-to-the-DATA_002dLENS-package"><tt>data-lens</tt></a>
+</li><li> <a href="The-data_002dlens_002etransducers-package.html#go-to-the-DATA_002dLENS_2024TRANSDUCERS-package"><tt>data-lens.transducers</tt></a>
 </li><li> <a href="The-data_002dlens_002epackage-package.html#go-to-the-DATA_002dLENS_2024PACKAGE-package"><tt>data-lens.package</tt></a>
 </li><li> <a href="The-data_002dlens_002elenses-package.html#go-to-the-DATA_002dLENS_2024LENSES-package"><tt>data-lens.lenses</tt></a>
+</li><li> <a href="The-data_002dlens_002etransducers_002einternals-package.html#go-to-the-DATA_002dLENS_2024TRANSDUCERS_2024INTERNALS-package"><tt>data-lens.transducers.internals</tt></a>
 </li></ul>
 </dd>
 </dl>

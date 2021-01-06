@@ -1,41 +1,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Top (The data-lens Reference Manual)</title>
+<title>Top (The data-lens/beta/transducers Reference Manual)</title>
 
-<meta name="description" content="The data-lens Reference Manual.">
-<meta name="keywords" content="Top (The data-lens Reference Manual)">
+<meta name="description" content="The data-lens/beta/transducers Reference Manual.">
+<meta name="keywords" content="Top (The data-lens/beta/transducers Reference Manual)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
 <link href="#Top" rel="start" title="Top">
-<link href="Indexes.html#Indexes" rel="index" title="Indexes">
+<link href="Indexes.html" rel="index" title="Indexes">
 <link href="#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="../dir/index.html" rel="up" title="(dir)">
-<link href="Systems.html#Systems" rel="next" title="Systems">
+<link href="Systems.html" rel="next" title="Systems">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
@@ -47,7 +38,7 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<h1 class="settitle" align="center">The data-lens Reference Manual</h1>
+<h1 class="settitle" align="center">The data-lens/beta/transducers Reference Manual</h1>
 
 
 
@@ -94,54 +85,62 @@ ul.no-bullet {list-style: none}
 
 
 
-<a name="SEC_Contents"></a>
+<span id="SEC_Contents"></span>
 <h2 class="contents-heading">Table of Contents</h2>
 
 <div class="contents">
 
 <ul class="no-bullet">
-  <li><a name="toc-Systems-1" href="Systems.html#Systems">1 Systems</a>
+  <li><a id="toc-Systems-1" href="Systems.html#Systems">1 Systems</a>
   <ul class="no-bullet">
-    <li><a name="toc-data_002dlens" href="The-data_002dlens-system.html#The-data_002dlens-system">1.1 <tt>data-lens</tt></a></li>
+    <li><a id="toc-data_002dlens_002fbeta_002ftransducers" href="The-data_002dlens_002fbeta_002ftransducers-system.html#The-data_002dlens_002fbeta_002ftransducers-system">1.1 <tt>data-lens/beta/transducers</tt></a></li>
+    <li><a id="toc-data_002dlens" href="The-data_002dlens-system.html#The-data_002dlens-system">1.2 <tt>data-lens</tt></a></li>
   </ul></li>
-  <li><a name="toc-Files-1" href="Files.html#Files">2 Files</a>
+  <li><a id="toc-Files-1" href="Files.html#Files">2 Files</a>
   <ul class="no-bullet">
-    <li><a name="toc-Lisp" href="Lisp-files.html#Lisp-files">2.1 Lisp</a>
+    <li><a id="toc-Lisp" href="Lisp-files.html#Lisp-files">2.1 Lisp</a>
     <ul class="no-bullet">
-      <li><a name="toc-data_002dlens_002easd" href="The-data_002dlens_002easd-file.html#The-data_002dlens_2024asd-file">2.1.1 <tt>data-lens.asd</tt></a></li>
-      <li><a name="toc-data_002dlens_002fpackage_002elisp" href="The-data_002dlens_002fpackage_002elisp-file.html#The-data_002dlens_002fpackage_2024lisp-file">2.1.2 <tt>data-lens/package.lisp</tt></a></li>
-      <li><a name="toc-data_002dlens_002foptics_002elisp" href="The-data_002dlens_002foptics_002elisp-file.html#The-data_002dlens_002foptics_2024lisp-file">2.1.3 <tt>data-lens/optics.lisp</tt></a></li>
-      <li><a name="toc-data_002dlens_002flens_002elisp" href="The-data_002dlens_002flens_002elisp-file.html#The-data_002dlens_002flens_2024lisp-file">2.1.4 <tt>data-lens/lens.lisp</tt></a></li>
+      <li><a id="toc-data_002dlens_002easd" href="The-data_002dlens_002easd-file.html#The-data_002dlens_2024asd-file">2.1.1 <tt>data-lens.asd</tt></a></li>
+      <li><a id="toc-data_002dlens_002fbeta_002ftransducers_002fpackage_002elisp" href="The-data_002dlens_002fbeta_002ftransducers_002fpackage_002elisp-file.html#The-data_002dlens_002fbeta_002ftransducers_002fpackage_2024lisp-file">2.1.2 <tt>data-lens/beta/transducers/package.lisp</tt></a></li>
+      <li><a id="toc-data_002dlens_002fbeta_002ftransducers_002ftransducer_002dprotocol_002elisp" href="The-data_002dlens_002fbeta_002ftransducers_002ftransducer_002dprotocol_002elisp-file.html#The-data_002dlens_002fbeta_002ftransducers_002ftransducer_002dprotocol_2024lisp-file">2.1.3 <tt>data-lens/beta/transducers/transducer-protocol.lisp</tt></a></li>
+      <li><a id="toc-data_002dlens_002fbeta_002ftransducers_002ftransducers_002elisp" href="The-data_002dlens_002fbeta_002ftransducers_002ftransducers_002elisp-file.html#The-data_002dlens_002fbeta_002ftransducers_002ftransducers_2024lisp-file">2.1.4 <tt>data-lens/beta/transducers/transducers.lisp</tt></a></li>
+      <li><a id="toc-data_002dlens_002fbeta_002ftransducers_002flazy_002dsequence_002elisp" href="The-data_002dlens_002fbeta_002ftransducers_002flazy_002dsequence_002elisp-file.html#The-data_002dlens_002fbeta_002ftransducers_002flazy_002dsequence_2024lisp-file">2.1.5 <tt>data-lens/beta/transducers/lazy-sequence.lisp</tt></a></li>
+      <li><a id="toc-data_002dlens_002fpackage_002elisp" href="The-data_002dlens_002fpackage_002elisp-file.html#The-data_002dlens_002fpackage_2024lisp-file">2.1.6 <tt>data-lens/package.lisp</tt></a></li>
+      <li><a id="toc-data_002dlens_002foptics_002elisp" href="The-data_002dlens_002foptics_002elisp-file.html#The-data_002dlens_002foptics_2024lisp-file">2.1.7 <tt>data-lens/optics.lisp</tt></a></li>
+      <li><a id="toc-data_002dlens_002flens_002elisp" href="The-data_002dlens_002flens_002elisp-file.html#The-data_002dlens_002flens_2024lisp-file">2.1.8 <tt>data-lens/lens.lisp</tt></a></li>
     </ul></li>
   </ul></li>
-  <li><a name="toc-Packages-1" href="Packages.html#Packages">3 Packages</a>
+  <li><a id="toc-Packages-1" href="Packages.html#Packages">3 Packages</a>
   <ul class="no-bullet">
-    <li><a name="toc-data_002dlens-1" href="The-data_002dlens-package.html#The-data_002dlens-package">3.1 <tt>data-lens</tt></a></li>
-    <li><a name="toc-data_002dlens_002epackage" href="The-data_002dlens_002epackage-package.html#The-data_002dlens_2024package-package">3.2 <tt>data-lens.package</tt></a></li>
-    <li><a name="toc-data_002dlens_002elenses" href="The-data_002dlens_002elenses-package.html#The-data_002dlens_2024lenses-package">3.3 <tt>data-lens.lenses</tt></a></li>
+    <li><a id="toc-data_002dlens-1" href="The-data_002dlens-package.html#The-data_002dlens-package">3.1 <tt>data-lens</tt></a></li>
+    <li><a id="toc-data_002dlens_002etransducers" href="The-data_002dlens_002etransducers-package.html#The-data_002dlens_2024transducers-package">3.2 <tt>data-lens.transducers</tt></a></li>
+    <li><a id="toc-data_002dlens_002epackage" href="The-data_002dlens_002epackage-package.html#The-data_002dlens_2024package-package">3.3 <tt>data-lens.package</tt></a></li>
+    <li><a id="toc-data_002dlens_002elenses" href="The-data_002dlens_002elenses-package.html#The-data_002dlens_2024lenses-package">3.4 <tt>data-lens.lenses</tt></a></li>
+    <li><a id="toc-data_002dlens_002etransducers_002einternals" href="The-data_002dlens_002etransducers_002einternals-package.html#The-data_002dlens_2024transducers_2024internals-package">3.5 <tt>data-lens.transducers.internals</tt></a></li>
   </ul></li>
-  <li><a name="toc-Definitions-1" href="Definitions.html#Definitions">4 Definitions</a>
+  <li><a id="toc-Definitions-1" href="Definitions.html#Definitions">4 Definitions</a>
   <ul class="no-bullet">
-    <li><a name="toc-Exported-definitions-1" href="Exported-definitions.html#Exported-definitions">4.1 Exported definitions</a>
+    <li><a id="toc-Exported-definitions-1" href="Exported-definitions.html#Exported-definitions">4.1 Exported definitions</a>
     <ul class="no-bullet">
-      <li><a name="toc-Macros" href="Exported-macros.html#Exported-macros">4.1.1 Macros</a></li>
-      <li><a name="toc-Functions" href="Exported-functions.html#Exported-functions">4.1.2 Functions</a></li>
-      <li><a name="toc-Generic-functions" href="Exported-generic-functions.html#Exported-generic-functions">4.1.3 Generic functions</a></li>
+      <li><a id="toc-Macros" href="Exported-macros.html#Exported-macros">4.1.1 Macros</a></li>
+      <li><a id="toc-Functions" href="Exported-functions.html#Exported-functions">4.1.2 Functions</a></li>
+      <li><a id="toc-Generic-functions" href="Exported-generic-functions.html#Exported-generic-functions">4.1.3 Generic functions</a></li>
+      <li><a id="toc-Classes" href="Exported-classes.html#Exported-classes">4.1.4 Classes</a></li>
     </ul></li>
-    <li><a name="toc-Internal-definitions-1" href="Internal-definitions.html#Internal-definitions">4.2 Internal definitions</a>
+    <li><a id="toc-Internal-definitions-1" href="Internal-definitions.html#Internal-definitions">4.2 Internal definitions</a>
     <ul class="no-bullet">
-      <li><a name="toc-Macros-1" href="Internal-macros.html#Internal-macros">4.2.1 Macros</a></li>
-      <li><a name="toc-Functions-1" href="Internal-functions.html#Internal-functions">4.2.2 Functions</a></li>
-      <li><a name="toc-Generic-functions-1" href="Internal-generic-functions.html#Internal-generic-functions">4.2.3 Generic functions</a></li>
-      <li><a name="toc-Classes" href="Internal-classes.html#Internal-classes">4.2.4 Classes</a></li>
+      <li><a id="toc-Macros-1" href="Internal-macros.html#Internal-macros">4.2.1 Macros</a></li>
+      <li><a id="toc-Functions-1" href="Internal-functions.html#Internal-functions">4.2.2 Functions</a></li>
+      <li><a id="toc-Generic-functions-1" href="Internal-generic-functions.html#Internal-generic-functions">4.2.3 Generic functions</a></li>
+      <li><a id="toc-Classes-1" href="Internal-classes.html#Internal-classes">4.2.4 Classes</a></li>
     </ul></li>
   </ul></li>
-  <li><a name="toc-Indexes-1" href="Indexes.html#Indexes">Appendix A Indexes</a>
+  <li><a id="toc-Indexes-1" href="Indexes.html#Indexes">Appendix A Indexes</a>
   <ul class="no-bullet">
-    <li><a name="toc-Concepts" href="Concept-index.html#Concept-index">A.1 Concepts</a></li>
-    <li><a name="toc-Functions-2" href="Function-index.html#Function-index">A.2 Functions</a></li>
-    <li><a name="toc-Variables" href="Variable-index.html#Variable-index">A.3 Variables</a></li>
-    <li><a name="toc-Data-types" href="Data-type-index.html#Data-type-index">A.4 Data types</a></li>
+    <li><a id="toc-Concepts" href="Concept-index.html#Concept-index" rel="index">A.1 Concepts</a></li>
+    <li><a id="toc-Functions-2" href="Function-index.html#Function-index" rel="index">A.2 Functions</a></li>
+    <li><a id="toc-Variables" href="Variable-index.html#Variable-index" rel="index">A.3 Variables</a></li>
+    <li><a id="toc-Data-types" href="Data-type-index.html#Data-type-index" rel="index">A.4 Data types</a></li>
   </ul></li>
 </ul>
 </div>
@@ -149,28 +148,26 @@ ul.no-bullet {list-style: none}
 
 
 
-<a name="Top"></a>
-<div class="header">
+<span id="Top"></span><div class="header">
 <p>
-Next: <a href="Systems.html#Systems" accesskey="n" rel="next">Systems</a>, Previous: <a href="../dir/index.html" accesskey="p" rel="prev">(dir)</a>, Up: <a href="../dir/index.html" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Indexes.html#Indexes" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Systems.html" accesskey="n" rel="next">Systems</a>, Previous: <a href="../dir/index.html" accesskey="p" rel="prev">(dir)</a>, Up: <a href="../dir/index.html" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Indexes.html" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="The-data_002dlens-Reference-Manual"></a>
-<h1 class="top">The data-lens Reference Manual</h1>
-<p>This is the data-lens Reference Manual,
+<span id="The-data_002dlens_002fbeta_002ftransducers-Reference-Manual"></span><h1 class="top">The data-lens/beta/transducers Reference Manual</h1>
+<p>This is the data-lens/beta/transducers Reference Manual,
 generated automatically by Declt version 3.0 &quot;Montgomery Scott&quot;
-on Mon Oct 12 20:22:22 2020 GMT-8.
+on Wed Jan 06 14:24:28 2021 GMT-8.
 </p>
 <table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top">&bull; <a href="Systems.html#Systems" accesskey="1">Systems</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The systems documentation
+<tr><td align="left" valign="top">&bull; <a href="Systems.html" accesskey="1">Systems</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The systems documentation
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Files.html#Files" accesskey="2">Files</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The files documentation
+<tr><td align="left" valign="top">&bull; <a href="Files.html" accesskey="2">Files</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The files documentation
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Packages.html#Packages" accesskey="3">Packages</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The packages documentation
+<tr><td align="left" valign="top">&bull; <a href="Packages.html" accesskey="3">Packages</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The packages documentation
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Definitions.html#Definitions" accesskey="4">Definitions</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The symbols documentation
+<tr><td align="left" valign="top">&bull; <a href="Definitions.html" accesskey="4">Definitions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The symbols documentation
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Indexes.html#Indexes" accesskey="5">Indexes</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Concepts, functions, variables and data types
+<tr><td align="left" valign="top">&bull; <a href="Indexes.html" accesskey="5">Indexes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Concepts, functions, variables and data types
 </td></tr>
 </table>
 
@@ -179,7 +176,7 @@ on Mon Oct 12 20:22:22 2020 GMT-8.
 <hr>
 <div class="header">
 <p>
-Next: <a href="Systems.html#Systems" accesskey="n" rel="next">Systems</a>, Previous: <a href="../dir/index.html" accesskey="p" rel="prev">(dir)</a>, Up: <a href="../dir/index.html" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Indexes.html#Indexes" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Systems.html" accesskey="n" rel="next">Systems</a>, Previous: <a href="../dir/index.html" accesskey="p" rel="prev">(dir)</a>, Up: <a href="../dir/index.html" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Indexes.html" title="Index" rel="index">Index</a>]</p>
 </div>
 
 
