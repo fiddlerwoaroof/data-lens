@@ -231,6 +231,11 @@
                             else collect (cons nil next))
                       'vector)))))
 
+(defun-ct inc (inc)
+  (declare (optimize (speed 3)))
+  (lambda (base)
+    (+ base inc)))
+
 (defun-ct cumsum
     (&key (add-fun #'+) (key #'identity) (combine (lambda (x y) y x)) (zero 0))
   (lambda (seq)

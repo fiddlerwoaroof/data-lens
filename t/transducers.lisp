@@ -12,7 +12,8 @@
                                                   'data-lens.transducers:list-builder
                                                   '(1 2 3)))))
 
-(5am:def-test mv-mapping (:suite :data-lens.transducers)
+(5am:def-test mv-mapping (:suite :data-lens.transducers
+                          :depends-on mapping)
   (5am:is (equal '((2 0) (3 1) (4 2))
                  (data-lens.transducers:transduce (data-lens.transducers:mv-mapping
                                                    (lambda (it)
@@ -20,7 +21,8 @@
                                                   'data-lens.transducers:list-builder
                                                   '(1 2 3)))))
 
-(5am:def-test mv-selecting (:suite :data-lens.transducers)
+(5am:def-test mv-selecting (:suite :data-lens.transducers
+                            :depends-on mapping)
   (5am:is (equal '(2 4)
                  (data-lens.transducers:transduce (data-lens.transducers:mv-selecting
                                                    (lambda (it)
@@ -35,7 +37,8 @@
                                                   'data-lens.transducers:list-builder
                                                   '(1 2)))))
 
-(5am:def-test filtering (:suite :data-lens.transducers)
+(5am:def-test filtering (:suite :data-lens.transducers
+                         :depends-on mapping)
   (5am:is (equal '(1 3)
                  (data-lens.transducers:transduce (data-lens.transducers:filtering 'oddp)
                                                   'data-lens.transducers:list-builder
@@ -48,7 +51,8 @@
                                                   'data-lens.transducers:list-builder
                                                   '(1 2 3)))))
 
-(5am:def-test deduping (:suite :data-lens.transducers)
+(5am:def-test deduping (:suite :data-lens.transducers
+                        :depends-on mapping)
   (5am:is (equal '(1 2 1 2 3 4 1)
                  (data-lens.transducers:transduce (data-lens.transducers:deduping)
                                                   'data-lens.transducers:list-builder
@@ -67,7 +71,8 @@
                          (data-lens.transducers:repeating* third-number :count (+ 1 (random 3)))))
                   (list first-number second-number third-number)))))
 
-(5am:def-test compressing-runs (:suite :data-lens.transducers)
+(5am:def-test compressing-runs (:suite :data-lens.transducers
+                                :depends-on mapping)
   (5am:is (equal '(1 2 1 2 3 4 1)
                  (data-lens.transducers:transduce (data-lens.transducers:compressing-runs)
                                                   'data-lens.transducers:list-builder
@@ -107,23 +112,15 @@
              (2 4 4 4) (2 5 5 5)
              (3 6 6 6))))))
 
-(5am:def-test collecting (:suite :data-lens.transducers)
-  (5am:is (equal '(1 3 6 9 13 18 22 27 33 40)
-                 (data-lens.transducers:transduce (data-lens:• (data-lens.transducers:taking 5)
-                                                               (data-lens.transducers:mapcatting 'identity)
-                                                               (data-lens.transducers::collecting '+))
-                                                  'data-lens.transducers:list-builder
-                                                  (loop for x from 1
-                                                        repeat 4
-                                                        collect (data-lens.transducers:iota :start x :count x))))))
-
-(5am:def-test catting (:suite :data-lens.transducers)
+(5am:def-test catting (:suite :data-lens.transducers
+                       :depends-on mapping)
   (5am:is (equal '(1 1 2 1 2 2 3 3 4 1)
                  (data-lens.transducers:transduce (data-lens.transducers:catting)
                                                   'data-lens.transducers:list-builder
                                                   '((1 1) (2 1 2) (2) (3 3) (4 1))))))
 
-(5am:def-test mapcatting (:suite :data-lens.transducers)
+(5am:def-test mapcatting (:suite :data-lens.transducers
+                          :depends-on catting)
   (5am:is (equal '(1 1 2 1 2 2 3 3 4 1)
                  (data-lens.transducers:transduce (data-lens.transducers:mapcatting 'list)
                                                   'data-lens.transducers:list-builder
@@ -135,23 +132,41 @@
                                                         (data-lens.transducers:iota :count 2)
                                                         (data-lens.transducers:iota :count 3))))))
 
-(5am:def-test splitting (:suite :data-lens.transducers)
+(5am:def-test collecting (:suite :data-lens.transducers
+                          :depends-on mapcatting)
+  (5am:is (equal '(1 3 6 9 13 18 22 27 33 40)
+                 (data-lens.transducers:transduce (data-lens:• (data-lens.transducers:taking 5)
+                                                               (data-lens.transducers:mapcatting 'identity)
+                                                               (data-lens.transducers::collecting '+))
+                                                  'data-lens.transducers:list-builder
+                                                  (loop for x from 1
+                                                        repeat 4
+                                                        collect
+                                                        (data-lens.transducers:iota :start x
+                                                                                    :count x))))))
+
+(5am:def-test splitting (:suite :data-lens.transducers
+                         :depends-on mapping)
   (5am:is (equal '((2 0) (3 1) (4 2))
                  (data-lens.transducers:transduce (data-lens.transducers:splitting '1+ '1-)
                                                   'data-lens.transducers:list-builder
                                                   '(1 2 3)))))
 
-(5am:def-test transducer-composition (:suite :data-lens.transducers)
-  (5am:is (equal '(3 5 7)
+(5am:def-test transducer-composition (:suite :data-lens.transducers
+                                      :depends-on (and filtering mapping))
+  (5am:is (equal '(7)
                  (data-lens.transducers:transduce (data-lens:•
+                                                   (data-lens.transducers:filtering #'oddp)
                                                    (data-lens.transducers:mapping
                                                     (lambda (x)
                                                       (* 2 x)))
-                                                   (data-lens.transducers:mapping '1+))
+                                                   (data-lens.transducers:mapping '1+)
+                                                   (data-lens.transducers:dropping 1))
                                                   'data-lens.transducers:list-builder
                                                   '(1 2 3))))
-  (5am:is (equal '(3 5 7)
+  (5am:is (equal '(3 5)
                  (data-lens.transducers:transduce (data-lens:•
+                                                   (data-lens.transducers:taking 2)
                                                    (data-lens.transducers:mapping
                                                     (lambda (x)
                                                       (* 2 x)))
@@ -159,7 +174,9 @@
                                                   'data-lens.transducers:list-builder
                                                   '(1 2 3)))))
 
-(5am:def-test complicated (:suite :data-lens.transducers)
+(5am:def-test complicated (:suite :data-lens.transducers
+                           :depends-on (and catting mapping filtering splitting
+                                            transducer-composition))
   (let ((result (data-lens.transducers:transduce
                  (data-lens:•
                   (data-lens.transducers:catting)
