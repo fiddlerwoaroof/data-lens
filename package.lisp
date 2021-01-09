@@ -18,7 +18,8 @@
            #:compress-runs #:combine-matching-lists #:sorted #:applicable-when
            #:of-length #:of-min-length #:of-max-length #:transform-head
            #:maximizing #:zipping #:applying #:splice-elt #:transform-elt #:denest
-           #:op #:defalias #:<> #:<>1 #:== #:• #:suffixp #:functionalize))
+           #:op #:defalias #:<> #:<>1 #:== #:• #:suffixp #:functionalize
+           #:inc))
 
 (defpackage :data-lens.transducers.internals
   (:use :cl)
@@ -29,11 +30,11 @@
   (:use :cl)
   (:import-from :data-lens.transducers.internals
                 #:unwrap #:init #:reduce-generic #:stepper #:transduce
-                #:exit-early)
+                #:exit-early #:into)
   (:export #:mapping :filtering :deduping :catting :splitting
            #:exit-early :taking :dropping :transduce
            #:hash-table-builder :vector-builder :list-builder
            #:collecting #:mv-mapping #:mv-selecting
            #:hash-table-select #:mv-filtering #:mapcatting
            #:lazy-sequence #:compressing-runs #:iota
-           #:repeating #:repeating*))
+           #:repeating #:repeating* #:into))

@@ -155,6 +155,9 @@
      (destructuring-bind (k v) next
        (setf (gethash k acc) v))
      acc)))
+(defmethod data-lens.transducers.internals:builder-for-input ((inp hash-table))
+  (values 'hash-table-builder
+          (alexandria:copy-hash-table inp)))
 
 (defmethod init ((it (eql 'vector-builder)))
   (make-array 0 :fill-pointer t :adjustable t))
@@ -163,6 +166,12 @@
     ((acc next)
      (vector-push-extend next acc)
      acc)))
+(defmethod data-lens.transducers.internals:builder-for-input ((inp vector))
+  (values 'vector-builder
+          (make-array (array-dimensions inp)
+                      :initial-contents inp
+                      :fill-pointer t)))
+
 
 (defmethod init ((it (eql 'list-builder)))
   (declare (optimize (speed 3)))
@@ -180,6 +189,13 @@
      acc)))
 (defmethod unwrap ((it (eql 'list-builder)) obj)
   (cdr (elt obj 0)))
+(defmethod data-lens.transducers.internals:builder-for-input ((inp list))
+  (let ((builder 'list-builder))
+    (values builder
+            (if inp
+                (let ((inp (cons nil (copy-list inp))))
+                  (vector inp (last inp)))
+                (init builder)))))
 
 (defmacro comment (&body body)
   (declare (ignore body))

@@ -195,3 +195,65 @@
                    (funcall (data-lens:• (data-lens:sorted '< :key 'car)
                                          (data-lens:sorted '< :key 'cdr))
                             (alexandria:hash-table-alist result))))))
+
+(5am:def-test into (:suite :data-lens.transducers :depends-on mapping)
+  (5am:is (equal '(0 1 2)
+                 (data-lens.transducers:into '()
+                                             (data-lens.transducers:taking 3)
+                                             (data-lens.transducers:iota))))
+
+  (5am:is (equal '(0 1 2)
+                 (data-lens.transducers:into '(0 1 2)
+                                             (data-lens.transducers:taking 0)
+                                             (data-lens.transducers:iota))))
+
+  (5am:is (equal '()
+                 (data-lens.transducers:into '()
+                                             (data-lens.transducers:taking 0)
+                                             (data-lens.transducers:iota))))
+
+  (5am:is (equal '()
+                 (data-lens.transducers:into '()
+                                             (data-lens.transducers:mapping #'identity)
+                                             #())))
+
+  (5am:is (equalp (alexandria:plist-hash-table '(:p 0 :l 1 :i 2 :s 3 :t 4))
+                  (let ((count 0))
+                    (data-lens.transducers:into (make-hash-table)
+                                                (data-lens.transducers:mapping
+                                                 (lambda (it)
+                                                   (prog1 (list it count)
+                                                     (incf count))))
+                                                '(:p :l :i :s :t)))))
+
+  (loop for type in '(vector list)
+        do (5am:is (equalp #(1 2 3 4 5 6)
+                           (data-lens.transducers:into #(1 2 3)
+                                                       (data-lens.transducers:mapping
+                                                        (data-lens:inc 4))
+                                                       (coerce #(0 1 2) type))))
+           (5am:is (equal '(1 2 3 4 5 6)
+                          (data-lens.transducers:into '(1 2 3)
+                                                      (data-lens.transducers:mapping
+                                                       (data-lens:inc 4))
+                                                      (coerce #(0 1 2) type))))
+
+           (5am:is (equal '(1 2 3 4 5 6)
+                          (data-lens.transducers:into '(1 2 3)
+                                                      (data-lens.transducers:mapping
+                                                       (data-lens:inc 4))
+                                                      (coerce #(0 1 2) type))))
+           (5am:is (equal '(1 2 3 4 5 6)
+                          (data-lens.transducers:into '(1 2 3)
+                                                      (data-lens:•
+                                                       (data-lens.transducers:taking 3)
+                                                       (data-lens.transducers:mapping
+                                                        (data-lens:inc 4)))
+                                                      (data-lens.transducers:iota))))
+           (5am:is (equalp #(1 2 3 4 5 6)
+                           (data-lens.transducers:into #(1 2 3)
+                                                       (data-lens:•
+                                                        (data-lens.transducers:taking 3)
+                                                        (data-lens.transducers:mapping
+                                                         (data-lens:inc 4)))
+                                                       (data-lens.transducers:iota))))))
