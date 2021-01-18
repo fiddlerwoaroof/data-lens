@@ -24,7 +24,7 @@
 (defpackage :data-lens.transducers.internals
   (:use :cl)
   (:export #:unwrap #:init #:reduce-generic #:stepper #:transduce
-           #:exit-early))
+           #:exit-early #:into #:builder-for-input))
 
 (defpackage :data-lens.transducers
   (:use :cl)
