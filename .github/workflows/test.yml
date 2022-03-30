@@ -33,7 +33,8 @@ jobs:
           nix profile install nixpkgs\#sbcl
           cd
           wget 'https://beta.quicklisp.org/quicklisp.lisp'
-          sbcl --load quicklisp.lisp \
+          sbcl --eval '(require :uiop)' \
+               --load quicklisp.lisp \
                --eval '(handler-case (progn (error "fail!") (quicklisp-quickstart:install)) (error () (uiop:quit 40)))' \
                --quit
 
