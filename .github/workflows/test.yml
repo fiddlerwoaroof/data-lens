@@ -37,7 +37,7 @@ jobs:
           command -v sbcl || exit 36
 
           wget 'https://beta.quicklisp.org/quicklisp.lisp'
-          [[ -f ./quicklisp.lisp" ]] || exit 37
+          [[ -f ./quicklisp.lisp ]] || exit 37
 
           sbcl --eval '(require :uiop)' \
                --load quicklisp.lisp \
