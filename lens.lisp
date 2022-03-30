@@ -125,6 +125,12 @@
     (declare (dynamic-extent map))
     (extract-key map key)))
 
+(defun keys (key &rest keys)
+  (lambda (map)
+    (loop for key in (cons key keys)
+          for cur = (extract-key map key) then (extract-key cur key)
+          finally (return cur))))
+
 (defun-ct regex-match (regex)
   (lambda (data)
     (cl-ppcre:scan-to-strings regex data)))
