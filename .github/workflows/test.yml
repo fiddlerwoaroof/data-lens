@@ -34,7 +34,7 @@ jobs:
           cd
           wget 'https://beta.quicklisp.org/quicklisp.lisp'
           sbcl --load quicklisp.lisp \
-               --eval '(quicklisp-quickstart:install)' \
+               --eval '(handler-case (progn (error "fail!") (quicklisp-quickstart:install)) (error () (quit 40)))' \
                --quit
 
       - name: run tests
