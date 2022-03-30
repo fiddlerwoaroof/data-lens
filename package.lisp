@@ -18,13 +18,14 @@
            #:compress-runs #:combine-matching-lists #:sorted #:applicable-when
            #:of-length #:of-min-length #:of-max-length #:transform-head
            #:maximizing #:zipping #:applying #:splice-elt #:transform-elt #:denest
-           #:op #:defalias #:<> #:<>1 #:== #:• #:suffixp #:functionalize
-           #:inc))
+           #:op #:defalias #:<> #:<>1 #:== #:• #:suffixp #:functionalize #:inc
+           #:group-by #:keys))
 
 (defpackage :data-lens.transducers.internals
   (:use :cl)
   (:export #:unwrap #:init #:reduce-generic #:stepper #:transduce
-           #:exit-early))
+           #:exit-early #:into
+           #:builder-for-input))
 
 (defpackage :data-lens.transducers
   (:use :cl)
