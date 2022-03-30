@@ -11,7 +11,6 @@
 
 (defpackage :data-lens
   (:use :cl)
-  (:import-from #:serapeum #:op #:defalias)
   (:export #:regex-match #:include #:exclude #:pick #:key-transform
            #:combine #:derive #:cumsum #:over #:on #:shortcut
            #:defun-ct #:key #:extract-key #:element #:let-fn #:juxt

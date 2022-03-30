@@ -8,8 +8,7 @@
   :author "Edward Langley <el-cl@elangley.org>"
   :license "MIT"
   :depends-on (:cl-ppcre
-               :alexandria
-               :serapeum)
+               :alexandria)
   :serial t
   :components ((:file "package")
                (:file "optics")

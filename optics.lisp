@@ -151,7 +151,7 @@ contain the new value at the location focused by the lens."
       (fmap (lambda (new)
               (cons (cons key new)
                     alist))
-            (funcall cb (serapeum:assocdr key alist))))))
+            (funcall cb (cdr (assoc key alist)))))))
 
 (defun make-alist-lens (key)
   "A lens for updating a alist, discarding previous values"
@@ -162,7 +162,7 @@ contain the new value at the location focused by the lens."
                                        alist)
                                  :key #'car
                                  :from-end t))
-            (funcall cb (serapeum:assocdr key alist))))))
+            (funcall cb (cdr (assoc key alist)))))))
 
 (defun make-list-lens (index)
   "A lens for updating a sequence"
