@@ -34,7 +34,7 @@ jobs:
           cd
           wget 'https://beta.quicklisp.org/quicklisp.lisp'
           sbcl --load quicklisp.lisp \
-               --eval '(ql-util:without-prompting (quicklisp-quickstart:install))' \
+               --eval '(quicklisp-quickstart:install)' \
                --quit
 
       - name: run tests
