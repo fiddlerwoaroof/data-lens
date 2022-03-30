@@ -31,14 +31,17 @@ jobs:
       - name: setup deps
         run: |
           set -x
-
-          # nix profile install nixpkgs\#sbcl
-          command -v sbcl || exit 38
           cd
+
+          nix profile install nixpkgs\#sbcl
+          command -v sbcl || exit 36
+
           wget 'https://beta.quicklisp.org/quicklisp.lisp'
+          [[ -f ./quicklisp.lisp" ]] || exit 37
+
           sbcl --eval '(require :uiop)' \
                --load quicklisp.lisp \
-               --eval '(handler-case (quicklisp-quickstart:install) (error () (uiop:quit 40)))' \
+               --eval '(handler-case (quicklisp-quickstart:install) (error () (uiop:quit 38)))' \
                --quit
           [[ -f "$HOME"/quicklisp/setup.lisp ]] || exit 39
 
