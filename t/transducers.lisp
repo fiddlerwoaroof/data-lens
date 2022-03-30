@@ -256,4 +256,5 @@
                                                         (data-lens.transducers:taking 3)
                                                         (data-lens.transducers:mapping
                                                          (data-lens:inc 4)))
-                                                       (data-lens.transducers:iota))))))
+                                                       (data-lens.transducers:iota))))
+           (5am:is (equalp nil t))))
