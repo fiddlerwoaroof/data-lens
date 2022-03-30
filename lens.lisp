@@ -269,10 +269,16 @@
          (apply ,fsym ,@args ,seq)))))
 
 (defun-ct on (fun key)
+  "Transform arguments with KEY and then apply FUN
+
+> (eql (funcall (on 'equal 'car)
+>          '(\"a\" 1 2)
+>          '(\"a\" 2 e))
+>      t)"
   (let ((fun (functionalize fun))
         (key (functionalize key)))
-    (lambda (it)
-      (funcall fun (funcall key it)))))
+    (lambda (&rest its)
+      (funcall fun (mapcar key its)))))
 
 (defun filler (length1 length2 fill-value)
   (if (< length1 length2)
