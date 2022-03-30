@@ -6,7 +6,7 @@
                          "composable functions, modeled on lenses and"
                          "transducers")
   :author "Edward Langley <el-cl@elangley.org>"
-  :license "MIT"
+  :license "Apache v2"
   :depends-on (:cl-ppcre
                :alexandria)
   :serial t
@@ -18,7 +18,7 @@
   :description #.(format nil "~@{~a~^ ~}"
                          "A collection of transducers to reduce stream-manipulation overhead")
   :author "Edward Langley <el-cl@elangley.org>"
-  :license "MIT"
+  :license "Apache v2"
   :depends-on (:data-lens
                :alexandria
                :serapeum)
@@ -32,7 +32,7 @@
 (asdf:defsystem #:data-lens/transducers/test
   :description "tests for the transducers"
   :author "Edward Langley <el-cl@elangley.org>"
-  :license "MIT"
+  :license "Apache v2"
   :depends-on (:data-lens/beta/transducers
                :fiveam)
   :serial t
