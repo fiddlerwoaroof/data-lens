@@ -30,7 +30,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: setup deps
         run: |
-          nix profile install sbcl
+          nix profile install nixpkgs\#sbcl
           cd
           wget 'https://beta.quicklisp.org/quicklisp.lisp'
           sbcl --load quicklisp.lisp \
