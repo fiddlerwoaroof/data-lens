@@ -30,12 +30,15 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: setup deps
         run: |
-          nix profile install nixpkgs\#sbcl
+          set -x
+
+          # nix profile install nixpkgs\#sbcl
           command -v sbcl || exit 38
           cd
           wget 'https://beta.quicklisp.org/quicklisp.lisp'
           sbcl --eval '(require :uiop)' \
                --load quicklisp.lisp \
+               --eval '(handler-case (quicklisp-quickstart:install) (error () (uiop:quit 40)))' \
                --quit
           [[ -f "$HOME"/quicklisp/setup.lisp ]] || exit 39
 
