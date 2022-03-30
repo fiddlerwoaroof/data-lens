@@ -20,7 +20,8 @@
   :author "Edward Langley <el-cl@elangley.org>"
   :license "MIT"
   :depends-on (:data-lens
-               :alexandria)
+               :alexandria
+               :serapeum)
   :serial t
   :in-order-to ((test-op (test-op :data-lens/transducers/test)))
   :components ((:file "package")
