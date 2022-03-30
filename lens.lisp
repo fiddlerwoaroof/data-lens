@@ -323,6 +323,20 @@
                           it
                           (alexandria:iota it-length))))))))
 
+(defun-ct group-by (fn &key (test 'equal))
+  (lambda (seq)
+    (let ((groups (make-hash-table :test test)))
+      (map nil
+           (lambda (it)
+             (push it
+                   (gethash (funcall fn it)
+                            groups)))
+           seq)
+      (mapcar (lambda (it)
+                (cons (car it)
+                      (reverse (cdr it))))
+              (alexandria:hash-table-alist groups)))))
+
 #+nil
 (defmacro <> (arity &rest funs)
   (let ((arg-syms (loop repeat arity collect (gensym))))
