@@ -13,7 +13,7 @@
   (5am:is (equal nil
                  (funcall (data-lens:== (list "1"))
                           (list "1"))))
-  (5am:is (equal nil
+  (5am:is (equal t
                  (funcall (data-lens:== (list "1") :test #'equal)
                           (list "1")))))
 
