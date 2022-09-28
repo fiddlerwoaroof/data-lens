@@ -299,7 +299,7 @@
   (let ((fun (functionalize fun))
         (key (functionalize key)))
     (lambda (&rest its)
-      (funcall fun (mapcar key its)))))
+      (apply fun (mapcar key its)))))
 
 (defun filler (length1 length2 fill-value)
   (if (< length1 length2)
