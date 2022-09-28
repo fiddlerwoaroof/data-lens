@@ -10,9 +10,21 @@
   :depends-on (:cl-ppcre
                :alexandria)
   :serial t
+  :in-order-to ((test-op (test-op :data-lens/test)))
   :components ((:file "package")
                (:file "optics")
                (:file "lens")))
+
+(asdf:defsystem #:data-lens/test
+  :description "tests for the transducers"
+  :author "Edward Langley <el-cl@elangley.org>"
+  :license "Apache v2"
+  :depends-on (:data-lens
+               :fiveam)
+  :serial t
+  :perform (test-op (o c) (symbol-call :fiveam '#:run! :data-lens.lens))
+  :components ((:module "t"
+                :components ((:file "lens")))))
 
 (asdf:defsystem #:data-lens/beta/transducers
   :description #.(format nil "~@{~a~^ ~}"
@@ -37,6 +49,6 @@
                :fiveam)
   :serial t
   :perform (test-op (o c) (unless (symbol-call :fiveam '#:run! :data-lens.transducers)
-                            (quit 41)))
+                            (quit 42)))
   :components ((:module "t"
                 :components ((:file "transducers")))))

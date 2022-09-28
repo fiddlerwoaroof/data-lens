@@ -50,6 +50,8 @@ jobs:
           cd "$GITHUB_WORKSPACE"
           sbcl --load "$HOME/quicklisp/setup.lisp" \
                --eval "(mapcar 'asdf:load-asd (directory \"*.asd\"))" \
+               --eval "(ql:quickload :data-lens/test)" \
+               --eval "(asdf:test-system :data-lens/test)" \
                --eval "(ql:quickload :data-lens/transducers/test)" \
                --eval "(asdf:test-system :data-lens/transducers/test)" \
                --quit
