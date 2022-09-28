@@ -111,6 +111,21 @@
         (funcall fun it)
         it)))
 
+(defmacro conj (&rest fns)
+  (let ((dat (gensym "dat")))
+    `(lambda (,dat)
+       (and ,@(mapcar (lambda (fn)
+                        `(funcall ,fn ,dat))
+                      fns)))))
+
+(defmacro disj (&rest fns)
+  (let ((dat (gensym "dat")))
+    `(lambda (,dat)
+       (or ,@(mapcar (lambda (fn)
+                       `(funcall ,fn ,dat))
+                     fns)))))
+
+
 (defun-ct sorted (comparator &rest r &key key)
   (declare (ignore key))
   (lambda (it)
