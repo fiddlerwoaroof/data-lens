@@ -22,7 +22,9 @@
   :depends-on (:data-lens
                :fiveam)
   :serial t
-  :perform (test-op (o c) (symbol-call :fiveam '#:run! :data-lens.lens))
+  :perform (test-op (o c)
+                    (unless (symbol-call :fiveam '#:run! :data-lens.lens)
+                      (error "some tests failed")))
   :components ((:module "t"
                 :components ((:file "lens")))))
 
@@ -49,6 +51,6 @@
                :fiveam)
   :serial t
   :perform (test-op (o c) (unless (symbol-call :fiveam '#:run! :data-lens.transducers)
-                            (quit 42)))
+                            (error "some tests failed")))
   :components ((:module "t"
                 :components ((:file "transducers")))))
