@@ -22,7 +22,8 @@
   :license "Apache v2"
   :depends-on (:data-lens
                :fiveam
-               :string-case)
+               :string-case
+               :serapeum)
   :serial t
   :perform (test-op (o c)
                     (unless (symbol-call :fiveam '#:run! :data-lens.lens)
