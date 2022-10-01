@@ -20,7 +20,7 @@
            #:transform-head #:maximizing #:zipping #:applying
            #:splice-elt #:transform-elt #:denest #:op #:defalias #:<>
            #:<>1 #:== #:• #:suffixp #:functionalize #:inc #:group-by
-           #:keys #:conj #:disj))
+           #:keys #:conj #:disj #:delay))
 
 (defpackage :data-lens.transducers.internals
   (:use :cl)

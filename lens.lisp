@@ -102,7 +102,7 @@
 
 (defun-ct of-max-length (len)
   (lambda (it)
-    (>= (length it)
+    (<= (length it)
         len)))
 
 (defun-ct applicable-when (fun test)
@@ -114,6 +114,7 @@
 (defmacro conj (&rest fns)
   (let ((dat (gensym "dat")))
     `(lambda (,dat)
+       (declare (ignorable ,dat))
        (and ,@(mapcar (lambda (fn)
                         `(funcall ,fn ,dat))
                       fns)))))
@@ -225,6 +226,13 @@
              (mapcar (lambda (f)
                        (apply f args))
                      r)))))
+
+(defun delay ()
+  "Return a function that always returns the last thing it was called with"
+  (let ((result nil))
+    (lambda (v)
+      (prog1 result
+        (setf result v)))))
 
 (defun =>> (fun1 fun2)
   (lambda (i)
