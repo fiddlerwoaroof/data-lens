@@ -8,7 +8,8 @@
   :author "Edward Langley <el-cl@elangley.org>"
   :license "Apache v2"
   :depends-on (:cl-ppcre
-               :alexandria)
+               :alexandria
+               (:require :sb-cover))
   :serial t
   :in-order-to ((test-op (test-op :data-lens/test)))
   :components ((:file "package")
@@ -20,7 +21,8 @@
   :author "Edward Langley <el-cl@elangley.org>"
   :license "Apache v2"
   :depends-on (:data-lens
-               :fiveam)
+               :fiveam
+               :string-case)
   :serial t
   :perform (test-op (o c)
                     (unless (symbol-call :fiveam '#:run! :data-lens.lens)
