@@ -9,6 +9,7 @@
   :license "Apache v2"
   :depends-on (:cl-ppcre
                :alexandria
+               #+(or)
                (:require :sb-cover))
   :serial t
   :in-order-to ((test-op (test-op :data-lens/test)))
