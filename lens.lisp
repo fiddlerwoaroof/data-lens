@@ -390,4 +390,6 @@
 (defmacro <>1 (&rest funs)
   `(alexandria:compose ,@funs))
 (defmacro • (&rest funs)
+    `(alexandria:compose ,@funs))
+(defmacro ∘ (&rest funs)
   `(alexandria:compose ,@funs))
