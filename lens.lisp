@@ -24,6 +24,16 @@
   (:method ((it function))
     it))
 
+(define-compiler-macro functionalize (&whole whole it)
+  (typecase it
+    (cons (destructuring-bind (h . tail) it
+            (declare (ignore tail))
+            (case h
+              (quote it)
+              (function it)
+              (t whole))))
+    (t whole)))
+
 ;;; TODO: consider making this wrap defalias?
 (defmacro shortcut (name function &body bound-args)
   `(eval-when (:load-toplevel :compile-toplevel :execute)
