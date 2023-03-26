@@ -63,11 +63,11 @@
                when (equal key a-key) do
                  (return (car value)))))))
 
-(defun-ct == (target &key (test 'eql))
+(defun == (target &key (test 'eql))
   (lambda (v)
     (funcall test target v)))
 
-(defun-ct deduplicate (&optional (test 'eql))
+(defun deduplicate (&optional (test 'eql))
   (lambda (it)
     (remove-duplicates it :test test)))
 
@@ -93,29 +93,29 @@
   (lambda (acc next)
     (matching-list-reducer test acc next)))
 
-(defun-ct compress-runs (&key (collector 'cons-new) (test 'eql) (key 'identity))
+(defun compress-runs (&key (collector 'cons-new) (test 'eql) (key 'identity))
   (lambda (it)
     (nreverse
      (reduce (funcall collector :test test :key key)
              it
              :initial-value ()))))
 
-(defun-ct of-length (len)
+(defun of-length (len)
   (lambda (it)
     (= (length it)
        len)))
 
-(defun-ct of-min-length (len)
+(defun of-min-length (len)
   (lambda (it)
     (>= (length it)
         len)))
 
-(defun-ct of-max-length (len)
+(defun of-max-length (len)
   (lambda (it)
     (<= (length it)
         len)))
 
-(defun-ct applicable-when (fun test)
+(defun applicable-when (fun test)
   (lambda (it)
     (if (funcall test it)
         (funcall fun it)
@@ -137,16 +137,16 @@
                      fns)))))
 
 
-(defun-ct sorted (comparator &rest r &key key)
+(defun sorted (comparator &rest r &key key)
   (declare (ignore key))
   (lambda (it)
     (apply #'stable-sort (copy-seq it) comparator r)))
 
-(defun-ct element (num)
+(defun element (num)
   (lambda (it)
     (elt it num)))
 
-(defun-ct key (key)
+(defun key (key)
   (lambda (map)
     (declare (dynamic-extent map))
     (extract-key map key)))
@@ -157,19 +157,19 @@
           for cur = (extract-key map key) then (extract-key cur key)
           finally (return cur))))
 
-(defun-ct regex-match (regex)
+(defun regex-match (regex)
   (lambda (data)
     (cl-ppcre:scan-to-strings regex data)))
 
-(defun-ct include (pred)
+(defun include (pred)
   (lambda (seq)
     (remove-if-not pred seq)))
 
-(defun-ct exclude (pred)
+(defun exclude (pred)
   (lambda (seq)
     (remove-if pred seq)))
 
-(defun-ct pick (selector)
+(defun pick (selector)
   (lambda (seq)
     (map 'list selector seq)))
 
@@ -177,13 +177,13 @@
   (lambda (it)
     (subseq it start end)))
 
-(defun-ct update (thing fun &rest args)
+(defun update (thing fun &rest args)
   (apply fun thing args))
 
 (define-modify-macro updatef (fun &rest args)
   update)
 
-(defun-ct suffixp (suffix &key (test 'eql test-p))
+(defun suffixp (suffix &key (test 'eql test-p))
   (lambda (it)
     (if test-p
         (alexandria:ends-with-subseq suffix
@@ -192,7 +192,7 @@
         (alexandria:ends-with-subseq suffix
                                      it))))
 
-(defun-ct transform-head (fun)
+(defun transform-head (fun)
   (lambda (it)
     (typecase it
       (list (list* (funcall fun (car it))
@@ -201,7 +201,7 @@
                 (prog1 result
                   (updatef (elt result 0) fun)))))))
 
-(defun-ct transform-tail (fun)
+(defun transform-tail (fun)
   (lambda (it)
     (typecase it
       (list (list* (car it)
@@ -211,25 +211,25 @@
                   (updatef (subseq result 1)
                            fun)))))))
 
-(defun-ct splice-elt (elt fun)
+(defun splice-elt (elt fun)
   (lambda (it)
     (append (subseq it 0 elt)
             (funcall fun (nth elt it))
             (subseq it (1+ elt)))))
 
-(defun-ct transform-elt (elt fun)
+(defun transform-elt (elt fun)
   (lambda (it)
     (append (subseq it 0 elt)
             (list (funcall fun (nth elt it)))
             (subseq it (1+ elt)))))
 
-(defun-ct key-transform (fun key-get key-set)
+(defun key-transform (fun key-get key-set)
   (lambda (it)
     (let ((key-val (funcall key-get it)))
       (funcall key-set
                (funcall fun key-val)))))
 
-(defun-ct juxt (fun1 &rest r)
+(defun juxt (fun1 &rest r)
   (lambda (&rest args)
     (list* (apply fun1 args)
            (when r
@@ -249,7 +249,7 @@
     (prog1 (funcall fun1 i)
       (funcall fun2))))
 
-(defun-ct derive (diff-fun &key (key #'identity))
+(defun derive (diff-fun &key (key #'identity))
   (lambda (seq)
     (typecase seq
       (list (cons (cons nil (car seq))
@@ -270,12 +270,12 @@
                             else collect (cons nil next))
                       'vector)))))
 
-(defun-ct inc (inc)
+(defun inc (inc)
   (declare (optimize (speed 3)))
   (lambda (base)
     (+ base inc)))
 
-(defun-ct cumsum
+(defun cumsum
     (&key (add-fun #'+) (key #'identity) (combine (lambda (x y) y x)) (zero 0))
   (lambda (seq)
     (nreverse
@@ -291,12 +291,12 @@
              seq
              :initial-value ()))))
 
-(defun-ct over (fun &key (result-type 'list))
+(defun over (fun &key (result-type 'list))
   (let ((fun (functionalize fun)))
     (lambda (seq)
       (map result-type fun seq))))
 
-(defun-ct denest (&key (result-type 'list))
+(defun denest (&key (result-type 'list))
   (lambda (seq)
     (apply #'concatenate result-type
            seq)))
@@ -312,7 +312,7 @@
        (lambda (,seq)
          (apply ,fsym ,@args ,seq)))))
 
-(defun-ct on (fun key)
+(defun on (fun key)
   "Transform arguments with KEY and then apply FUN
 
 > (eql (funcall (on 'equal 'car)
@@ -329,7 +329,7 @@
       (make-sequence 'vector (- length2 length1) :initial-element fill-value)
       #()))
 
-(defun-ct zipping (result-type &key (fill-value nil fill-value-p))
+(defun zipping (result-type &key (fill-value nil fill-value-p))
   (lambda (seq1 seq2)
     (let ((length1 (when fill-value-p (length seq1)))
           (length2 (when fill-value-p (length seq2))))
@@ -346,7 +346,7 @@
         (map result-type #'list
              seq1 seq2)))))
 
-(defun-ct maximizing (relation measure)
+(defun maximizing (relation measure)
   (lambda (it)
     (let ((it-length (length it)))
       (when (> it-length 0)
@@ -361,7 +361,7 @@
                           it
                           (alexandria:iota it-length))))))))
 
-(defun-ct group-by (fn &key (test 'equal))
+(defun group-by (fn &key (test 'equal))
   (lambda (seq)
     (let ((groups (make-hash-table :test test)))
       (map nil
