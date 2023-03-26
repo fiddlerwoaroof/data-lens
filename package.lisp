@@ -16,11 +16,11 @@
            #:defun-ct #:key #:extract-key #:element #:let-fn #:juxt
            #:transform-tail #:slice #:compress-runs
            #:combine-matching-lists #:sorted #:applicable-when
-           #:of-length #:of-min-length #:of-max-length
-           #:transform-head #:maximizing #:zipping #:applying
-           #:splice-elt #:transform-elt #:denest #:op #:defalias #:<>
-           #:<>1 #:== #:• #:suffixp #:functionalize #:inc #:group-by
-           #:keys #:conj #:disj #:delay))
+           #:of-length #:of-min-length #:of-max-length #:transform-head
+           #:maximizing #:zipping #:applying #:splice-elt
+           #:transform-elt #:denest #:op #:defalias #:<> #:<>1 #:== #:•
+           #:∘ #:suffixp #:functionalize #:inc #:group-by #:keys
+           #:conj #:disj #:delay #:calling))
 
 (defpackage :data-lens.transducers.internals
   (:use :cl)

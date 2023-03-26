@@ -291,6 +291,11 @@
     (apply #'concatenate result-type
            seq)))
 
+(defmacro calling (fun &rest args)
+  (alexandria:with-gensyms (first-arg)
+    `(lambda (,first-arg)
+       (funcall (functionalize ,fun) ,first-arg ,@args))))
+
 (defmacro applying (fun &rest args)
   (alexandria:with-gensyms (seq fsym)
     `(let ((,fsym (functionalize ,fun)))
