@@ -225,6 +225,16 @@
                                                    (prog1 (list it count)
                                                      (incf count))))
                                                 '(:p :l :i :s :t)))))
+  (let ((l '((1 . 2)
+             (2 . 3)
+             (3 . 4))))
+    (5am:is (equal l
+                   (sort (alexandria:hash-table-alist
+                          (data-lens.transducers:into (make-hash-table)
+                                                      (data-lens.transducers:mapping 'identity)
+                                                      (alexandria:alist-hash-table l)))
+                         '<
+                         :key 'car))))
 
   (loop for type in '(vector list)
         do (5am:is (equalp #(1 2 3 4 5 6)
