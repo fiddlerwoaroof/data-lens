@@ -37,7 +37,9 @@ jobs:
 
       - name: setup lisp
         run: |
+          set -x
           nix profile list
+          export PATH="$HOME/.nix-profile/bin:$PATH"
           echo $PATH
           ls ~/.nix-profile/bin
           sbcl --quit
