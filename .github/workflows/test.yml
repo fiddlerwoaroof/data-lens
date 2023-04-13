@@ -37,6 +37,8 @@ jobs:
 
       - name: setup lisp
         run: |
+          nix profile list
+          sbcl --quit
           command -v sbcl || exit 36
 
           wget 'https://beta.quicklisp.org/quicklisp.lisp'
