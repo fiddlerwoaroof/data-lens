@@ -34,6 +34,9 @@ jobs:
           cd
 
           nix profile install nixpkgs\#sbcl
+
+      - name: setup lisp
+        run: |
           command -v sbcl || exit 36
 
           wget 'https://beta.quicklisp.org/quicklisp.lisp'
