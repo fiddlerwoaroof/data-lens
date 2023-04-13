@@ -38,6 +38,8 @@ jobs:
       - name: setup lisp
         run: |
           nix profile list
+          echo $PATH
+          ls ~/.nix-profile/bin
           sbcl --quit
           command -v sbcl || exit 36
 
