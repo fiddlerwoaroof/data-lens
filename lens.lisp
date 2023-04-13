@@ -132,6 +132,7 @@
 (defmacro disj (&rest fns)
   (let ((dat (gensym "dat")))
     `(lambda (,dat)
+       (declare (ignorable ,dat))
        (or ,@(mapcar (lambda (fn)
                        `(funcall ,fn ,dat))
                      fns)))))
