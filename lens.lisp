@@ -291,10 +291,29 @@
              seq
              :initial-value ()))))
 
-(defun over (fun &key (result-type 'list))
-  (let ((fun (functionalize fun)))
-    (lambda (seq)
-      (map result-type fun seq))))
+(defun over (fun &rest funs)
+  (let* ((fun (functionalize fun))
+         (rt-pos (position :result-type funs))
+         (result-type (cond
+                        ((null rt-pos) 'list)
+                        ((>= (1+ rt-pos)
+                             (length funs))
+                         (error "invalid result-type"))
+                        (t
+                         (elt funs (1+ rt-pos)))))
+         (funs (if rt-pos
+                   (append (mapcar #'functionalize
+                                   (subseq funs 0 rt-pos))
+                           (mapcar #'functionalize
+                                   (subseq funs (+ rt-pos 2))))
+                   (mapcar #'functionalize funs)))
+         (combined-fun (if funs
+                           (apply #'alexandria:compose fun funs)
+                           fun)))
+    (lambda (seq &rest seqs)
+      (if seqs
+          (apply #'map result-type combined-fun seq seqs)
+          (map result-type combined-fun seq)))))
 
 (defun denest (&key (result-type 'list))
   (lambda (seq)
