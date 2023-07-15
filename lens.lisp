@@ -193,6 +193,11 @@
         (alexandria:ends-with-subseq suffix
                                      it))))
 
+(defun of-type (type)
+  (lambda (it)
+    (when (typep it type)
+      it)))
+
 (defun transform-head (fun)
   (lambda (it)
     (typecase it
