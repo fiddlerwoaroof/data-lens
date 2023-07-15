@@ -344,6 +344,11 @@
     `(lambda (,first-arg)
        (funcall (functionalize ,fun) ,first-arg ,@args))))
 
+(defmacro calling* (fun &rest args)
+  (alexandria:with-gensyms (last-arg)
+    `(lambda (,last-arg)
+       (funcall (functionalize ,fun) ,@args ,last-arg))))
+
 (defmacro applying (fun &rest args)
   (alexandria:with-gensyms (seq fsym)
     `(let ((,fsym (functionalize ,fun)))

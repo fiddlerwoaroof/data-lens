@@ -284,3 +284,15 @@
   (5am:is (equal (funcall (data-lens:transform 1)
                           (data-lens:juxt '1- 'identity '1+))
                  '(0 1 2))))
+
+(5am:def-test calling (:suite :data-lens.lens :depends-on (and functionalize))
+  (5am:is (equal (funcall (data-lens:calling #'- 1) 3)
+                 2))
+  (5am:is (equal (funcall (data-lens:calling #'- 2 1) 3)
+                 0)))
+
+(5am:def-test calling* (:suite :data-lens.lens :depends-on (and functionalize))
+  (5am:is (equal (funcall (data-lens:calling* #'- 3) 1)
+                 2))
+  (5am:is (equal (funcall (data-lens:calling* #'- 3 2) 1)
+                 0)))
