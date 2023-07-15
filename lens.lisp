@@ -115,11 +115,16 @@
     (<= (length it)
         len)))
 
-(defun applicable-when (fun test)
-  (lambda (it)
-    (if (funcall test it)
-        (funcall fun it)
-        it)))
+(defun applicable-when (fun test &optional (default nil default-p))
+  (if default-p
+      (lambda (it)
+        (if (funcall test it)
+            (funcall fun it)
+            default))
+      (lambda (it)
+        (if (funcall test it)
+            (funcall fun it)
+            it))))
 
 (defmacro conj (&rest fns)
   (let ((dat (gensym "dat")))

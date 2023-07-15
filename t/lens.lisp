@@ -84,6 +84,9 @@
   (5am:is (equal 1
                  (funcall (data-lens:applicable-when '1+ (constantly nil))
                           1)))
+  (5am:is (equal "hi"
+                 (funcall (data-lens:applicable-when '1+ (constantly nil) "hi")
+                          1)))
   (5am:is (equal 2
                  (funcall (data-lens:applicable-when '1+ (constantly t))
                           1))))
