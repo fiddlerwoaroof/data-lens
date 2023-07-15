@@ -259,3 +259,18 @@
   (5am:is (equalp #(1 2 3)
                   (funcall (data-lens:over '1+ :result-type 'vector)
                            #(0 1 2)))))
+
+(5am:def-test transform-elt (:suite :data-lens.lens :depends-on (and functionalize))
+  (5am:is (equal '(1 1 2)
+                 (funcall (data-lens:transform-elt 0 '1+)
+                          '(0 1 2))))
+  (5am:is (equal '(0 2 2)
+                 (funcall (data-lens:transform-elt 1 '1+)
+                          '(0 1 2))))
+  (5am:is (equalp #(0 1 3)
+                  (funcall (data-lens:transform-elt 2 '1+)
+                           (vector 0 1 2))))
+  (5am:is (equal "Abc"
+                 (funcall (data-lens:transform-elt 0 'char-upcase)
+                          "abc")))
+  )

@@ -225,9 +225,10 @@
 
 (defun transform-elt (elt fun)
   (lambda (it)
-    (append (subseq it 0 elt)
-            (list (funcall fun (nth elt it)))
-            (subseq it (1+ elt)))))
+    (concatenate (type-of it)
+                 (subseq it 0 elt)
+                 (list (funcall fun (elt it elt)))
+                 (subseq it (1+ elt)))))
 
 (defun key-transform (fun key-get key-set)
   (lambda (it)
