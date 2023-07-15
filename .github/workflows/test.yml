@@ -63,6 +63,6 @@ jobs:
                --eval "(mapcar 'asdf:load-asd (directory \"*.asd\"))" \
                --eval "(ql:quickload :data-lens/test)" \
                --eval "(handler-case (asdf:test-system :data-lens/test) (error () (uiop:quit 42)))" \
-               --eval "(ql:quickload :data-lens/transducers/test)" \
-               --eval "(handler-case (asdf:test-system :data-lens/transducers/test) (error () (uiop:quit 43)))" \
+               --eval "(handler-case (asdf:test-system :data-lens/transducers) (error () (uiop:quit 43)))" \
                --quit
+               # --eval "(ql:quickload :data-lens/transducers/test)" \
