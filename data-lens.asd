@@ -37,6 +37,14 @@
                          "A collection of transducers to reduce stream-manipulation overhead")
   :author "Edward Langley <el-cl@elangley.org>"
   :license "Apache v2"
+  :depends-on (:data-lens/transducers)
+  :in-order-to ((test-op (test-op :data-lens/transducers))))
+
+(asdf:defsystem #:data-lens/transducers
+  :description #.(format nil "~@{~a~^ ~}"
+                         "A collection of transducers to reduce stream-manipulation overhead")
+  :author "Edward Langley <el-cl@elangley.org>"
+  :license "Apache v2"
   :depends-on (:data-lens
                :alexandria
                :serapeum)
