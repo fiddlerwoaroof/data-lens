@@ -275,5 +275,12 @@
                            (vector 0 1 2))))
   (5am:is (equal "Abc"
                  (funcall (data-lens:transform-elt 0 'char-upcase)
-                          "abc")))
-  )
+                          "abc"))))
+
+(5am:def-test transform (:suite :data-lens.lens :depends-on (and functionalize))
+  (5am:is (equal (funcall (data-lens:transform 1) #'1+)
+                 2))
+
+  (5am:is (equal (funcall (data-lens:transform 1)
+                          (data-lens:juxt '1- 'identity '1+))
+                 '(0 1 2))))

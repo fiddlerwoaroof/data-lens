@@ -332,6 +332,13 @@
     (apply #'concatenate result-type
            seq)))
 
+(defun transform (arg &rest args)
+  (if args
+      (lambda (fn)
+        (apply fn arg args))
+      (lambda (fn)
+        (funcall fn arg))))
+
 (defmacro calling (fun &rest args)
   (alexandria:with-gensyms (first-arg)
     `(lambda (,first-arg)
