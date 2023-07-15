@@ -58,9 +58,10 @@ jobs:
         run: |
           export PATH="$HOME/.nix-profile/bin:$PATH"
           cd "$GITHUB_WORKSPACE"
+          ln -s "$GITHUB_WORKSPACE" "$HOME/quicklisp/local-projects"
           sbcl --disable-debugger --no-userinit \
                --load "$HOME/quicklisp/setup.lisp" \
                --eval "(mapcar 'asdf:load-asd (directory \"*.asd\"))" \
-               --eval "(handler-case (asdf:test-system :data-lens) (error () (uiop:quit 42)))" \
-               --eval "(handler-case (asdf:test-system :data-lens/transducers) (error () (uiop:quit 43)))" \
+               --eval "(handler-case (asdf:test-system :data-lens) (error (c) (format t \"~a\" c) (uiop:quit 42)))" \
+               --eval "(handler-case (asdf:test-system :data-lens/transducers) (error (c) (format t \"~a\" c) (uiop:quit 43)))" \
                --quit
