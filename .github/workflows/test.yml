@@ -64,6 +64,7 @@ jobs:
                --eval "(mapcar 'asdf:load-asd (directory \"*.asd\"))" \
                --eval "(handler-case (ql:quickload :data-lens) (error (c) (format t \"~a\" c) (uiop:quit 42)))" \
                --eval "(handler-case (ql:quickload :data-lens/transducers) (error (c) (format t \"~a\" c) (uiop:quit 43)))" \
-               --eval "(handler-case (asdf:test-system :data-lens) (error (c) (format t \"~a\" c) (uiop:quit 44)))" \
-               --eval "(handler-case (asdf:test-system :data-lens/transducers) (error (c) (format t \"~a\" c) (uiop:quit 45)))" \
+               --eval "(handler-case (ql:quickload :data-lens/test) (error (c) (format t \"~a\" c) (uiop:quit 44)))" \
+               --eval "(handler-case (asdf:test-system :data-lens) (error (c) (format t \"~a\" c) (uiop:quit 45)))" \
+               --eval "(handler-case (asdf:test-system :data-lens/transducers) (error (c) (format t \"~a\" c) (uiop:quit 46)))" \
                --quit
