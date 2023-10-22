@@ -20,12 +20,18 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: cachix/install-nix-action@v19
+      - uses: cachix/install-nix-action@v22
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+
+      - uses: cachix/cachix-action@v12
+        with:
+          name: data-lens
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          extraPullNames: nix-community
 
       # Runs a set of commands using the runners shell
       - name: setup deps
@@ -58,9 +64,13 @@ jobs:
         run: |
           export PATH="$HOME/.nix-profile/bin:$PATH"
           cd "$GITHUB_WORKSPACE"
+          ln -s "$GITHUB_WORKSPACE" "$HOME/quicklisp/local-projects"
           sbcl --disable-debugger --no-userinit \
                --load "$HOME/quicklisp/setup.lisp" \
                --eval "(mapcar 'asdf:load-asd (directory \"*.asd\"))" \
-               --eval "(handler-case (asdf:test-system :data-lens) (error () (uiop:quit 42)))" \
-               --eval "(handler-case (asdf:test-system :data-lens/transducers) (error () (uiop:quit 43)))" \
+               --eval "(handler-case (ql:quickload :data-lens) (error (c) (format t \"~a\" c) (uiop:quit 42)))" \
+               --eval "(handler-case (ql:quickload :data-lens/transducers) (error (c) (format t \"~a\" c) (uiop:quit 43)))" \
+               --eval "(handler-case (ql:quickload :data-lens/test) (error (c) (format t \"~a\" c) (uiop:quit 44)))" \
+               --eval "(handler-case (asdf:test-system :data-lens) (error (c) (format t \"~a\" c) (uiop:quit 45)))" \
+               --eval "(handler-case (asdf:test-system :data-lens/transducers) (error (c) (format t \"~a\" c) (uiop:quit 46)))" \
                --quit
