@@ -423,6 +423,11 @@
                       (reverse (cdr it))))
               (alexandria:hash-table-alist groups)))))
 
+(defun x-group (fn)
+  (lambda (groups)
+    (loop for (key . group) in groups
+          collect (funcall fn key group))))
+
 (defun hash-join (probe join-fn &key (test 'eql) (key 'car))
   (let* ((lookup (make-hash-table :test test :size (length probe)))
          (lookup-fn (functionalize lookup)))
