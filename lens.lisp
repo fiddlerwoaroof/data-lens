@@ -179,6 +179,11 @@
   (lambda (seq)
     (map 'list selector seq)))
 
+(defun tap (cb)
+  (lambda (it)
+    (prog1 it
+      (funcall cb it))))
+
 (defun slice (start &optional end)
   (lambda (it)
     (subseq it start end)))
