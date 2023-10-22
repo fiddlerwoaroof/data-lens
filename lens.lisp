@@ -423,6 +423,26 @@
                       (reverse (cdr it))))
               (alexandria:hash-table-alist groups)))))
 
+(defun hash-join (probe join-fn &key (test 'eql) (key 'car))
+  (let* ((lookup (make-hash-table :test test :size (length probe)))
+         (lookup-fn (functionalize lookup)))
+    (map nil
+         (lambda (it)
+           (setf (gethash (funcall key it)
+                          lookup)
+                 it))
+         probe)
+    (lambda (collection)
+      (map (etypecase collection
+             (list 'list)
+             (vector 'vector)
+             (sequence 'list))
+           (lambda (it)
+             (let* ((key-value (funcall key it))
+                    (matching-probe (funcall lookup-fn key-value)))
+               (funcall join-fn it matching-probe)))
+           collection))))
+
 #+nil
 (defmacro <> (arity &rest funs)
   (let ((arg-syms (loop repeat arity collect (gensym))))

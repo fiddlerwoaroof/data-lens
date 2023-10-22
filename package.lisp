@@ -22,6 +22,7 @@
            #:∘ #:suffixp #:functionalize #:inc #:group-by #:keys
            #:conj #:disj #:delay #:of-type #:transform #:calling*
            #:calling
+           #:hash-join
            #:tap))
 
 (defpackage :data-lens.transducers.internals
