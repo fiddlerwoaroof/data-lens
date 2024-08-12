@@ -8,9 +8,7 @@
   :author "Edward Langley <el-cl@elangley.org>"
   :license "Apache v2"
   :depends-on (:cl-ppcre
-               :alexandria
-               #+(or)
-               (:require :sb-cover))
+               :alexandria)
   :serial t
   :in-order-to ((test-op (test-op :data-lens/test)))
   :components ((:file "package")
