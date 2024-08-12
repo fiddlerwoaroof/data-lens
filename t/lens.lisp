@@ -183,12 +183,22 @@
                                              (acons "c" (make-instance 'my-map) ())
                                              :test 'equal))))))))
 
+(defun eqq (a b)
+  (typecase a
+    (string (equal a b))
+    (vector (and (vectorp b)
+                 (= (length a) (length b))
+                 (every 'eqq a b)))
+    (cons (and (consp b)
+               (eqq (car a) (car b))
+               (eqq (cdr a) (cdr b))))
+    (t (eql a b))))
+
 (5am:def-test regex-match (:suite :data-lens.lens)
-  (5am:is (serapeum:seq=
-           (list "acb" #("c"))
-           (multiple-value-list
-            (funcall (data-lens:regex-match "a(.)b")
-                     "<acb>")))))
+  (5am:is (eqq (list "acb" #("c"))
+               (multiple-value-list
+                (funcall (data-lens:regex-match "a(.)b")
+                         "<acb>")))))
 
 (5am:def-test include (:suite :data-lens.lens)
   (5am:is (equal '(1 3 5)

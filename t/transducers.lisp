@@ -1,6 +1,6 @@
 (defpackage :data-lens.t.transducers
-  (:use :cl )
-  (:export ))
+  (:use :cl)
+  (:export))
 (in-package :data-lens.t.transducers)
 
 (5am:def-suite :data-lens.transducers)
@@ -182,7 +182,8 @@
                   (data-lens.transducers:catting)
                   (data-lens.transducers:mapping #'parse-integer)
                   (data-lens.transducers:filtering (complement #'evenp))
-                  (data-lens.transducers:splitting (serapeum:op (* 2 _)) #'identity)
+                  (data-lens.transducers:splitting (lambda (_) (* 2 _))
+                                                   #'identity)
                   (data-lens.transducers:mapping (data-lens:transform-head #'1+))
                   (data-lens.transducers:taking 3))
                  'data-lens.transducers:hash-table-builder

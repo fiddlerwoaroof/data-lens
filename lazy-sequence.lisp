@@ -29,6 +29,11 @@
        (lambda ()
          v))))
 
+(defun unsplice (form)
+  (if form
+      (list form)
+      nil))
+
 (defun iota (&key (start 0) (step 1) count)
   (lazy-sequence
    (funcall
@@ -36,14 +41,14 @@
              `(lambda ()
                 (declare (optimize (speed 3) (debug 1) (safety 1)))
                 (let ((init ,start)
-                      ,@(serapeum:unsplice (when count
-                                             '(iterations 0))))
+                      ,@(unsplice (when count
+                                    '(iterations 0))))
                   (declare (type (integer ,start
                                           ,(if count
                                                (+ start (* count step))
                                                '*))
                                  init)
-                           ,@(serapeum:unsplice
+                           ,@(unsplice
                               (when count
                                 `(type (integer 0 ,count) iterations))))
                   (lambda ()
@@ -53,6 +58,6 @@
                            '(progn))
                      (prog1 init
                        (incf init ,step)
-                       ,@(serapeum:unsplice
+                       ,@(unsplice
                           (when count
                             '(incf iterations))))))))))))

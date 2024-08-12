@@ -94,7 +94,7 @@
 (defmethod data-lens.transducers.internals:stepper ((bag (eql 'fset-bag-builder)))
   (data-lens.transducers:transducer-lambda
     ((acc next)
-     (:printv (fset:with acc next)))))
+     (fset:with acc next))))
 (defmethod data-lens:functionalize ((it fset:bag))
   (lambda (key)
     (fset:multiplicity it key)))

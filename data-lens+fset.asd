@@ -5,8 +5,7 @@
   :license "Apache v2"
   :depends-on (:data-lens
                :data-lens/transducers
-               :fset
-               :named-readtables)
+               :fset)
   :serial t
   :in-order-to ((test-op (test-op :data-lens/test)))
   :components ((:file "data-lens-fset")))

@@ -23,8 +23,7 @@
   :license "Apache v2"
   :depends-on (:data-lens
                :fiveam
-               :string-case
-               :serapeum)
+               :string-case)
   :serial t
   :perform (test-op (o c)
                     (unless (symbol-call :fiveam '#:run! :data-lens.lens)
@@ -38,8 +37,7 @@
   :author "Edward Langley <el-cl@elangley.org>"
   :license "Apache v2"
   :depends-on (:data-lens
-               :alexandria
-               :serapeum)
+               :alexandria)
   :serial t
   :in-order-to ((test-op (test-op :data-lens/transducers/test)))
   :components ((:file "package")
