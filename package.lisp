@@ -7,7 +7,10 @@
   (:shadow :set)
   (:use :cl)
   (:export #:over #:set #:view #:make-alist-lens #:make-plist-lens
-           #:make-hash-table-lens #:make-list-lens))
+           #:make-hash-table-lens #:make-list-lens
+           #:make-lens
+           #:generic-lens
+           #:fmap))
 
 (defpackage :data-lens
   (:use :cl)
@@ -21,7 +24,8 @@
            #:transform-elt #:denest #:op #:defalias #:<> #:<>1 #:== #:•
            #:∘ #:suffixp #:functionalize #:inc #:group-by #:keys
            #:conj #:disj #:delay #:of-type #:transform #:calling*
-           #:calling #:hash-join #:tap #:x-group))
+           #:calling
+           #:closing))
 
 (defpackage :data-lens.transducers.internals
   (:use :cl)
@@ -38,4 +42,5 @@
            #:hash-table-builder #:vector-builder #:list-builder
            #:collecting #:mv-mapping #:mv-selecting #:hash-table-select
            #:mv-filtering #:mapcatting #:lazy-sequence
-           #:compressing-runs #:iota #:repeating #:repeating* #:into))
+           #:compressing-runs #:iota #:repeating #:repeating* #:into
+           #:transducer-lambda))

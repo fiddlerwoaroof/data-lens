@@ -22,6 +22,17 @@
 
 (defgeneric init (client))
 (defgeneric stepper (client))
+(defmacro transducer-lambda (&body (((two-arg-acc two-arg-next) &body two-arg-body)
+                                    &optional (((one-arg-arg) &body one-arg-body)
+                                               '((it) it))))
+  (alexandria:with-gensyms (arg1 arg2 next-sym-p)
+    `(lambda (,arg1 &optional (,arg2 nil ,next-sym-p))
+       (if ,next-sym-p
+           (let ((,two-arg-acc ,arg1)
+                 (,two-arg-next ,arg2))
+             ,@two-arg-body)
+           (let ((,one-arg-arg ,arg1))
+             ,@one-arg-body)))))
 (defgeneric unwrap (client obj)
   (:method (client obj) obj))
 (defgeneric builder-for-input (seq)
