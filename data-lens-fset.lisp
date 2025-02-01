@@ -17,9 +17,9 @@
   (data-lens.transducers:transducer-lambda
     ((acc next)
      (fset:with acc next))))
-(defmethod data-lens:functionalize ((it fset:set))
-  (lambda (key)
-    (nth-value 1 (fset:lookup it key))))
+(defmethod data-lens:functionalize ((set fset:set))
+  (lambda (it)
+    (fset:contains? set it)))
 (defmethod data-lens:extract-key ((it fset:set) key)
   (nth-value 1 (fset:lookup it key)))
 (defun make-set-lens (item)
@@ -63,6 +63,11 @@
            rec))
 
 
+(defmethod data-lens.transducers.internals:reduce-generic ((map fset:map) (func function) init)
+  (fset:reduce (lambda (acc k v)
+                 (funcall func acc (list k v)))
+               map
+               :initial-value init))
 (defmethod data-lens.transducers.internals:builder-for-input ((map fset:map))
   (values 'fset-map-builder
           map))
@@ -104,7 +109,9 @@
             m)))
 (defun make-bag-lens (item)
   (make-set-lens item))
+
 (defmethod data-lens.lenses:generic-lens ((rec fset:bag) cb loc)
   (funcall (funcall (make-set-lens loc)
                     cb)
            rec))
+
