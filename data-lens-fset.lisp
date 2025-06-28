@@ -63,6 +63,11 @@
            rec))
 
 
+(defmethod data-lens.transducers.internals:reduce-generic ((map fset:map) (func function) init)
+  (fset:reduce (lambda (acc k v)
+                 (funcall func acc (list k v)))
+               map
+               :initial-value init))
 (defmethod data-lens.transducers.internals:builder-for-input ((map fset:map))
   (values 'fset-map-builder
           map))
@@ -104,6 +109,7 @@
             m)))
 (defun make-bag-lens (item)
   (make-set-lens item))
+
 (defmethod data-lens.lenses:generic-lens ((rec fset:bag) cb loc)
   (funcall (funcall (make-set-lens loc)
                     cb)
