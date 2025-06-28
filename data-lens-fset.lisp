@@ -17,9 +17,9 @@
   (data-lens.transducers:transducer-lambda
     ((acc next)
      (fset:with acc next))))
-(defmethod data-lens:functionalize ((it fset:set))
-  (lambda (key)
-    (nth-value 1 (fset:lookup it key))))
+(defmethod data-lens:functionalize ((set fset:set))
+  (lambda (it)
+    (fset:contains? set it)))
 (defmethod data-lens:extract-key ((it fset:set) key)
   (nth-value 1 (fset:lookup it key)))
 (defun make-set-lens (item)
@@ -114,3 +114,4 @@
   (funcall (funcall (make-set-lens loc)
                     cb)
            rec))
+

@@ -56,8 +56,10 @@
 
 CONSTRAINT: SEQ should be copied, not modified"))
 
+(declaim (inline exit-early))
 (defun exit-early (acc)
   (throw 'done acc))
+(declaim (notinline exit-early))
 
 (defun transduce (xf build seq)
   (let* ((xf (etypecase xf

@@ -210,8 +210,8 @@ contain the new value at the location focused by the lens."
   (defun a-lens (cb)
     (lambda (foo)
       (fw.lu:prog1-bind (new (clone foo))
-                        (setf (a new)
-                              (funcall cb (a foo))))))
+        (setf (a new)
+              (funcall cb (a foo))))))
   (view 'a-lens
         (over 'a-lens '1+
               (set 'a-lens 2
@@ -222,10 +222,14 @@ contain the new value at the location focused by the lens."
   (:method ((rec hash-table) cb loc)
     (funcall (funcall (make-hash-table-lens loc)
                       cb)
+             rec))
+ (:method ((rec vector) cb loc)
+    (funcall (funcall (make-list-lens loc)
+                      cb)
              rec)))
 
 (defun lens (loc)
-  "A lens for updating a hash-table, discarding previous values"
+  "extensible lens using a multimethod for internal implementation"
   (lambda (cb)
     (lambda (rec)
       (generic-lens rec cb loc))))
