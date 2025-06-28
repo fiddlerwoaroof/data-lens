@@ -16,12 +16,6 @@
                seq)
       acc)))
 
-#+(or)
-(defun document (&rest strings)
-  (serapeum:string-join strings #.(format nil "~2%")))
-
-(defgeneric init (client))
-(defgeneric stepper (client))
 (defmacro transducer-lambda (&body (((two-arg-acc two-arg-next) &body two-arg-body)
                                     &optional (((one-arg-arg) &body one-arg-body)
                                                '((it) it))))
@@ -33,16 +27,39 @@
              ,@two-arg-body)
            (let ((,one-arg-arg ,arg1))
              ,@one-arg-body)))))
+
+(defgeneric init (client)
+  (:method ((client symbol))
+    (unless (fboundp client)
+      (error "client not funcallable"))
+    (init (fdefinition client)))
+  (:method ((client function))
+    (funcall client)))
+
+(defgeneric stepper (client)
+  (:method ((client function))
+    (transducer-lambda
+      ((acc a)
+       (declare (optimize (speed 3)))
+       (funcall client acc a))))
+  (:method ((client symbol))
+    (unless (fboundp client)
+      (error "client not funcallable"))
+    (init (fdefinition client))))
+
 (defgeneric unwrap (client obj)
   (:method (client obj) obj))
+
 (defgeneric builder-for-input (seq)
   (:documentation
    "Take a transducible sequence, return a builder and an init value for that builder.
 
 CONSTRAINT: SEQ should be copied, not modified"))
 
+(declaim (inline exit-early))
 (defun exit-early (acc)
   (throw 'done acc))
+(declaim (notinline exit-early))
 
 (defun transduce (xf build seq)
   (let* ((xf (etypecase xf
@@ -56,7 +73,16 @@ CONSTRAINT: SEQ should be copied, not modified"))
                                        transducer
                                        (init build)))))))
 
-(defun into (to xf from)
+(defun into (to xf &optional (from nil from-p))
+  (if (not from-p)
+      (let ((from xf))
+        (data-lens.transducers:into to
+                                    (data-lens.transducers:mapping
+                                     (lambda (&rest args)
+                                       (if (null (cdr args))
+                                           (car args)
+                                           args)))
+                                    from))
   (multiple-value-bind (builder init) (builder-for-input to)
     (let* ((xf (etypecase xf
                  (list (apply 'alexandria:compose xf))
@@ -67,7 +93,8 @@ CONSTRAINT: SEQ should be copied, not modified"))
                        (catch 'done
                          (reduce-generic from
                                          transducer
-                                         init)))))))
+                                             init))))))))
+
 
 (defmacro defdocumentation (name &body doc-specs)
   name doc-specs
