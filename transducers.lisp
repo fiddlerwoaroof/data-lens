@@ -23,7 +23,12 @@
     (lambda (rf)
       (transducer-lambda
         ((acc next)
-         (funcall rf acc (call-function next)))
+         (restart-case
+             (funcall rf acc (call-function next))
+           (continue ()
+             :report (lambda (s)
+                       (format s "skip this item"))
+             acc)))
         ((it) (funcall rf it))))))
 
 (defun mv-mapping (function &rest args)

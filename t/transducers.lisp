@@ -237,6 +237,22 @@
                          '<
                          :key 'car))))
 
+  (5am:is (equalp #(1 2 3 4)
+                  (data-lens.transducers:into #() '(1 2 3 4)))
+          "~s can be used to convert one type into another without a transducer"
+          'data-lens.transducers:into)
+
+  (5am:is (equalp #(1 2 4)
+                  (handler-bind ((simple-error #'continue))
+                    (data-lens.transducers:into #()
+                                                (data-lens.transducers:mapping
+                                                 (lambda (it)
+                                                   (if (= it 3)
+                                                       (error "fail")
+                                                       it)))
+                                                '(1 2 3 4))))
+          "transducers provide a continue restart")
+
   (loop for type in '(vector list)
         do (5am:is (equalp #(1 2 3 4 5 6)
                            (data-lens.transducers:into #(1 2 3)
