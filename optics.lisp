@@ -217,3 +217,15 @@ contain the new value at the location focused by the lens."
               (set 'a-lens 2
                    (make-instance 'foo :a 1)))) #|
   ==> 3 |#)
+
+(defgeneric generic-lens (rec cb loc)
+  (:method ((rec hash-table) cb loc)
+    (funcall (funcall (make-hash-table-lens loc)
+                      cb)
+             rec)))
+
+(defun lens (loc)
+  "A lens for updating a hash-table, discarding previous values"
+  (lambda (cb)
+    (lambda (rec)
+      (generic-lens rec cb loc))))
